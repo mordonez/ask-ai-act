@@ -1,15 +1,19 @@
+import { buildActionPlan } from "../rules/actionPlan";
 import { classify } from "../rules/classify";
 import {
   CORE_QUESTIONS,
   FILTER_6_3_QUESTIONS,
+  ROLE_LABELS,
   TRANSPARENCY_QUESTIONS,
 } from "../rules/questions";
-import type { Answer, Answers, ClassificationLabel } from "../rules/types";
+import type { Role } from "../rules/questions";
+import type { Answer, Answers, ClassificationLabel, ClassificationResult } from "../rules/types";
 
 /**
  * Wizard mínimo: pinta la siguiente pregunta que `classify()` diga
- * que falta, hasta llegar a un resultado. No guarda estado entre
- * sesiones (Fase 1: sin cuentas, sin base de datos).
+ * que falta, hasta llegar a un resultado; luego pregunta el rol y
+ * muestra el plan de acción. No guarda estado entre sesiones (Fase 1:
+ * sin cuentas, sin base de datos).
  */
 
 const ALL_QUESTIONS = [...CORE_QUESTIONS, ...FILTER_6_3_QUESTIONS, ...TRANSPARENCY_QUESTIONS];
@@ -24,7 +28,70 @@ const LABEL_TEXT: Record<ClassificationLabel, string> = {
   no_determinado: "No determinado",
 };
 
+/** Etiquetas que tienen algo que ganar preguntando el rol antes del plan de acción. */
+const LABELS_THAT_NEED_ROLE: ClassificationLabel[] = ["alto_riesgo"];
+
 let answers: Answers = {};
+let role: Role | undefined;
+let roleAsked = false;
+
+function resetAll() {
+  answers = {};
+  role = undefined;
+  roleAsked = false;
+}
+
+function renderResult(result: ClassificationResult) {
+  const app = document.getElementById("app");
+  if (!app) return;
+
+  const plan = buildActionPlan(result, role);
+  const itemsHtml = plan.items.length
+    ? `<ul>${plan.items.map((i) => `<li>${i.obligation} <span class="legal-ref">(${i.guide})</span></li>`).join("")}</ul>`
+    : "";
+
+  app.innerHTML = `
+    <div id="result" class="${result.label}">
+      <strong>${LABEL_TEXT[result.label]}</strong>
+      <p>${result.summary}</p>
+      ${result.legalRefs.length ? `<p class="legal-ref">Base: ${result.legalRefs.join(", ")}</p>` : ""}
+      <hr />
+      <p><strong>Próxima acción:</strong> ${plan.nextAction}</p>
+      ${plan.deadlineNote ? `<p class="legal-ref">${plan.deadlineNote}</p>` : ""}
+      ${itemsHtml}
+    </div>
+    <button id="restart">Empezar de nuevo</button>
+  `;
+  document.getElementById("restart")?.addEventListener("click", () => {
+    resetAll();
+    render();
+  });
+}
+
+function renderRoleQuestion() {
+  const app = document.getElementById("app");
+  if (!app) return;
+
+  const options = Object.entries(ROLE_LABELS) as [Role, string][];
+  app.innerHTML = `
+    <div class="question">
+      <p>¿Qué papel tiene tu organización en este sistema? El plan de acción cambia según el rol.</p>
+      ${options
+        .map(([value, label]) => `<button data-role="${value}" style="display:block;margin:0.4rem 0;">${label}</button>`)
+        .join("")}
+      <button data-role="__skip__" style="margin-top:0.8rem;">No lo sé todavía</button>
+    </div>
+  `;
+
+  app.querySelectorAll<HTMLButtonElement>("button[data-role]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const value = btn.dataset.role;
+      role = value === "__skip__" ? undefined : (value as Role);
+      roleAsked = true;
+      render();
+    });
+  });
+}
 
 function render() {
   const app = document.getElementById("app");
@@ -33,24 +100,16 @@ function render() {
   const result = classify(answers);
 
   if (result.label !== "no_determinado") {
-    app.innerHTML = `
-      <div id="result" class="${result.label}">
-        <strong>${LABEL_TEXT[result.label]}</strong>
-        <p>${result.summary}</p>
-        ${result.legalRefs.length ? `<p class="legal-ref">Base: ${result.legalRefs.join(", ")}</p>` : ""}
-      </div>
-      <button id="restart">Empezar de nuevo</button>
-    `;
-    document.getElementById("restart")?.addEventListener("click", () => {
-      answers = {};
-      render();
-    });
+    if (LABELS_THAT_NEED_ROLE.includes(result.label) && !roleAsked) {
+      renderRoleQuestion();
+      return;
+    }
+    renderResult(result);
     return;
   }
 
   const nextId = result.missingQuestions?.[0];
   if (!nextId) {
-    // no_determinado sin más preguntas que hacer: necesita revisión manual.
     app.innerHTML = `
       <div id="result" class="no_determinado">
         <strong>No determinado — necesita revisión manual</strong>
@@ -59,7 +118,7 @@ function render() {
       <button id="restart">Empezar de nuevo</button>
     `;
     document.getElementById("restart")?.addEventListener("click", () => {
-      answers = {};
+      resetAll();
       render();
     });
     return;

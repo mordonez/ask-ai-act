@@ -1,0 +1,2173 @@
+3   Empresas desarrollando
+                             0
+Esta guía ha sido desarrollada en el marco del desarrollo del piloto español de
+sandbox regulatorio de IA, en colaboración entre los participantes, asistencias
+técnicas, potenciales autoridades nacionales competentes y el grupo asesor de
+expertos del sandbox.
+La guía tiene como objetivo servir de apoyo introductorio a la normativa europea
+de Inteligencia Artificial y sus obligaciones aplicables. Si bien no tiene carácter
+vinculante ni sustituye ni desarrolla la normativa aplicable, proporciona
+recomendaciones prácticas alineadas con los requisitos regulatorios a la espera
+de que se aprueben las normas armonizadas de aplicación para todos los Estados
+miembros.
+El presente documento está sujeto a un proceso permanente de evaluación y
+revisión, con actualizaciones periódicas conforme al desarrollo de los estándares y
+las distintas directrices publicadas desde la Comisión Europea. La guía ha sido
+actualizada conforme al Ómnibus digital que modifica el Reglamento de
+Inteligencia Artificial.
+Entre las referencias técnicas relevantes actualmente aplicables, destacan las
+normas ISO/IEC 17000:2004 “Conformity assessment — Vocabulary and
+general principles” e ISO/IEC 17007:2009 “Conformity assessment —
+Guidance for drafting normative documents suitable for use for conformity
+assessment”, además también destacan las referencias técnicas en desarrollo
+prEN 18285 AI Conformity assessment framework. Todas estas referencias
+establecerán el marco terminológico y metodológico de referencia para las
+actividades de evaluación de la conformidad, proporcionando las bases
+conceptuales necesarias para la elaboración y aplicación de procedimientos
+de certificación en el contexto del cumplimiento del Reglamento Europeo de
+Inteligencia Artificial.
+Guía 3. Evaluación de la conformidad © 2026 por el Ministerio para la
+Transformación Digital y de la Función Pública está bajo una licencia
+Creative Commons Atribución 4.0 Internacional.
+
+NIPO: 23026021X
+
+
+
+
+                                            Fecha de versión: 17 de julio de 2026
+
+
+
+
+                                                                                      1
+ •     Control de versiones del documento:
+
+Versión      Fecha versión     Cambios principales
+     1.0        10/12/2025     Publicación de la primera versión
+                               Adaptación de acuerdo con los cambios
+     2.0.       17/07/2026     introducidos por el Ómnibus Digital y cambios
+                               menores de forma
+
+
+
+
+                                                                               2
+Contenido general
+1.    Preámbulo .............................................................................................................................................5
+2.    Introducción ..........................................................................................................................................7
+3.    Reglamento de Inteligencia Artificial ............................................................................................... 11
+4.    ¿Cómo abordar los requisitos? ........................................................................................................ 20
+5. Referencias, estándares y normas ........................................................................................................ 45
+
+
+
+
+                                                                                                                                                                 3
+Índice detallado
+1.      Preámbulo .............................................................................................................................................5
+      1.1 Objetivo del documento ..................................................................................................................5
+      1.2 ¿Cómo leer esta guía? ......................................................................................................................5
+      1.3 ¿A quién está dirigido? .....................................................................................................................5
+      1.4 Casos de uso y ejemplos dispuestos a lo largo de la guía ...........................................................6
+2.      Introducción ..........................................................................................................................................7
+     2.1 Concepto de evaluación de la conformidad. .................................................................................7
+     2.2 Formas de realizar la evaluación de la conformidad ....................................................................7
+     2.3 La evaluación de la conformidad dentro del marco de la legislación de armonización de la
+     Unión Europea ..........................................................................................................................................8
+3.      Reglamento de Inteligencia Artificial ............................................................................................... 11
+      3.1 Análisis previo y relación de los artículos .................................................................................. 11
+      3.2 Contenido de los artículos en el Reglamento de IA ................................................................. 12
+      3.3 Correspondencia del articulado con los apartados de la guía ................................................. 18
+4.      ¿Cómo abordar los requisitos? ........................................................................................................ 20
+      4.1 La evaluación de la conformidad durante el desarrollo y puesta en el mercado de los
+     productos ............................................................................................................................................... 20
+      4.2 El proceso de evaluación de la conformidad en el Reglamento de Inteligencia Artificial para
+     los sistemas de IA de alto riesgo .......................................................................................................... 21
+      4.3 Forma de evaluación de la conformidad en función del tipo de sistema de IA...................... 30
+      4.4 La evaluación de la conformidad ante una modificación sustancial del sistema de IA. ......... 37
+      4.5 Instrumentos relacionados con la evaluación de conformidad en el Reglamento de
+     Inteligencia Artificial .............................................................................................................................. 37
+         4.5.1 Normas armonizadas, especificaciones técnicas comunes, otras especificaciones y
+               presunciones de conformidad específicas ........................................................................... 38
+         4.5.2 Declaración UE de conformidad ........................................................................................... 41
+         4.5.3 El marcado CE ......................................................................................................................... 42
+         4.5.4 Las autoridades notificantes y los organismos notificados ................................................ 43
+5. Referencias, estándares y normas ........................................................................................................ 45
+     5.1 Estándares de referencia de la Guía ............................................................................................ 45
+     5.2 Estándares cuya lectura se recomienda ...................................................................................... 45
+     5.3 Estándares relacionados con la evaluación de la conformidad no destinados a los
+     proveedores de sistemas de IA. ........................................................................................................... 45
+     5.4 Enlaces webs relevantes ................................................................................................................ 46
+
+
+
+
+                                                                                                                                                                    4
+Preámbulo
+1.1 Objetivo del documento
+
+La presente guía en el marco del sandbox de inteligencia artificial tiene como objetivo
+orientar sin carácter vinculante sobre el proceso de evaluación de la conformidad al que
+habrán de someterse los sistemas de Inteligencia Artificial de alto riesgo del Reglamento
+Europeo de la IA.
+
+
+1.2 ¿Cómo leer esta guía?
+
+La estructura de esta guía presenta las siguientes características.
+
+El primer apartado aborda las notas esenciales de la presente Guía.
+
+Seguidamente, el segundo apartado desarrolla el contenido del Reglamento Europeo de
+la IA que hace referencia al proceso de evaluación de la conformidad. Para ello, este
+apartado se subdivide a su vez en toda una serie de subapartados, estos son:
+
+   a) Se realiza una aproximación general al proceso de evaluación de la conformidad
+      diseñado por parte de la UE para los productos sometidos a la legislación de
+      armonización.
+
+   b) Se pone el foco de atención en el proceso de evaluación de la conformidad de los
+      sistemas de IA recogido en el Reglamento Europeo de IA.
+
+   c) Se mencionan algunos de los instrumentos que están estrechamente relacionados
+      con la evaluación de la conformidad y que también se contemplan en el
+      Reglamento Europeo de IA.
+
+El tercer apartado hace referencia a los preceptos que regulan el proceso de evaluación
+de la conformidad en el Reglamento Europeo de IA.
+
+Finalmente, el cuarto apartado engloba las fuentes consultadas para la elaboración de
+esta guía, así como otras que consideramos que pueden ser relevantes para la
+implementación de las medidas y requisitos derivados del Reglamento Europeo de IA en
+este contexto.
+
+La presente guía toma como referencia el Reglamento 2024/1689 del Parlamento Europeo
+y del Consejo, de 13 de junio de 2024 (Reglamento Europeo de IA)
+
+
+1.3 ¿A quién está dirigido?
+
+Es responsabilidad de los proveedores de sistemas de IA de alto riesgo implementar las
+medidas adecuadas para llevar a cabo adecuadamente las exigencias previstas en el
+Reglamento Europeo de IA respecto del proceso de evaluación de la conformidad.
+
+
+                                                                                            5
+1.4 Casos de uso y ejemplos dispuestos a lo largo de la guía
+
+Se han seleccionado los siguientes casos de uso atendiendo a la capacidad para explicar
+la información y procedimientos detallados en la guía. No obstante, en determinadas
+ocasiones se hará mención a otros ejemplos.
+
+Los casos seleccionados han sido:
+
+   •   Gestión de enfermedades crónicas. Bomba de insulina inteligente.
+
+   •   Control de la asistencia al trabajo mediante reconocimiento biométrico.
+
+
+
+
+                                                                                          6
+1. Introducción
+2.1 Concepto de evaluación de la conformidad.
+
+
+  AI Act
+
+       Art.3.20 - Definiciones
+       Evaluación de la conformidad: el proceso por el que se demuestra si se han cumplido
+       los requisitos establecidos en el capítulo III, sección 2, en relación con un sistema de
+       IA de alto riesgo.
+
+
+
+Es decir, a través de ese proceso, el proveedor demuestra si los sistemas de IA de alto
+riesgo cumplen o no con los requisitos exigidos en los artículos 8 a 15 del Reglamento
+Europeo de IA.
+
+La evaluación de la conformidad es responsabilidad del proveedor, aunque subcontrate el
+diseño o la producción. En algunos casos, el procedimiento de evaluación de conformidad
+puede requerir la intervención de un organismo notificado.
+
+
+2.2 Formas de realizar la evaluación de la conformidad
+
+El Reglamento Europeo de IA establece dos formas de evaluar la conformidad de los
+sistemas de IA de alto riesgo en función de los procesos que se han de realizar y de si en
+dicha evaluación de conformidad interviene o no un organismo notificado.
+
+   o   Procedimiento de evaluación de conformidad fundamentado en un control interno
+       del proveedor. Anexo VI Reglamento Europeo de IA.
+
+   o   Conformidad basada en la evaluación del sistema de gestión de la calidad y la
+       evaluación de la documentación técnica. Interviene un organismo notificado.
+       Anexo VII Reglamento Europeo de IA.
+
+La elección de uno u otro procedimiento de evaluación de conformidad está vinculada al
+tipo de sistema de IA que desarrolle el proveedor. Esta clasificación se analiza
+posteriormente en esta guía.
+
+Una manera resumida y visual de ver las dos formas de evaluar la conformidad de los
+sistemas de IA de alto riesgo es:
+
+
+
+
+                                                                                                  7
+2.3 La evaluación de la conformidad dentro del marco de la
+     legislación de armonización de la Unión Europea
+
+El proceso de evaluación de la conformidad del Reglamento Europeo de IA y que
+detallaremos posteriormente, se enmarca en el llamado nuevo marco legislativo, en
+adelante NML. El NML está integrado por varios textos legales europeos que establecen
+unas bases comunes sobre la comercialización, evaluación y vigilancia de productos en la
+Unión Europea1. De esta manera, el legislador europeo, a la hora de legislar sobre un
+producto, toma como referencia el NML, el cual, contempla una estructura que asegura
+una evaluación y puesta en el mercado fiable de tales productos y bienes.
+
+Los instrumentos principales que conforman esta estructura son los siguientes:
+
+      •    Normas armonizadas: son especificaciones técnicas adoptadas a petición de la
+           Comisión Europea para la aplicación de la legislación de armonización de la Unión
+           por parte de una organización europea de normalización.
+
+
+
+1
+    Las tres textos legales que conforman el Nuevo Marco Legislativo son: el Reglamento (CE) n.º 765/2008 del Parlamento
+Europeo y del Consejo por el que se establecen los requisitos de acreditación y vigilancia del mercado de los productos; la
+Decisión n.º 768/2008/CE del Parlamento Europeo y del Consejo sobre un marco común para la comercialización de los
+productos y; el Reglamento (UE) 2019/1020 del Parlamento Europeo y del Consejo relativo a la vigilancia del mercado y la
+conformidad de los productos.
+
+
+
+
+                                                                                                                              8
+      •   Especificaciones comunes: se trata de especificaciones técnicas elaboradas por la
+          Comisión Europea mediante actos de ejecución para la aplicación de legislación de
+          armonización de la Unión. Estas especificaciones se adoptan cuando no existen
+          normas armonizadas, o existiendo estas, la Comisión Europea no considera que
+          sean suficientes para cumplir con los requisitos exigidos por la legislación de
+          armonización.
+
+      •   Declaración UE de conformidad: es un documento obligatorio que el fabricante o
+          su representante autorizado debe firmar para declarar que sus productos cumplen
+          los requisitos de la UE.
+
+      •   Marcado CE: El marcado CE es un indicador clave (pero no una prueba) de la
+          conformidad de un producto con la legislación de la UE, y permite la libre
+          circulación de productos dentro del mercado europeo.
+
+      •   Documentación Técnica: Conjunto de evidencias documentadas que contienen
+          información (sobre diseño, fabricación, funcionamiento, etc.) que demuestre la
+          conformidad del producto con los requisitos aplicables. El contenido de la
+          documentación técnica se establece, en cada acto de armonización de la Unión, en
+          función de los productos de que se trate.
+
+      •   Evaluación de la conformidad: Proceso por el que se demuestra que se cumplen los
+          requisitos especificados en la legislación de la UE relativos a un producto o
+          proceso.2
+
+      •   Autoridades notificantes: Una autoridad notificante es el organismo público
+          encargado de llevar a cabo los procedimientos necesarios para la evaluación,
+          designación y notificación de los organismos de evaluación de la conformidad en
+          virtud de la legislación de armonización de la Unión.
+
+      •   Organismos notificados: Los organismos notificados son organismos de evaluación
+          de la conformidad que han sido designados y notificados oficialmente por las
+          autoridades notificantes para llevar a cabo los procedimientos de evaluación de la
+          conformidad previstos en la legislación de armonización de la Unión. Pueden ser
+          entidades públicas o privadas.
+
+      •   Vigilancia del mercado: La vigilancia del mercado tiene por objeto garantizar que
+          los productos cumplan los requisitos aplicables que proporcionan un alto nivel de
+          protección de los intereses públicos protegidos por la legislación de armonización
+          de la UE.
+
+Entre los productos o componentes de seguridad de productos cuya legislación de
+armonización presentan esta estructura encontramos: juguetes, ascensores, equipo y
+sistemas de protección para uso en atmósferas potencialmente explosivas, equipos
+radioeléctricos, equipos a presión, equipo de embarcaciones de recreo, instalaciones de
+
+
+
+
+2
+    ISO/IEC 17000:2004
+
+
+                                                                                               9
+transporte por cable, aparatos que queman combustibles gaseosos, productos sanitarios
+y productos sanitarios para diagnóstico in vitro.
+
+Cada uno de estos productos y componentes de seguridad de productos tienen su propia
+ley de armonización que sigue la estructura fijada por el NML. De esta manera, el producto
+debe cumplir los requisitos jurídicos vigentes en el momento de su introducción en el
+mercado o su puesta en servicio. Esos requisitos jurídicos se contemplan en cada una de
+las leyes de armonización3.
+
+El Reglamento Europeo de IA presenta la misma estructura arriba mencionada adaptada a
+los requisitos propios de los sistemas de IA. En las siguientes páginas se estudia la
+integración del Reglamento Europeo de IA de todos estos instrumentos.
+
+
+
+
+3
+ El listado de productos y componentes de seguridad de productos junto con las leyes que regulan cada uno de estos puede
+consultarse aquí:
+
+https://single-market-economy.ec.europa.eu/single-market/ce-marking/manufacturers_en
+
+
+
+                                                                                                                       10
+2. Reglamento de Inteligencia
+ Artificial
+La puesta en servicio o la utilización de sistemas de IA de alto riesgo debe supeditarse al
+cumplimiento de determinados requisitos obligatorios, entre los cuales está el de la
+conformidad. Estos requisitos tienen como objetivo garantizar que los sistemas de IA de
+alto riesgo disponibles en la Unión o cuyos resultados de salida se utilicen en la Unión no
+representen riesgos inaceptables para intereses públicos importantes reconocidos y
+protegidos por el Derecho de la Unión.
+
+En este apartado se incluye los artículos referentes a la evaluación de la conformidad de
+los requisitos exigidos a los sistemas de IA de alto riesgos definidos en el Reglamento
+2024/1689 del Parlamento Europeo y del Consejo, de 13 de junio de 2024 (Reglamento
+Europeo de Inteligencia Artificial) y se detalla en qué secciones de esta guía se abordan los
+diferentes elementos de dichos artículos.
+
+
+2.1 Análisis previo y relación de los artículos
+
+Las obligaciones sobre la conformidad están repartidas en varios artículos y anexos del
+Reglamento Europeo de IA, ya que afectan a muchos de los requisitos de la sección 2 del
+Capítulo III. Sin embargo, la información clave sobre la evaluación de la conformidad se
+encuentra principalmente en el artículo 43. Además, para entender bien el proceso, es
+fundamental consultar también los anexos VI y VII, que desarrollan los procedimientos
+concretos.
+
+Por la naturaleza y contenido de este artículo y en anexos, se tratarán, en el caso concreto
+de esta guía, de forma conjunta. En este sentido:
+
+   •   Artículo 43. Evaluación de la conformidad: Establece las condiciones necesarias
+       para demostrar el cumplimiento de los requisitos exigidos a los sistemas de IA de
+       alto riesgo.
+
+   •   Anexo VI. Procedimiento de evaluación de la conformidad fundamentado en
+       un control interno: Establece los requisitos para la evaluación de la conformidad
+       en un control interno, es decir, realizado por el propio proveedor del sistema de IA.
+
+   •   Anexo VII. Conformidad fundamentada en la evaluación del sistema de gestión
+       de la calidad y la evaluación de la documentación técnica: Se centra en la
+       evaluación del sistema de gestión de la calidad y la evaluación de la documentación
+       técnica, con la participación de un organismo notificado.
+
+
+
+
+                                                                                            11
+2.2 Contenido de los artículos en el Reglamento de IA
+
+   AI Act
+     Art.43 – Evaluación de la conformidad
+     1. En el caso de los sistemas de IA de alto riesgo enumerados en el anexo III,
+     punto 1, cuando el proveedor haya aplicado las normas armonizadas del
+     artículo 40 para demostrar el cumplimento de los requisitos establecidos en la
+     sección 2, o las especificaciones comunes del artículo 41, optará por uno de
+     los procedimientos de evaluación siguientes:
+
+            a) el fundamentado en el control interno, mencionado en el anexo VI, o
+
+            b) el fundamentado en la evaluación del sistema de gestión de la
+            calidad y la evaluación de la documentación técnica, con la
+            participación de un organismo notificado, mencionado en el anexo VII.
+
+     Al demostrar el cumplimiento de los requisitos establecidos en la sección 2
+     por parte de un sistema de IA de alto riesgo, el proveedor se atendrá al
+     procedimiento de evaluación de la conformidad establecido en el anexo VII
+     cuando:
+
+            a) las normas armonizadas a que se refiere el artículo 40 no existan, y
+            no se disponga de las especificaciones comunes a que se refiere el
+            artículo 41;
+
+            b) el proveedor no haya aplicado la norma armonizada, o solo haya
+            aplicado parte de esta;
+
+            c) existan las especificaciones comunes a que se refiere la letra a), pero
+            el proveedor no las haya aplicado;
+
+            d) una o varias de las normas armonizadas a que se refiere la letra a) se
+            hayan publicado con una limitación, y únicamente en la parte de la
+            norma objeto de la limitación.
+
+     A efectos del procedimiento de evaluación de la conformidad mencionado en
+     el anexo VII, el proveedor podrá escoger cualquiera de los organismos
+     notificados. No obstante, cuando se prevea la puesta en servicio del sistema
+     de IA de alto riesgo por parte de las autoridades garantes del cumplimiento
+     del Derecho, las autoridades de inmigración o las autoridades de asilo, o por
+     las instituciones, órganos u organismos de la Unión, la autoridad de vigilancia
+     del mercado mencionada en el artículo 74, apartado 8 o 9, según proceda,
+     actuará como organismo notificado.
+
+     2. En el caso de los sistemas de IA de alto riesgo mencionados en el anexo III,
+     puntos 2 a 8, los proveedores se atendrán al procedimiento de evaluación de
+     la conformidad fundamentado en un control interno a que se refiere el anexo
+     VI, que no contempla la participación de un organismo notificado.
+
+
+                                                                                         12
+3. En el caso de los sistemas de IA de alto riesgo regulados por los actos
+legislativos de armonización de la Unión enumerados en el anexo I, sección A,
+el proveedor del sistema se atendrá al procedimiento de evaluación de la
+conformidad pertinente exigido de conformidad con los actos legislativos de
+armonización de la Unión pertinentes. Los requisitos establecidos en la sección
+2 del presente capítulo se aplicarán a dichos sistemas de IA de alto riesgo y
+formarán parte de dicha evaluación. También se llevará a cabo una evaluación
+del sistema de gestión de la calidad establecido en el artículo 17, y se aplicarán
+los puntos 3, 4.3, 4.4 y 4.5, el punto 4.6, párrafo quinto, y el punto 5 del anexo
+VII.
+
+A efectos de dicha evaluación de la conformidad, los organismos notificados
+que hayan sido notificados con arreglo a los actos legislativos de armonización
+de la Unión enumerados en el anexo I, sección A, estarán facultados para
+evaluar la conformidad de los sistemas de IA de alto riesgo con los requisitos
+establecidos en la sección 2 del presente capítulo, a condición de que el
+cumplimiento por parte de dichos organismos notificados de los requisitos
+establecidos en el artículo 31, apartados 4, 5, 10 y 11, se haya evaluado en el
+contexto del procedimiento de notificación con arreglo a los actos legislativos
+de armonización de la Unión pertinentes, lo que se demuestra mediante la
+evaluación efectuada en el marco de la notificación existente. Sin perjuicio de
+lo dispuesto en el artículo 28, dichos organismos notificados que hayan sido
+notificados de conformidad con los actos legislativos de armonización de la
+Unión enumerados en el anexo I, sección A, solicitarán su designación de
+conformidad con la sección 4 del presente capítulo a más tardar 18 meses a
+partir de la fecha de aplicación del Ómnibus Digital
+
+Cuando un acto legislativo de armonización de la Unión enumerado en el
+anexo I, sección A, permita al fabricante del producto recurrir a una evaluación
+de la conformidad en la que no participen terceros a condición de que el
+fabricante haya aplicado normas armonizadas para garantizar el cumplimiento
+de todos los requisitos pertinentes, dicho fabricante solamente podrá recurrir
+dicha opción si también ha aplicado normas armonizadas o, en su caso,
+especificaciones comunes previstas en el artículo 41 que contemplen todos los
+requisitos establecidos en la sección 2 del presente capítulo. La clasificación
+de un producto como sistema de IA de alto riesgo de conformidad con el
+artículo 6, apartado 1, no afecta a las opciones relativas al procedimiento de
+evaluación de la conformidad de que disponen los fabricantes de productos
+regulados por los actos legislativos de armonización de la Unión enumerados
+en el anexo I, sección A, incluida, en su caso, la opción de basarse en normas
+armonizadas. Los fabricantes de dichos productos no están obligados a optar
+por un procedimiento de evaluación de la conformidad que implique una
+evaluación de la conformidad de terceros solo por motivo de que el producto
+incluya un sistema de IA de alto riesgo como componente de seguridad
+cuando no lo exijan los actos legislativos de armonización de la Unión
+enumerados en el anexo I, sección A.
+
+
+
+
+                                                                                     13
+   En el caso de los sistemas de IA de alto riesgo que estén regulados por los
+   actos legislativos de armonización de la Unión enumerados en el anexo I,
+   sección A, y que entren en alguna de las categorías enumeradas en el anexo
+   III, el proveedor del sistema se atendrá al procedimiento de evaluación de la
+   conformidad pertinente exigido en virtud de los actos legislativos de
+   armonización de la Unión enumerados el anexo I, sección A.
+
+   4. Los sistemas de IA de alto riesgo que ya hayan sido objeto de un
+   procedimiento de evaluación de la conformidad se someterán a un nuevo
+   procedimiento de evaluación de la conformidad en caso de modificación
+   sustancial, con independencia de si está prevista una distribución posterior del
+   sistema modificado o de si este continúa siendo utilizado por el responsable
+   del despliegue actual.
+
+   En el caso de los sistemas de IA de alto riesgo que continúen aprendiendo tras
+   su introducción en el mercado o su puesta en servicio, los cambios en el
+   sistema de IA de alto riesgo y su funcionamiento que hayan sido
+   predeterminados por el proveedor en el momento de la evaluación inicial de
+   la conformidad y figuren en la información recogida en la documentación
+   técnica mencionada en el anexo IV, (punto 2, letra f), no constituirán
+   modificaciones sustanciales.
+
+   5. La Comisión estará facultada para adoptar actos delegados con arreglo al
+   artículo 97 al objeto de modificar los anexos VI y VII actualizándolos a la luz del
+   progreso técnico.
+
+   6. La Comisión estará facultada para adoptar actos delegados de conformidad
+   con el artículo 97 al objeto de modificar los apartados 1 y 2 del presente
+   artículo a fin de someter a los sistemas de IA de alto riesgo mencionados en el
+   anexo III, puntos 2 a 8, al procedimiento de evaluación de la conformidad a
+   que se refiere el anexo VII o a partes de este. La Comisión adoptará dichos
+   actos delegados teniendo en cuenta la eficacia del procedimiento de
+   evaluación de la conformidad fundamentado en un control interno
+   mencionado en el anexo VI para prevenir o reducir al mínimo los riesgos para
+   la salud, la seguridad y la protección de los derechos fundamentales que
+   plantean estos sistemas, así como la disponibilidad de capacidades y recursos
+   adecuados por parte de los organismos notificados.
+
+
+
+
+AI Act
+
+   Anexo VI - Procedimiento de evaluación de                                             la
+   conformidad fundamentado en un control interno
+   1. El procedimiento de evaluación de la conformidad fundamentado en un
+   control interno es el procedimiento de evaluación de la conformidad basado
+   en los puntos 2, 3 y 4.
+
+
+                                                                                          14
+   2. El proveedor comprueba que el sistema de gestión de la calidad establecido
+   cumple los requisitos establecidos en el artículo 17.
+
+   3. El proveedor examina la información de la documentación técnica para
+   evaluar la conformidad del sistema de IA con los requisitos esenciales
+   pertinentes establecidos en el capítulo III, sección 2.
+
+   4. Asimismo, el proveedor comprueba que el proceso de diseño y desarrollo
+   del sistema de IA y la vigilancia poscomercialización del mismo a que se refiere
+   el artículo 72 son coherentes con la documentación técnica.
+
+
+
+
+AI Act
+   Anexo VII - Conformidad fundamentada en la evaluación
+   del sistema de gestión de la calidad y la evaluación de la
+   documentación técnica
+   1. Introducción
+
+   La conformidad fundamentada en la evaluación del sistema de gestión de la
+   calidad y la evaluación de la documentación técnica es el procedimiento de
+   evaluación de la conformidad basado en los puntos 2 a 5.
+
+   2. Presentación general
+
+   El sistema de gestión de la calidad aprobado en relación con el diseño, el
+   desarrollo y las pruebas de los sistemas de IA con arreglo al artículo 17 se
+   examinará de conformidad con el punto 3 y será objeto de vigilancia con
+   arreglo a lo establecido en el punto 5. La documentación técnica del sistema
+   de IA se examinará de conformidad con el punto 4.
+
+   3. Sistema de gestión de la calidad
+
+   3.1. La solicitud del proveedor incluirá:
+
+   a) el nombre y la dirección del proveedor y, si es el representante autorizado
+   quien presenta la solicitud, también su nombre y dirección;
+
+   b) la lista de los sistemas de IA a los que se aplica el mismo sistema de gestión
+   de la calidad;
+
+   c) la documentación técnica de cada sistema de IA al que se aplica el mismo
+   sistema de gestión de la calidad;
+
+   d) la documentación relativa al sistema de gestión de la calidad, que cubrirá
+   todos los aspectos enumerados en el artículo 17;
+
+
+
+
+                                                                                       15
+e) una descripción de los procedimientos establecidos para garantizar que el
+sistema de gestión de la calidad sigue siendo adecuado y eficaz;
+
+f) una declaración por escrito de que no se ha presentado la misma solicitud
+ante ningún otro organismo notificado.
+
+3.2. El sistema de gestión de la calidad será evaluado por el organismo
+notificado, que determinará si cumple los requisitos especificados en el
+artículo 17.
+
+La decisión se notificará al proveedor o a su representante autorizado.
+
+La notificación incluirá las conclusiones de la evaluación del sistema de gestión
+de la calidad y una decisión motivada sobre la evaluación.
+
+3.3. El proveedor continuará aplicando y manteniendo el sistema de gestión
+de la calidad aprobado de forma que siga siendo adecuado y eficaz.
+
+3.4. El proveedor comunicará al organismo notificado toda modificación
+prevista del sistema de gestión de la calidad aprobado o de la lista de sistemas
+de IA a los que este se aplica.
+
+El organismo notificado examinará los cambios propuestos y decidirá si el
+sistema de gestión de la calidad modificado sigue cumpliendo los requisitos
+mencionados en el punto 3.2 o si es necesario realizar una nueva evaluación.
+
+El organismo notificado notificará su decisión al proveedor. La notificación
+incluirá las conclusiones del examen de los cambios y una decisión motivada
+sobre la evaluación.
+
+4. Control de la documentación técnica
+
+4.1. Además de la solicitud a que se refiere el punto 3, el proveedor presentará
+una solicitud ante el organismo notificado de su elección para la evaluación de
+la documentación técnica relativa al sistema de IA que el proveedor pretenda
+introducir en el mercado o poner en servicio y al que se aplique el sistema de
+gestión de la calidad mencionado en el punto 3.
+
+4.2. La solicitud incluirá:
+
+a) el nombre y la dirección del proveedor;
+
+b) una declaración por escrito de que no se ha presentado la misma solicitud
+ante ningún otro organismo notificado;
+
+c) la documentación técnica prevista en el anexo IV.
+
+4.3. El organismo notificado examinará la documentación técnica. Cuando
+proceda, y en la medida en que sea necesario para el desempeño de sus
+tareas, se concederá al organismo notificado pleno acceso a los conjuntos de
+datos de entrenamiento, validación y prueba utilizados, también, cuando
+proceda y con sujeción a garantías de seguridad, a través de API u otras
+
+
+
+
+                                                                                    16
+herramientas y medios técnicos pertinentes que permitan el acceso a
+distancia.
+
+4.4. Al examinar la documentación técnica, el organismo notificado podrá
+exigir que el proveedor facilite más pruebas justificativas o que lleve a cabo
+pruebas adicionales para que pueda evaluarse adecuadamente la
+conformidad del sistema de IA con los requisitos establecidos en el capítulo
+III, sección 2. Cuando el organismo notificado no quede satisfecho con las
+pruebas realizadas por el proveedor, efectuará él mismo directamente las
+pruebas adecuadas, según proceda.
+
+4.5. Asimismo, se concederá al organismo notificado acceso al modelo de
+entrenamiento y al modelo entrenado del sistema de IA, con sus
+correspondientes parámetros, para, en caso necesario, una vez se hayan
+agotado y hayan demostrado ser insuficientes todas las demás vías razonables
+para verificar la conformidad, y previa solicitud motivada, evaluar la
+conformidad del sistema de IA de alto riesgo con los requisitos establecidos
+en el capítulo III, sección 2. Dicho acceso estará sujeto al Derecho de la Unión
+vigente relativo a la protección de la propiedad intelectual e industrial y los
+secretos comerciales.
+
+4.6. Se notificará la decisión del organismo notificado al proveedor o a su
+representante autorizado. La notificación incluirá las conclusiones de la
+evaluación de la documentación técnica y una decisión motivada sobre la
+evaluación.
+
+Cuando el sistema de IA cumpla los requisitos establecidos en el capítulo III,
+sección 2, el organismo notificado expedirá un certificado de la Unión de
+evaluación de la documentación técnica. Dicho certificado indicará el nombre
+y la dirección del proveedor, las conclusiones del examen, las condiciones de
+validez (en su caso) y los datos necesarios para identificar el sistema de IA.
+
+El certificado y sus anexos contendrán toda la información pertinente para
+poder evaluar la conformidad del sistema de IA y permitir el control del sistema
+de IA mientras esté en uso, cuando proceda.
+
+Cuando el sistema de IA no cumpla los requisitos establecidos en el capítulo
+III, sección 2, el organismo notificado denegará la expedición del certificado
+de la Unión de evaluación de la documentación técnica e informará de ello al
+solicitante, motivando detalladamente su decisión.
+
+Cuando el sistema de IA no cumpla los requisitos relativos a los datos utilizados
+para su entrenamiento, será necesario llevar a cabo un nuevo entrenamiento
+del sistema antes de solicitar una nueva evaluación de la conformidad. En este
+caso, la decisión motivada sobre la evaluación del organismo notificado que
+deniegue la expedición del certificado de la Unión de evaluación de la
+documentación técnica contendrá consideraciones específicas relativas a la
+calidad de los datos utilizados para entrenar el sistema de IA, en particular
+acerca de los motivos del incumplimiento.
+
+
+
+                                                                                    17
+     4.7. Todo cambio del sistema de IA que pueda afectar a su cumplimiento de
+     los requisitos o su finalidad prevista será evaluado por el organismo notificado
+     que haya expedido el certificado de la Unión de evaluación de la
+     documentación técnica. El proveedor informará a dicho organismo notificado
+     de su intención de introducir cualquiera de los cambios previamente
+     mencionados o de si tiene constancia de que se hayan producido tales
+     cambios. El organismo notificado evaluará los cambios previstos y decidirá si
+     estos requieren una nueva evaluación de la conformidad con arreglo al artículo
+     43, apartado 4, o si pueden ser objeto de un suplemento al certificado de la
+     Unión de evaluación de la documentación técnica. En este último caso, el
+     organismo notificado evaluará los cambios, notificará su decisión al proveedor
+     y, si aprueba los cambios, expedirá un suplemento al certificado de la Unión
+     de evaluación de la documentación técnica.
+
+     5. Vigilancia del sistema de gestión de la calidad aprobado
+
+     5.1. La finalidad de la vigilancia por parte del organismo notificado a que se
+     refiere el punto 3 es asegurarse de que el proveedor cumple debidamente las
+     condiciones del sistema de gestión de la calidad aprobado.
+
+     5.2. A efectos de la evaluación, el proveedor dará acceso al organismo
+     notificado a las instalaciones donde se estén diseñando, desarrollando o
+     probando los sistemas de IA. Además, el proveedor facilitará al organismo
+     notificado toda la información necesaria.
+
+     5.3. El organismo notificado realizará auditorías periódicas para asegurarse de
+     que el proveedor mantiene y aplica el sistema de gestión de la calidad, y le
+     entregará un informe de la auditoría. En el marco de dichas auditorías, el
+     organismo notificado podrá efectuar más pruebas de los sistemas de IA para
+     los que se hayan expedido certificados de la Unión de evaluación de la
+     documentación técnica.
+
+
+3.3 Correspondencia del articulado con los apartados de la guía
+
+  Artículo
+                       Requerimiento Reglamento                       Sección guía
+Reglamento
+             Evaluación de la conformidad para los sistemas de IA
+   43.1      de alto riesgo mencionados en el anexo III, puntos 1.    Apartado 4.3.1
+             (biometría).
+             Evaluación de la conformidad para los sistemas de IA
+   43.2      de alto riesgo mencionados en el anexo III, puntos 2 a   Apartado 4.3.2
+             8.
+             Evaluación de la conformidad para los sistemas de IA
+             de alto riesgo regulados por los actos legislativos de
+   43.3                                                               Apartado 4.3.3
+             armonización de la Unión enumerados en el anexo I,
+             sección A.
+             La evaluación de la conformidad en caso de
+   43.4                                                                Apartado 4.4
+             modificación sustancial.
+
+
+
+
+                                                                                        18
+            Evaluación de la conformidad fundamentado en un
+Anexo VI                                                            Apartado 4.2.1
+            control interno. (evaluación por el proveedor).
+             Evaluación del sistema de gestión de la calidad y la
+Anexo VII   evaluación de la documentación técnica. (evaluación     Apartado 4.2.2
+            por el organismo notificado).
+
+
+
+
+                                                                                     19
+3. ¿Cómo abordar los requisitos?
+4.1 La evaluación de la conformidad durante el desarrollo y puesta
+     en el mercado de los productos
+
+El procedimiento de evaluación de la conformidad está integrado por toda una serie de
+procesos y fases a través del cual se verifica que un producto es conforme con los requisitos
+de la legislación de armonización exigidos para que tal producto se pueda poner en el
+mercado con ciertas garantías.
+
+Corresponde a cada proveedor/fabricante tener muy clara la finalidad prevista que se
+pretende con el producto que se va a diseñar, los usuarios finales a los que se pretende
+destinar y las características esenciales del mismo. Ello es así porque el primer paso que
+resulta esencial es valorar si efectivamente sobre ese producto que se pretende desarrollar
+o, en su caso, poner en el mercado, existe alguna ley de armonización aplicable.
+
+Una vez detectado que dicho producto que se está diseñando o pretende diseñarse
+quedará afectado por una de estas leyes de armonización, el siguiente paso será analizar
+los requisitos de cumplimiento mínimos del producto y el proceso de evaluación de la
+conformidad que se contempla en esa ley.
+
+Esto último resulta sumamente relevante, ya que muchas de las exigencias y evidencias que
+se deberán demostrar y verificar como parte de la evaluación de la conformidad de un
+producto deberán estar integradas y contempladas desde las primeras fases de
+concepción de dicho producto.
+
+
+
+
+Proveedores que participen en entornos controlados de pruebas:
+
+El Reglamento Europeo de IA establece que los proveedores que participen en espacios
+controlados de pruebas podrán utilizar la documentación extraída de estos entornos a los
+efectos de demostrar que sus sistemas de IA cumplen con esta norma. Tanto las
+autoridades de vigilancia del mercado como los organismos notificados tendrán en cuenta
+positivamente los informes de salida derivados de la participación de los proveedores en
+estos entornos con el objetivo de acelerar los procedimientos de evaluación de la
+conformidad.
+
+
+
+
+                                                                                            20
+4.2 El proceso de evaluación de la conformidad en el Reglamento
+     de Inteligencia Artificial para los sistemas de IA de alto riesgo
+
+Como se ha mencionado previamente en la introducción, el reglamento establece dos
+formas de evaluar la conformidad de los sistemas de IA de alto riesgo en función de los
+procesos que se han de realizar y de si en dicha evaluación de conformidad interviene o
+no un organismo notificado. A continuación, se detallarán ambas posibilidades.
+
+4.2.1 Control interno por parte del proveedor
+
+El proceso de control interno queda englobado por tres actuaciones que ha de realizar el
+propio proveedor para evaluar la conformidad de su sistema de IA.
+
+Estas son:
+
+   1. Verificación del sistema de gestión de la calidad.
+
+   2. Comprobación de la documentación técnica.
+
+   3. Verificación del proceso de diseño y desarrollo del sistema de IA y su vigilancia
+      poscomercialización.
+
+Se procede a desgranar dichas actuaciones.
+
+4.2.1.1 Verificación del sistema de gestión de la calidad
+
+
+ AI Act
+
+ANEXO VI – Procedimiento de la evaluación de la
+   conformidad fundamentado en un control interno
+2. El proveedor verifica que el sistema de gestión de la calidad establecido es
+       conforme con los requisitos establecidos en el artículo 17.
+
+
+El Sandbox de IA cuenta con una guía específica dedicada a analizar el sistema de gestión
+de la calidad.
+
+Por lo que se refiere al proceso de evaluación de la conformidad, corresponde al
+proveedor comprobar que cada uno de los elementos que se contemplan en el artículo 17
+del Reglamento Europeo de IA están incorporados al sistema de gestión de calidad que
+ha tenido que elaborar el proveedor en el marco de este sandbox tomando como
+referencia la Guía 4. Sistema de Gestión Calidad proporcionada.
+
+El artículo 17 del Reglamento Europeo de IA establece 13 apartados que como mínimo se
+han debido de documentar previamente a la hora de desarrollar el sistema de gestión de
+calidad.
+
+
+                                                                                        21
+Pymes, empresas emergentes y pequeñas empresas de mediana capitalización:
+
+Cabe recordar que los requisitos de cumplimiento normativo del sistema de gestión de la
+calidad serán proporcionales al tamaño de la organización del proveedor. No obstante, los
+proveedores respetarán el grado de rigor y el nivel de protección requerido para garantizar
+la conformidad de sus sistemas de IA de alto riesgo con el Reglamento.
+
+
+
+
+4.2.1.2 Comprobación de la documentación técnica
+
+ AI Act
+
+ANEXO VI – Procedimiento de la evaluación de la
+   conformidad fundamentado en un control interno
+3. El proveedor examina la información presente en la documentación técnica para
+        evaluar la conformidad del sistema de IA con los requisitos esenciales
+        pertinentes establecidos en el capítulo III, sección 2.
+
+
+
+El Sandbox de IA cuenta con diferentes guías técnicas específicas que, a título ilustrativo y
+no vinculante, desarrollan el cumplimiento de los artículos 8 a 15 del Reglamento Europeo
+de IA. Además, existe una guía específica dedicada a la documentación técnica que han
+de elaborar los proveedores que participen en este sandbox.
+
+Por lo que se refiere al proceso de evaluación de la conformidad, el proveedor ha de
+tomar como referencia la información que contiene la documentación técnica que haya
+elaborado en el marco del sandbox para evaluar si el sistema cumple con los requisitos
+esenciales previstos en los artículos 8 a 15 del Reglamento Europeo de IA.
+
+A modo de ejemplo, el proceso de comprobación y examen de la documentación técnica
+podría incluir los siguientes pasos:
+
+1. Recopile toda la documentación técnica que ha elaborado. Recuerde que para ello
+   puede consultar la Guía 15. Documentación técnica para mayor grado de detalle.
+
+2. Compruebe que la documentación técnica elaborada cubre los distintos requisitos
+   esenciales previstos en los artículos 8 a 15.
+
+3. Evalúe la conformidad de su sistema con los requisitos previsto en los artículos 8 a 15
+   tomando como referencia la documentación técnica. Dependiendo del requisito que
+   se evalúe, por ejemplo, deberá implementar diferentes medidas de evaluación tales
+   como la comprobación de documentación, ensayos, pruebas de su sistema de IA, etc.
+
+4. Las medidas de evaluación deberán quedar documentadas.
+
+                                                                                            22
+Pymes, empresas emergentes y pequeñas empresas de mediana capitalización:
+
+El Reglamento Europeo de IA permite que las PYMEs , las empresas emergentes y las
+pequeñas empresas de mediana capitalización puedan presentar la documentación
+técnica de sus sistemas de IA de manera simplificada. Para ello, la Comisión Europea
+elaborará un formulario. Cuando un proveedor opte por dicho formulario, éste será
+suficiente a efectos de la evaluación de la conformidad de la documentación técnica de su
+sistema de IA.
+
+
+
+
+4.2.1.3 Verificación del proceso de diseño y desarrollo del sistema
+
+
+
+ AI Act
+
+       ANEXO VI – Procedimiento de la evaluación de la
+       conformidad fundamentado en un control interno
+       4. Asimismo, el proveedor comprueba que el proceso de diseño y desarrollo
+       del sistema de IA y la vigilancia poscomercialización del mismo a que se refiere
+       el artículo 72 son coherentes con la documentación técnica.
+
+
+
+Existe una guía específica dedicada al despliegue del sistema de vigilancia
+poscomercialización en el artículo 72 del Reglamento Europeo de IA. Además, existe otra
+guía específica dedicada a la documentación técnica que ha de elaborar el proveedor.
+
+Por lo que se refiere al proceso de evaluación de la conformidad, el proveedor ha de
+comprobar que el proceso de diseño y desarrollo, así como la vigilancia
+poscomercialización de su sistema de IA, son coherentes con la parte de la documentación
+técnica relativa a esos apartados. A modo de ejemplo, para tal fin el proveedor podrá
+encomendar esta tarea al personal con la necesaria cualificación y conocimiento del
+sistema de IA para realizar dicha comprobación.
+
+El conjunto de fases descritas se realiza enteramente por el proveedor de forma
+interna. Realizadas las tres actuaciones por parte del proveedor previamente
+mencionadas, la evaluación de conformidad se entenderá realizada y superada.
+
+La realización de todo este procedimiento interno debe documentarse por completo y
+además siempre ha de estar a disposición de la autoridad de vigilancia del mercado
+competente cuando ésta lo requiera.
+
+Las autoridades de los Estados miembros tienen la obligación legal de garantizar que la
+documentación técnica que recopilen durante las actividades de vigilancia del mercado
+
+
+                                                                                          23
+permanezca confidencial. Por lo tanto, los proveedores no deben tener motivos para
+pensar que la información facilitada pueda ser revelada.
+
+4.2.2 Evaluación de la conformidad con presencia de organismo notificado.
+
+El Anexo VII del Reglamento Europeo de IA establece diversas actuaciones y procesos en
+los que interviene tanto el proveedor como el organismo notificado a la hora de realizar
+la evaluación de la conformidad.
+
+El proceso de evaluación de la conformidad del Anexo VII comprende esencialmente el
+examen de:
+
+   o   El sistema de gestión de la calidad conforme a lo dispuesto en el artículo 17.
+
+   o   La documentación técnica contemplada en el Anexo IV.
+
+El Sandbox de IA cuenta con una guía específica dedicada a analizar el sistema de gestión
+de la calidad y otra guía específica dedicada a la documentación técnica.
+
+
+
+Pymes, empresas emergentes y pequeñas empresas de mediana capitalización:
+
+Los organismos notificados deben tener en cuenta durante las evaluaciones de la
+conformidad que realicen el tamaño del proveedor y el sector en el que éste opera. Todo
+ello con el objetivo de reducir al mínimo las cargas administrativas y los costes del
+cumplimiento, especialmente para las PYMEs, incluidas las empresas emergentes y, en su
+caso, las pequeñas empresas de mediana capitalización.
+
+A la hora de fijar las tasas del proceso de la evaluación de la conformidad, éstas se
+reducirán proporcionalmente al tamaño de las PYMEs y empresas emergentes y, cuando
+proceda conforme a la normativa aplicable, las pequeñas empresas de mediana
+capitalización.
+
+
+
+4.2.2.1 Análisis del sistema de gestión de calidad con presencia de organismo notificado
+
+Solicitud de evaluación:
+
+Para que el organismo notificado pueda evaluar el sistema de gestión de calidad, el
+proveedor deberá plantear a dicho organismo una solicitud debidamente elaborada.
+
+De acuerdo con el apartado 3.1 del anexo VII del Reglamento de IA, dicha solicitud
+contendrá la siguiente información:
+
+   •   el nombre y la dirección del proveedor y, si es el representante autorizado quien
+       presenta la solicitud, también su nombre y dirección;
+
+   •   la lista de los sistemas de IA a los que se aplica el mismo sistema de gestión de la
+       calidad;
+
+
+
+
+                                                                                           24
+    •   la documentación técnica de cada sistema de IA al que se aplica el mismo sistema
+        de gestión de la calidad;
+
+    •   la documentación relativa al sistema de gestión de la calidad, que cubrirá todos los
+        aspectos enumerados en el artículo 17;
+
+    •   una descripción de los procedimientos establecidos para garantizar que el sistema
+        de gestión de la calidad sigue siendo adecuado y eficaz;
+
+    •   una declaración por escrito de que no se ha presentado la misma solicitud ante
+        ningún otro organismo notificado.
+
+Cada organismo notificado establecerá su propia solicitud, que deberá contener como
+mínimo la información indicada previamente. A modo de ejemplo, el organismo
+notificado en España sobre productos sanitarios ha diseñado un formulario de solicitud
+específica que han de completar los fabricantes de productos sanitarios a la hora de
+solicitar la evaluación del sistema de gestión de la calidad4.
+Evaluación del sistema de calidad:
+
+El organismo notificado evaluará el sistema de calidad y decidirá si este cumple con los
+requisitos del artículo 17 del Reglamento Europeo de IA.
+Decisión del organismo notificado sobre la evaluación de conformidad:
+
+La decisión sobre la conformidad del sistema deberá notificarse al proveedor o a su
+representante autorizado. Esta deberá estar debidamente motivada e incluirá las
+conclusiones de le evaluación del sistema de gestión de calidad y la decisión de evaluación
+motivada.
+
+La decisión sobre la conformidad del sistema determinará si el sistema de gestión de la
+calidad cumple o no con los requisitos del artículo 17 del Reglamento Europeo de IA.
+Corresponde al organismo notificado aprobar o no ese sistema de gestión de la calidad.
+Mantenimiento del sistema de gestión de la calidad:
+
+Aprobado el sistema de gestión de calidad por parte del organismo notificado, el
+proveedor lo aplicará y lo mantendrá para que siga siendo adecuado y eficaz.
+Posibles modificaciones:
+
+
+
+
+4
+  Es el caso de del Centro Nacional de Certificación de Productos Sanitarios, único
+organismo notificado en España para la evaluación de la conformidad de productos
+sanitarios regulados en el Reglamento 2017/745, de 5 de abril sobre productos sanitarios.
+La solicitud para la evaluación del sistema de gestión de la calidad puede consultarse en la
+siguiente web.
+    https://certificaps.gob.es/docs/R_DEX_05-solicitud-de-evaluacion-del-sistema-de-gestion-de-calidad.pdf
+
+
+
+
+                                                                                                             25
+Cuando el proveedor tenga previsto modificar el sistema de gestión de calidad aprobado
+o la lista de sistemas de IA a los que este se aplica, deberá comunicarlo al organismo
+notificado.
+
+El organismo notificado examinará los cambios propuestos y decidirá si el sistema de
+gestión de la calidad modificado sigue cumpliendo los requisitos mencionados
+inicialmente y por lo que se aprobó el sistema de gestión de calidad o si, por el contrario,
+es necesario realizar una nueva evaluación.
+
+El organismo notificado notificará su decisión al proveedor. La notificación incluirá las
+conclusiones del examen de los cambios y la decisión de evaluación motivada.
+Vigilancia del sistema de gestión de calidad aprobado:
+
+Para asegurarse de que el proveedor cumple debidamente con las condiciones del sistema
+de gestión de la calidad aprobado, el organismo notificado:
+
+   •   Obtendrá acceso a las instalaciones donde se esté llevando a cabo el diseño,
+       desarrollo o la prueba del sistema de IA.
+
+   •   Realizará periódicamente auditorías para asegurarse de que el proveedor mantiene
+       y aplica el sistema de gestión de calidad aprobado. En estos casos, se emitirá un
+       informe por parte del organismo notificado sobre dicha auditoría.
+
+   •   Además, en el marco de estas auditorías, se podrán efectuar pruebas adicionales
+       de los sistemas de IA para los que se haya expedido un certificado de marcado CE
+       de evaluación de la documentación técnica.
+
+Por ejemplo, la supervisión del mantenimiento del sistema de gestión de la calidad de un
+producto sanitario dentro del marco del Reglamento sobre productos sanitarios una vez
+que ha recibido el certificado CE por parte de un organismo notificado está conformada
+por diversas actuaciones que realiza dicho organismo, entre otras:
+
+   •   Realización de auditorías anuales de seguimiento que pueden llevar a la
+       suspensión, limitación o retirada del certificado.
+
+   •   Realización de auditorías in-situ sin previo aviso, no programadas.
+
+   •   Cada cinco años se revisa la evaluación de la conformidad de los productos y se
+       recertifica.
+
+   •   Los cambios significativos en la finalidad prevista o el diseño del producto obligan
+       a realizar un nuevo proceso de evaluación de la conformidad.
+
+
+PYMEs, incluidas las empresas emergentes, y pequeñas empresas de mediana
+capitalización:
+Cabe recordar que los requisitos de cumplimiento normativo del sistema de gestión de la
+calidad serán proporcionales al tamaño de la organización del proveedor. No obstante, los
+proveedores respetarán el grado de rigor y el nivel de protección requerido para garantizar
+la conformidad de sus sistemas de IA de alto riesgo con el presente Reglamento.
+
+
+
+                                                                                           26
+4.2.2.2 Análisis de la documentación técnica con presencia de organismo notificado
+
+Solicitud de evaluación:
+
+Para que el organismo notificado pueda evaluar la documentación técnica, el proveedor
+deberá plantear a dicho organismo una solicitud.
+
+De acuerdo con el apartado 4.2 del Anexo VII del Reglamento Europeo de IA, dicha
+solicitud contendrá la siguiente información:
+
+   •   el nombre y la dirección del proveedor;
+
+   •   una declaración por escrito de que no se ha presentado la misma solicitud ante
+       ningún otro organismo notificado;
+
+   •   la documentación técnica prevista en el anexo IV.
+
+A la hora de presentar la solicitud, el proveedor ha de comprobar si el organismo notificado
+al que ha solicitado la evaluación dispone de un modelo específico de solicitud, además
+de si éste incluye en su alcance de designación el tipo de producto para el cual se solicita
+la evaluación de la documentación técnica.
+Evaluación de la documentación técnica
+
+El organismo notificado evaluará la documentación técnica de diversas formas. (Apartados
+4.3, 4.4 y 4.5 del Anexo VII)
+
+   1. Apartado 4.3: El organismo notificado examinará la documentación técnica.
+      Cuando proceda, y en la medida en que sea necesario para el desempeño de sus
+      tareas, se concederá al organismo notificado pleno acceso a los conjuntos de datos
+      de entrenamiento, validación y prueba utilizados, también, cuando proceda y con
+      sujeción a garantías de seguridad, a través de API u otras herramientas y medios
+      técnicos pertinentes que permitan el acceso a distancia.
+
+Recuerde que en el marco del sandbox se ha elaborado la Guía 15. Documentación
+Técnica. La documentación técnica deberá facilitarse de forma clara y organizada tomando
+como referencia las exigencias previstas en el Reglamento Europeo de IA.
+
+   •   Clara: La información debe seguir una estructura coherente.
+
+   •   Organizada: Aporte la documentación desglosada tomando como referencia los
+       distintos apartados que integran el Anexo IV del Reglamento Europeo de IA. Será
+       esencial tomar como referencia la guía relativa a la documentación técnica que
+       aglutina de forma organizada toda la documentación requerida por el Reglamento
+       Europeo de IA.
+
+Esta documentación es el soporte de la que se vale el proveedor para evidenciar el
+cumplimiento de su sistema de IA con los requisitos del Reglamento Europeo de IA. Para
+algunos productos, los organismos notificados competentes han diseñado guías
+específicas sobre cómo los fabricantes deben presentar esa documentación técnica. A
+
+
+                                                                                           27
+modo de ejemplo, el organismo notificado en España sobre productos sanitarios para
+realizar la evaluación de la documentación técnica ha elaborado una guía específica para
+presentar esa documentación5. En esta guía se indica que, la documentación ha de
+incorporarse a diferentes carpetas, cada carpeta se corresponde con los diferentes
+apartados previstos por la normativa sobre productos sanitarios.
+
+Cuando proceda, el organismo notificado podrá acceder a los conjuntos de datos de
+entrenamiento, validación y prueba utilizados. Este acceso se podrá realizar a través de
+interfaces de programación de aplicaciones (API) u otras herramientas que permitan el
+acceso a distancia.
+
+    2. Apartado 4.4: Al examinar la documentación técnica, el organismo notificado podrá
+       exigir que el proveedor facilite más pruebas justificativas o que lleve a cabo
+       pruebas adicionales para que pueda evaluarse adecuadamente la conformidad
+       del sistema de IA con los requisitos establecidos en el capítulo III, sección 2. Cuando
+       el organismo notificado no quede satisfecho con las pruebas realizadas por el
+       proveedor, efectuará él mismo directamente las pruebas adecuadas, según
+       proceda.
+
+    3. Apartado 4.5: Asimismo, se concederá al organismo notificado acceso al modelo
+       de entrenamiento y al modelo entrenado del sistema de IA, con sus
+       correspondientes parámetros, para, en caso necesario, una vez se hayan agotado y
+       hayan demostrado ser insuficientes todas las demás vías razonables para verificar la
+       conformidad, y previa solicitud motivada, evaluar la conformidad del sistema de IA
+       de alto riesgo con los requisitos establecidos en el capítulo III, sección 2. Dicho
+       acceso estará sujeto al Derecho de la Unión vigente relativo a la protección de la
+       propiedad intelectual e industrial y los secretos comerciales.
+
+El objetivo que se pretende con todas estas actuaciones es que el organismo notificado
+pueda verificar adecuadamente y mediante diferentes evidencias el cumplimiento de los
+requisitos previstos en el Reglamento Europeo de la IA por parte de un sistema de IA.
+
+
+
+PYMEs, incluidas las empresas emergentes, y pequeñas empresas de mediana
+capitalización:
+
+El Reglamento Europeo de IA permite que las PYMEs, empresas emergentes y pequeñas
+empresas de mediana capitalización puedan presentar la documentación técnica de sus
+sistemas de IA de manera simplificada. Para ello, la Comisión Europea elaborará un
+formulario. Cuando un proveedor opte por dicho formulario, los organismos notificados
+están obligados a aceptar la presentación de la documentación técnica a través de éste a
+los efectos de realizar la evaluación de la conformidad del sistema de IA.
+
+
+
+5 Véase la Guía sobre la documentación técnica que han de presentar los fabricantes de estos productos sanitarios elaborada
+por el Centro Nacional de Certificación de Productos Sanitarios en el marco del Reglamento 2017/745, de 5 de abril sobre
+productos sanitarios. Esta guía puede consultarse en la siguiente web.
+
+https://certificaps.gob.es/wp-content/uploads/CertificacionMDR/R_DEX_18-Gu%C3%ADa-para-la-documentacion-
+tecnica.pdf
+
+
+
+                                                                                                                          28
+Decisión del organismo notificado sobre la evaluación de conformidad:
+
+Una vez realizada la evaluación de la documentación técnica por parte del organismo
+notificado, éste deberá notificar la decisión de la evaluación al proveedor o a su
+representante autorizado.
+
+La decisión deberá estar motivada e incluirá las conclusiones de le evaluación de la
+documentación técnica y la decisión de evaluación motivada.
+
+La decisión de evaluación podrá indicar que6:
+
+      a) El sistema de IA cumple con los requisitos que establece el Reglamento Europeo
+         de IA para los sistemas de alto riesgo. En estos casos el organismo notificado
+         expedirá el certificado UE de evaluación de la documentación.
+
+      b) El sistema de IA no cumple con los requisitos que establece el Reglamento Europeo
+         de IA para los sistemas de alto riesgo. En estos casos el organismo notificado no
+         expedirá el certificado UE de evaluación de la documentación.
+
+      c) El sistema no cumple los requisitos relativos a los datos utilizados para su
+         entrenamiento. En estos casos, el organismo notificado no expedirá el certificado
+         UE y además establecerá consideraciones específicas relativas a la calidad de los
+         datos utilizados para entrenar el sistema de IA, prestando especial atención a los
+         motivos de incumplimiento.
+
+Llevadas a cabo todas las actuaciones previamente mencionadas, la evaluación de la
+conformidad se entenderá superada. En el caso de que la decisión no sea positiva, el
+proveedor podrá solicitar una nueva evaluación o recurrir dicha decisión. No obstante, si
+un organismo notificado determina que un sistema no supera la evaluación de la
+conformidad, no se podrá presentar una nueva solicitud sin haber hecho modificaciones
+en tal sistema o en la documentación técnica que evidencien su conformidad.
+
+
+
+La duración del procedimiento de evaluación de la conformidad de los distintos productos
+donde se contempla la participación de un organismo notificado variará en función de
+diversos factores como el tipo de producto, organismo notificado ante el que se presente
+la solicitud, fases de la evaluación de la conformidad que contemple la legislación de
+armonización, etc.
+
+En el caso de la evaluación de los productos sanitarios en España, desde que se presenta
+la solicitud hasta que finalmente se aprueba la conformidad, el tiempo medio aproximado
+ha oscilado entre los 6 a 12 meses, si bien, con la entrada en vigor del Reglamento Europeo
+de productos sanitarios, estos plazos están llegando a alcanzar los 18 meses.
+
+En algunos supuestos, desde la solicitud inicial de evaluación de la conformidad
+presentada por el fabricante, el organismo notificado puede no aceptarla por percatarse
+
+
+6
+    Véase el Apartado 4.6 Anexo VII del REGLAMENTO EUROPEO DE IA.
+
+
+
+                                                                                          29
+que el producto no podrá pasar la evaluación de la conformidad. De esta manera, dicha
+solicitud se rechaza hasta que se perfeccione las carencias iniciales detectadas.
+
+
+
+
+4.3 Forma de evaluación de la conformidad en función del tipo de
+     sistema de IA
+
+El artículo 43 del Reglamento Europeo de IA establece el proceso de evaluación de la
+conformidad que ha de realizar cada proveedor teniendo en cuenta el tipo de sistema de
+IA que ostente.
+
+4.3.1 Sistemas de IA de identificación biométrica clasificados como de alto riesgo
+
+La evaluación de la conformidad de los sistemas de identificación biométrica remota
+contemplados en el punto 1 del Anexo III Reglamento Europeo de IA presenta procesos
+de evaluación diferenciados en función de si el proveedor ha aplicado o no normas
+armonizadas (artículo 40 Reglamento Europeo de IA) o especificaciones comunes (Artículo
+41 Reglamento Europeo de IA).
+
+4.3.1.1 El proveedor ha aplicado normas armonizadas o especificaciones comunes
+
+Cuando el proveedor, al demostrar el cumplimiento de los requisitos que establece el
+Reglamento Europeo de IA para los sistemas de alto riesgo, haya aplicado normas
+armonizadas o especificaciones comunes, deberá optar por uno de los dos
+procedimientos de evaluación de la conformidad siguientes:
+
+    o    Evaluación de la conformidad realizada por el propio proveedor. Control interno.
+         Autoevaluación interna de la conformidad7.
+
+    o    Evaluación de la conformidad con presencia de organismo notificado8.
+
+4.3.1.2 El proveedor no ha aplicado normas armonizadas o especificaciones comunes
+
+Cuando el proveedor, al demostrar el cumplimiento de los requisitos que establece el
+Reglamento Europeo de IA para los sistemas de alto riesgo, no haya aplicado normas
+armonizadas o estas las haya aplicado parcialmente o no disponga de especificaciones
+comunes, deberá realizar la evaluación de la conformidad con presencia de organismo
+notificado.
+
+
+
+
+7
+  Anexo VI. Procedimiento de evaluación de la conformidad fundamentado en un control interno.
+8
+  Anexo VII. Conformidad basada en la evaluación del sistema de gestión de la calidad y la evaluación de la documentación
+técnica.
+
+
+                                                                                                                        30
+    Ejemplo – Control de la asistencia al trabajo mediante reconocimiento biométrico
+    El proveedor de este sistema de IA deberá evaluar la conformidad del producto.
+    ¿He aplicado normas armonizadas o especificaciones comunes para cumplir con los requisitos del
+           Reglamento Europeo de IA?
+    SÍ: Puedo optar por evaluar la conformidad a través del control interno o a través del control externo
+            realizado por el organismo notificado.
+    NO: Debo realizar la evaluación de la conformidad con participación del organismo notificado.
+
+
+4.3.1.3 Los organismos notificados competentes para realizar la evaluación de la
+       conformidad para sistemas de identificación biométrica
+
+Como regla general, para este procedimiento de evaluación de la conformidad con
+participación del organismo notificado, el proveedor podrá elegir el organismo notificado
+que considere oportuno.
+
+No obstante, se establecen varias reglas concretas en función de la autoridad que ponga
+en servicio el sistema de IA.
+
+Así, cuando se prevea la puesta en servicio del sistema por parte de:
+
+A) Las autoridades policiales o las autoridades de inmigración o de asilo, los
+organismos notificados para realizar la evaluación de la conformidad serán las autoridades
+de vigilancia del mercado correspondientes9.
+
+B) Las instituciones, organismos o agencias de la UE, el organismo notificado será el
+Supervisor Europeo de Protección de Datos.
+
+4.3.2 Otros sistemas IA de alto riesgo
+
+La evaluación de la conformidad de los sistemas de IA previstos en los puntos 2 a 8 del
+Anexo III se basará en el control interno realizado por el proveedor.
+
+Recordemos que los sistemas de IA previstos en los puntos 2 a 8 del Anexo III son:
+
+     •    Infraestructuras críticas.
+
+     •    Educación y formación profesional.
+
+     •    Empleo, gestión de trabajadores y acceso al autoempleo.
+
+     •    Acceso a servicios privados esenciales, a servicios y prestaciones públicos
+          esenciales, y disfrute de estos servicios y prestaciones.
+
+
+
+
+9
+  Concretamente estas autoridades pueden ser: i) las autoridades nacionales que supervisen las actividades de las
+autoridades policiales, ii) autoridades del control de fronteras, de la inmigración o del asilo, iii) autoridades judiciales o, iv)
+autoridades de control encargadas de la protección de datos con arreglo a la Directiva (UE) 2016/680 o al Reglamento
+2016/679.
+
+
+
+                                                                                                                                  31
+       •    Garantía del cumplimiento del Derecho, en la medida en que su uso esté permitido
+            por el Derecho de la Unión o nacional aplicable.
+
+       •    Migración, asilo y gestión del control fronterizo.
+
+       •    Administración de Justicia y procesos democráticos.
+
+Por ejemplo, un sistema de IA que tenga como función principal la concesión de ayudas
+se encuadra en los sistemas de alto riesgo mencionados en el punto 5 del Anexo III, por
+tanto, para evaluar su conformidad con los requisitos del Reglamento Europeo de IA,
+deberá realizarse el control interno del proveedor.
+
+4.3.3 Sistema de IA que sean productos o componentes de seguridad de
+       productos de la legislación de armonización.
+
+Como se ha indicado anteriormente, existen toda una serie de productos y componentes
+de seguridad de productos que han sido regulados siguiendo el nuevo marco legislativo
+(NML). La legislación europea que regulan estos productos es mencionada en la Sección A
+del Anexo I del Reglamento Europeo de IA.
+
+Es posible que un sistema de IA pueda ser un producto o componente de seguridad de
+un producto de los indicados en los actos legislativos de armonización de la Sección A del
+Anexo I del Reglamento Europeo de IA.
+
+La evaluación de los requisitos que deben cumplir los sistemas de IA de alto riesgo se
+realiza según el procedimiento de conformidad establecido en cada ley de armonización
+aplicable al producto o componente. El objetivo es evitar cargas innecesarias para los
+operadores cuando sus productos están sujetos tanto a la legislación específica de
+armonización como al Reglamento Europeo de IA10.
+
+4.3.3.1 Evaluación de la conformidad de los actos legislativos de armonización
+
+A modo de resumen, la evaluación de la conformidad prevista en cada acto de legislación
+de armonización depende en la mayoría de los casos del producto. Es decir, dentro de un
+mismo acto de legislación, hay productos que tienen contemplada una evaluación de
+conformidad basada en un control interno por parte del propio fabricante, mientras que a
+otros productos se les exigen la intervención de un tercero11. Algunas legislaciones
+también permiten a los fabricantes optar por una evaluación de la conformidad basada en
+el control interno o con la participación de un organismo notificado, en función de si han
+aplicado normas armonizadas. Cuando la legislación de armonización permita prescindir
+de la intervención de un tercero por haberse aplicado normas armonizadas, el fabricante
+
+
+
+
+10
+     Considerando 63 Reglamento Europeo de la IA.
+11
+  Para obtener más información sobre las evaluaciones de conformidad correspondientes a cada uno de estos productos
+véase la siguiente web:
+
+https://single-market-economy.ec.europa.eu/single-market/ce-marking/manufacturers_en
+
+
+
+                                                                                                                  32
+solo podrá acogerse a esa opción si también ha aplicado las normas armonizadas o, en su
+caso, las especificaciones comunes que contemplen los requisitos del Reglamento de IA.
+
+
+
+              Norma y producto                                    Evaluación de conformidad
+                                                   Se prevé la participación de un Organismo
+                                                         Notificado en caso de que el juguete en
+     Directiva 2009/48/CE sobre juguetes.
+                                                         cuestión no cumpla total (o parcialmente) con
+                                                         las normas armonizadas en cuestión.
+                                                   Dependiendo del producto será necesaria la
+        Directiva 2013/53/UE sobre
+                                                        evaluación de conformidad por parte del
+      embarcaciones de recreo y motos
+                                                        Organismo Notificado o la evaluación interna
+                 acuáticas.
+                                                        del fabricante.
+     Directiva 2014/33/UE sobre ascensores         La participación de un organismo notificado es
+     y componentes de seguridad de estos                  obligatoria en todos los casos.
+          Directiva 2014/34/UE sobre               Dependiendo del producto será necesaria la
+                                                        evaluación de conformidad por parte del
+      sistemas de protección para uso en
+                                                        Organismo Notificado o la evaluación interna
+          atmósferas potencialmente
+                                                        del fabricante.
+                  explosivas
+                                                   Dependiendo del tipo de evaluación de
+             Directiva 2014/53/UE                       conformidad por la que opte el fabricante, se
+     sobre la comercialización de equipos               realizará esta por parte de un organismo
+                radioeléctricos                         Notificado o la evaluación interna del
+                                                        fabricante.
+
+             Directiva 2014/68/UE                  Dependiendo del producto será necesaria la
+                                                        evaluación de conformidad por parte del
+     sobre la comercialización de equipos a             Organismo Notificado o la evaluación interna
+                   presión.                             del fabricante.
+      Reglamento (UE) 2016/424 relativo a          La participación de un organismo notificado es
+      las instalaciones de transporte por                 obligatoria en todos los casos.
+                     cable
+                                                   Dependiendo del producto será necesaria la
+        Reglamento (UE) 2016/425 sobre                  evaluación de conformidad por parte del
+       equipos de protección individual                 Organismo Notificado o la evaluación interna
+                                                        del fabricante.
+
+        Reglamento (UE) 2016/426 sobre             Dependiendo del producto será necesaria la
+                                                        evaluación de conformidad por parte del
+     aparatos que queman combustibles                   Organismo Notificado o la evaluación interna
+                 gaseosos                               del fabricante.
+                                                   Dependiendo del producto será necesaria la
+        Reglamento (UE) 2017/745 sobre                  evaluación de conformidad por parte del
+             productos sanitarios                       Organismo Notificado o la evaluación interna
+                                                        del fabricante12.
+
+
+
+12
+  Considerando 60 del Reglamento (UE) 2017/745 del Parlamento Europeo y del Consejo, de 5 de abril de 2017, sobre los
+productos sanitarios.
+
+
+
+                                                                                                                    33
+                                                       Dependiendo del producto será necesaria la
+      Reglamento (UE) 2017/746 sobre los
+                                                            evaluación de conformidad por parte del
+     productos sanitarios para diagnóstico
+                                                            Organismo Notificado o la evaluación interna
+                   in vitro
+                                                            del fabricante.
+
+
+
+Por tanto, la evaluación de los requisitos del Reglamento Europeo de IA debe seguir la
+metodología y estructura de la evaluación de la conformidad que establece cada ley de
+armonización.
+
+La integración de los requisitos del Reglamento de IA en los procedimientos de
+evaluación de la conformidad previstos por la legislación de armonización se articula a
+través del propio Reglamento de IA y de la normativa sectorial aplicable.
+
+A su vez, el Considerando 64 del Reglamento Europeo de IA también menciona la
+integración de los requisitos previsto en el Reglamento Europeo de IA respecto de los
+Reglamentos 745/2017 y 746/2017 sobre los productos sanitarios. Para estos
+supuestos se indica que la integración de dichos requisitos se ha de hacer respetando la
+lógica de gestión de riesgos y la evaluación de la relación de beneficio-riesgo que se realiza
+en el marco de los productos sanitarios.
+
+Por tanto, dos conclusiones se han de extraer de este proceso de integración entre el
+Reglamento Europeo de IA y el resto de los actos legislativos de armonización respecto de
+la evaluación de la conformidad de un sistema de IA:
+
+       •    La evaluación de los requisitos derivados del Reglamento Europeo de IA se realizará
+            de acuerdo con la estructura contemplada para la evaluación de la conformidad
+            indicada en la legislación del producto que resulte aplicable.
+
+       •    Dicha evaluación de los requisitos del Reglamento Europeo de IA no puede afectar
+            a la estructura general de la evaluación de la conformidad diseñada conforme a la
+            legislación de armonización aplicable a cada producto o componente de seguridad
+            del producto.13
+
+Por ejemplo, el Reglamento (UE) 2016/424 del Parlamento Europeo y del Consejo, de 9
+de marzo de 2016, relativo a las instalaciones de transporte por cable establece que la
+evaluación de la conformidad de estos productos podrá ser a través de diferentes
+procedimientos de evaluación de la conformidad con presencia de organismo notificado
+a elección del fabricante14. Si esa instalación de transporte por cable llevara incorporado
+un sistema de IA o fuera un componente de seguridad de ésta, los requisitos exigidos por
+el Reglamento Europeo de IA deberán formar parte de la evaluación de la conformidad
+prevista por el Reglamento de instalaciones de transporte por cable.
+
+
+
+
+13
+     Véase el artículo 43 y considerando 63 del Reglamento europeo sobre IA.
+14
+     Véase el artículo 18 del Reglamento 2016/424.
+
+
+
+                                                                                                           34
+4.3.3.2 Documentación técnica analizada por un órgano notificado
+
+Además de lo indicado anteriormente, el Reglamento Europeo de IA prevé las siguientes
+obligaciones específicas relacionadas con la evaluación de la conformidad para los
+sistemas de IA que sean productos o componente de seguridad de un producto de los
+contemplados en la Sección A del Anexo I.
+
+Concretamente, se establece toda una serie de actuaciones que los organismos notificados
+de las distintas leyes de armonización han de realizar. Estas actuaciones previstas en el
+anexo VII del Reglamento de IA que resulten aplicables en el marco de la evaluación de la
+conformidad Entre ellas se incluyen la evaluación del sistema de gestión de la calidad y las
+actuaciones relativas al examen de la documentación técnica, reguladas en los puntos 4.3,
+4.4, 4.5, el párrafo quinto del punto 4.6 del anexo VII, que ya han sido explicadas
+previamente. Ahora las mencionamos brevemente15:
+
+Estas son:
+
+     •   Apartado 4.3: El organismo notificado en todo caso examinará la
+         documentación técnica aportada por el proveedor. Además, en determinadas
+         circunstancias, el organismo notificado podrá acceder a los conjuntos de datos de
+         entrenamiento, validación y prueba utilizados.
+
+     •   Apartado 4.4: Tras examinar la documentación técnica, el organismo notificado
+         podrá exigir al proveedor que facilite más pruebas justificativas o en su caso que
+         lleve a cabo pruebas adicionales.
+
+     •   Apartado 4.5: En determinadas circunstancias, el organismo notificado podrá
+         acceder al modelo de entrenamiento y al modelo entrenado del sistema de IA.
+
+     •   Párrafo 5 del apartado 4.6: Cuando el sistema de IA no cumpla los requisitos
+         relativos a los datos utilizados para su entrenamiento, será necesario llevar a cabo
+         un nuevo entrenamiento del sistema antes de solicitar una nueva evaluación de la
+         conformidad. En este caso, la decisión motivada sobre la evaluación del
+         organismo notificado que deniegue la expedición del certificado de la Unión de
+         evaluación de la documentación técnica contendrá consideraciones específicas
+         relativas a la calidad de los datos utilizados para entrenar el sistema de IA, en
+         particular acerca de los motivos del incumplimiento.
+
+
+     Ejemplo – Gestión de enfermedades crónicas. Bomba de insulina inteligente
+
+
+
+
+15
+  Una información más detallada se encuentra en el apartado de esta Guía titulado “Análisis de la documentación técnica
+con presencia de organismo notificado”.
+
+
+
+                                                                                                                      35
+     La evaluación de la conformidad de los requisitos previstos en el Reglamento Europeo de IA se
+             hará:
+     o        Teniendo en cuenta el procedimiento de evaluación de la conformidad previsto en el
+              artículo 52 y siguientes del Reglamento (UE) 2017/745 sobre productos sanitarios.
+     o        Incorporando los requisitos derivados del Reglamento Europeo de IA, pero respetando la
+              estructura de la evaluación de la conformidad prevista en el Reglamento sobre productos
+              sanitarios.
+     o        Llevando a cabo las actuaciones previstas en los apartados 4.3, 4.4, 4.5, el párrafo quinto
+              del apartado 4.6 del anexo VII del Reglamento Europeo de IA.
+
+
+
+
+4.3.3.3 La no necesidad de realizar la evaluación de la conformidad del producto por
+       parte de un organismo notificado
+
+Cuando un sistema de IA sea un producto o componente de seguridad de un producto de
+los actos legislativos de armonización señalados en la Sección A del Anexo I del
+Reglamento Europeo de IA, el fabricante podrá prescindir de la evaluación de la
+conformidad por parte de terceros solo si se cumplen estas dos condiciones al mismo
+tiempo16:
+
+     o    La legislación de armonización permite que el fabricante prescinda de la evaluación
+          de la conformidad si este último ha aplicado normas armonizadas que cumplen
+          todos los requisitos permitentes exigidos por esa normativa.
+
+     o    El fabricante ha aplicado normas armonizadas o especificaciones comunes que
+          cubran los requisitos exigidos a los sistemas de IA de alto riesgo.
+
+Hoy en día no existen normas armonizadas o especificaciones comunes que cubran los
+requisitos establecidos en el Reglamento Europeo de IA para los sistemas de IA, de manera
+que esta opción de eludir la evaluación de la conformidad de terceros indicada no es
+posible aún.
+
+En estos supuestos, aunque el fabricante pudiera evitar la evaluación de la conformidad de
+su producto por parte de un organismo notificado en atención a la legislación de
+armonización, dicho organismo notificado habría de intervenir conforme al Reglamento
+Europeo de IA si no hay normas armonizadas o especificaciones comunes que cubran los
+requisitos de dicha norma.
+
+Encontramos un ejemplo en el artículo 19.2 de la Directiva 2009/48/CE sobre la
+seguridad de los juguetes, el cual contempla la posibilidad de que el fabricante de estos
+productos prescinda de la evaluación de la conformidad realizada por organismos
+
+
+
+16
+  El artículo 43, párrafo tercero establece que: En el caso de los sistemas de IA de alto riesgo regulados por los actos
+legislativos de armonización de la Unión enumerados en el anexo I, sección A, el proveedor se atendrá al procedimiento de
+evaluación de la conformidad pertinente exigida por dichos actos legislativos. Los requisitos establecidos en la sección 2 del
+presente capítulo se aplicarán a dichos sistemas de IA de alto riesgo y formarán parte de dicha evaluación. Asimismo, se
+aplicarán los puntos 4.3, 4.4 y 4.5 del anexo VII, así como el punto 4.6, párrafo quinto, de dicho anexo.
+
+
+
+                                                                                                                             36
+notificados si ha aplicado normas armonizadas que abarquen todos los requisitos
+pertinentes previsto en dicha Directiva.
+
+De esta manera, si un sistema de IA es un juguete o un componente de seguridad de un
+juguete, dado que no existen normas armonizadas ni especificaciones comunes aun
+para aplicar los requisitos que establece el Reglamento Europeo de IA para sistemas de
+alto riesgo, el fabricante de ese juguete no podría eludir el organismo notificado a pesar
+de que el acto legislativo de armonización de juguetes contemple esta posibilidad.
+
+
+4.4 La evaluación de la conformidad ante una modificación
+sustancial del sistema de IA.
+
+Una vez que el sistema de IA se haya sometido a la evaluación de la conformidad y haya
+superado tal proceso de verificación, éste muy posiblemente sufrirá alteraciones tras su
+despliegue.
+
+El Reglamento Europeo de IA establece que cuando ese sistema de IA de alto riesgo sufra
+una modificación sustancial, éste deberá someterse a una nueva evaluación de la
+conformidad.
+
+Se entiende que existe una modificación sustancial del sistema de IA cuando17:
+
+   •      se produzca un cambio que pueda afectar al cumplimiento del Reglamento de IA
+          por parte de un sistema de IA de alto riesgo (por ejemplo, un cambio de sistema
+          operativo o de arquitectura de software) que no haya sido previsto o proyectado
+          por el proveedor o,
+
+   •      se cambie la finalidad prevista del sistema.
+
+Para los sistemas de IA de alto riesgo que continúen aprendiendo tras su introducción
+en el mercado o puesta en servicio, los cambios que hayan sido previstos por el proveedor
+en el momento de la evaluación de la conformidad inicial y figuren en la información
+establecida en la documentación técnica no se considerarán modificaciones sustanciales.
+
+
+4.5 Instrumentos relacionados con la evaluación de conformidad
+     en el Reglamento de Inteligencia Artificial
+
+El Reglamento Europeo de IA contempla toda una serie de instrumentos que están
+especialmente relacionados con el procedimiento de la evaluación de la conformidad de
+los sistemas de IA de alto riesgo que conviene analizar.
+
+Algunos de estos instrumentos también son aplicables a los modelos de IA de uso general.
+
+
+
+
+   17
+        Considerando 128 y artículo 3.23. Reglamento Europeo de la IA.
+
+
+                                                                                         37
+4.5.1        Normas armonizadas, especificaciones técnicas comunes,                        otras
+            especificaciones y presunciones de conformidad específicas
+
+4.5.1.1 Normas armonizadas
+
+Son aquellas especificaciones técnicas adoptadas a raíz de una petición de la Comisión
+para la aplicación de la legislación de armonización de la Unión Europea18.
+
+Las normas armonizadas son adoptadas por alguno de los siguientes organismos: CEN,
+CENELEC o ETSI. Como regla general, desde la petición de la Comisión Europea hasta la
+elaboración de estas normas suele transcurrir un periodo aproximado de tres años.
+
+Las normas armonizadas son herramientas esenciales para aplicar adecuadamente la
+legislación de armonización debido a su carácter marcadamente técnico. Pese a su
+denominación, las normas armonizadas no son obligatorias. Cuando las referencias de las
+normas armonizadas se publican en el Diario Oficial de la Unión Europea (DOUE), la
+aplicación de sus especificaciones confiere una presunción de conformidad con los
+requisitos esenciales previstos en dicha legislación de armonización.
+
+Las normas armonizadas no siempre cubren todos y cada uno de los requisitos de
+cumplimiento normativo que exige la legislación de armonización, de ahí que resulte
+habitual que el fabricante o proveedor no solo acuda a este tipo de normas para demostrar
+el cumplimiento de los requisitos de su producto, sino que también se remita a otros
+instrumentos para demostrar la conformidad de este.
+
+
+
+     AI Act
+         Art.40.1 – Normas armonizadas
+            Los sistemas de IA de alto riesgo o los modelos de IA de uso general que sean
+            conformes con normas armonizadas, o partes de estas, cuyas referencias estén
+            publicadas en el Diario Oficial de la Unión Europea de conformidad con el
+            Reglamento (UE) número 1025/2012 se presumirá que son conformes con los
+            requisitos establecidos en la sección 2 del presente capítulo o, en su caso, con
+            las obligaciones establecidas en el capítulo V, secciones 2 y 3, del presente
+            Reglamento, en la medida en que dichas normas contemplen estos requisitos
+            u obligaciones.
+
+
+
+Por tanto, los proveedores de sistemas de IA de alto riesgo o proveedores de modelos de
+IA de uso general que aplique normas armonizadas que prevean los requisitos previstos
+en la sección 2 del capítulo III o en secciones 2 y 3 del capítulo V del Reglamento Europeo
+de IA respectivamente ostentarán la presunción de conformidad de sus sistemas de IA.
+
+
+
+18
+     Artículo 2, punto 1, letra c), del Reglamento (UE) n.º 1025/2012.
+
+
+
+                                                                                               38
+Es importante destacar que la presunción de conformidad que otorgan las normas
+armonizadas a la que hace referencia el Reglamento Europeo de IA y el resto de la
+legislación de armonización nunca supone para el proveedor la elusión del proceso de
+evaluación de la conformidad.
+
+Aplicar normas armonizadas facilita y acelera la verificación de la conformidad, porque
+estas normas están diseñadas para cumplir los requisitos legales.
+
+En algunas legislaciones de armonización, la aplicación de normas armonizadas permite al
+fabricante optar por un procedimiento de evaluación de la conformidad basado en el
+control interno o por otro con participación de un organismo notificado. Cuando el
+producto incorpore un sistema de IA de alto riesgo, esta posibilidad dependerá, además,
+de que las normas armonizadas o, en su caso, las especificaciones comunes aplicables
+contemplen los requisitos del Reglamento de IA. Sin embargo, siempre es obligatorio
+realizar la evaluación de conformidad; lo que cambia es el procedimiento, no la obligación
+de cumplirlo.
+
+Ello está contemplado por ejemplo en:
+
+       o    Directiva 2009/48/CE sobre la seguridad de los juguetes. (Artículo 19.2)
+
+       o    Reglamento Europeo de IA. (Artículo 43)19
+
+
+     Ejemplo – Control de la asistencia al trabajo mediante reconocimiento
+          biométrico
+     El proveedor que haya aplicado normas armonizadas que son conformes con los requisitos que
+            establece el Reglamento Europeo de IA para sistemas de IA de alto riesgo, podrá elegir
+            entre evaluar la conformidad de su sistema de IA a través del control interno o el control
+            por parte de un organismo notificado.
+
+Actualmente no existen normas armonizadas que cubran los requisitos del Reglamento
+Europeo de IA20.
+
+4.5.1.2 Especificaciones técnicas comunes
+
+Las especificaciones comunes se adoptan por parte de la Comisión Europea. Dentro de
+estas especificaciones se hace mención expresa a los productos a los que van destinados
+estas y los requisitos de cumplimento que abarcan respecto de la legislación de
+armonización sobre las que se han desarrollado dichas especificaciones.
+
+
+
+
+19
+  Artículo 43.1 Reglamento Europeo de la IA. Véase el apartado de esta Guía titulado “Sistemas de IA de identificación
+biométrica remota del Anexo III”
+20
+     El listado de normas armonizadas se puede encontrar en la siguiente web:
+
+https://single-market-economy.ec.europa.eu/single-market/european-standards/harmonised-standards_en
+
+
+
+                                                                                                                     39
+A modo de ejemplo, la Comisión Europea ha elaborado unas especificaciones técnicas
+comunes para determinados productos del Reglamento (UE) 2017/745 sobre los
+productos sanitarios21.
+
+
+
+     AI Act
+         Art.41.3 – Especificaciones comunes
+         Se presumirá que los sistemas de IA de alto riesgo o los modelos de IA de uso
+         general que sean conformes con las especificaciones comunes a las que se
+         refiere el apartado 1, son conformes con los requisitos establecidos en la
+         sección 2 del presente capítulo o, en su caso, con los requisitos establecidos
+         en las secciones 2 y 3 del capítulo V, en la medida en que dichas
+         especificaciones comunes prevean estos requisitos.
+
+
+
+De esta manera, y al igual que ocurre con las normas armonizadas, si las especificaciones
+técnicas comunes abarcan los requisitos de la sección 2 del capítulo III (sistemas de alto
+riesgo) o los requisitos establecidos en las secciones 2 y 3 del capítulo V (modelos de IA de
+uso general) indicados en el del Reglamento Europeo de IA, el sistema de IA que sea
+conforme a dichas especificaciones se entenderá conforme con los requisitos previstos
+en el Reglamento Europeo de IA. Es decir, la aplicación de éstas por parte de los
+proveedores confiere una presunción de conformidad con los requisitos esenciales
+previstos en el Reglamento de IA.
+
+Las especificaciones comunes que cubran los requisitos del Reglamento de IA no son
+obligatorias, no obstante, los proveedores que no las implementen en sus sistemas de IA
+deberán justificar debidamente que han adoptado soluciones técnicas que demuestren
+que cumplen con los requisitos exigidos por el Reglamento de IA.
+
+Actualmente no existen especificaciones técnicas comunes sobre los requisitos
+previstos en el Reglamento Europeo de IA para los sistemas de IA de alto riesgo.
+
+4.5.1.3 Otras especificaciones técnicas
+
+La conformidad de un producto con los requisitos del Reglamento Europeo de IA u otros
+actos legislativos de armonización puede demostrarse no sólo mediante normas
+armonizadas o especificaciones comunes sino también mediante el uso de otras
+especificaciones o normas técnicas.
+
+
+
+
+21
+  Véase el Reglamento de Ejecución (UE) 2022/2346 de la Comisión de 1 de diciembre de 2022 por el que se establecen
+especificaciones comunes para los grupos de productos sin finalidad médica prevista enumerados en el anexo XVI del
+Reglamento (UE) 2017/745 del Parlamento Europeo y del Consejo, sobre los productos sanitarios.
+
+
+
+                                                                                                                  40
+Esto es fundamental porque, como se ha indicado anteriormente, no todas las normas
+armonizadas o las especificaciones técnicas comunes abarcan cada uno de los requisitos
+de cumplimiento previstos en la legislación de armonización aplicable a cada producto.
+
+Estas especificaciones técnicas pueden estar documentadas en estándares nacionales o
+internacionales. A diferencia de las normas armonizadas o las especificaciones comunes,
+la aplicación de estas normas no presume la conformidad del producto sobre el acto
+de legislación de armonización, si bien, pueden servir para demostrar que dicho producto
+cumple con dicha legislación. Corresponderá al proveedor indicar las evidencias que
+demuestren que a través de la aplicación de esos estándares técnicos su producto cumple
+con los requisitos previstos por esa legislación.
+
+4.5.1.4 Presunciones de conformidad específicas
+
+El Reglamento Europeo de IA contempla varias presunciones de conformidad específicas
+referidas a determinados requisitos exigibles a los sistemas de IA de alto riesgo. Estos
+requisitos están relacionados con los datos y con la ciberseguridad.
+
+De esta manera, el artículo 42 establece dos presunciones:
+
+     o   Por un lado, cuando los sistemas de IA hayan sido entrenados y probados con datos
+         que reflejen el entorno geográfico, conductual o funcional específico de su uso, se
+         presumirá que dicho sistema es conforme al requisito previsto en el artículo 10.4
+         del Reglamento Europeo de IA. Existe una Guía específica sobre datos y
+         gobernanza de datos que analiza este requisito.
+
+     o   Por otro lado, cuando un sistema de IA de alto riesgo o de uso general hayan sido
+         certificados o se le haya expedido una declaración de conformidad con un esquema
+         de ciberseguridad y cuyas referencias se hayan publicado en el DOUE 22, se
+         presumirá la conformidad con los requisitos previstos en el artículo 15 del
+         Reglamento Europeo de IA sobre ciberseguridad en la medida en que dicho
+         certificado de ciberseguridad o declaración de conformidad se prevean tales
+         requisitos.
+
+4.5.2 Declaración UE de conformidad
+
+A través de este instrumento el proveedor declara que su producto es conforme con la
+legislación de armonización correspondiente.
+
+El artículo 47 del Reglamento Europeo de IA establece toda una serie de obligaciones
+exigibles al proveedor de sistemas de IA de alto riesgo derivadas de la declaración de la
+conformidad, estas son:
+
+     o   Ha de redactarla por escrito o con firma electrónica.
+
+
+
+
+22
+  Reglamento (UE) 2019/881 del Parlamento Europeo y del Consejo, de 17 de abril de 2019, relativo a ENISA (Agencia de la
+Unión Europea para la Ciberseguridad) y a la certificación de la ciberseguridad de las tecnologías de la información y la
+comunicación y por el que se deroga el Reglamento (UE) n.º 526/2013 (Reglamento sobre la Ciberseguridad)
+
+
+
+                                                                                                                        41
+   o   Deberá mantenerla a disposición de la autoridad nacional competente un período
+       de diez años después de la introducción del sistema de IA en el mercado o su
+       puesta en servicio.
+
+   o   Se entregará una copia a las autoridades nacionales competentes pertinentes que
+       lo soliciten.
+
+   o   La información que contendrá será la indicada en el Anexo V del Reglamento
+       Europeo de IA. Se traducirá a una lengua que puedan entender fácilmente las
+       autoridades nacionales competentes del Estado o Estados Miembro en que se
+       introduzca en el mercado o comercialice el sistema de IA de alto riesgo
+
+   o   Se mencionará expresamente que el sistema de IA cumple con los requisitos que
+       establece el Reglamento Europeo de IA para sistemas de alto riesgo.
+
+La declaración de conformidad no está prevista para los modelos de IA de uso general.
+
+4.5.3 El marcado CE
+
+
+El marcado CE es un indicador clave (pero no una prueba) de la conformidad de un
+producto con la legislación de la UE.
+
+
+
+ AI Act
+     Art.3.24 – Definiciones
+       Un marcado con el que un proveedor indica que un sistema de IA es conforme
+       con los requisitos establecidos en el capítulo III, sección 2, y con otros actos
+       aplicables de la legislación de armonización de la Unión que prevén su
+       colocación.
+
+
+
+
+Conforme el artículo 48 del Reglamento Europeo de IA, el marcado CE se colocará de
+manera visible, legible e indeleble en los sistemas de IA de alto riesgo. Si ello no fuera
+posible, se colocará en el embalaje o en los documentos adjuntos.
+
+En el caso de los sistemas de IA de alto riesgo que se proporcionan digitalmente, se
+utilizará un marcado CE digital, únicamente si es fácilmente accesible a través de la interfaz
+
+
+
+                                                                                             42
+desde la que se accede a dicho sistema o mediante un código fácilmente accesible legible
+por máquina u otros medios electrónicos.
+
+Este marcado irá seguido del número de identificación del organismo notificado
+responsable de los procedimientos de evaluación de la conformidad descritos en esta Guía
+y que se encuentran regulados en el artículo 43 del Reglamento Europeo de IA.
+
+Cuando los sistemas de IA de alto riesgo estén sujetos a otras disposiciones del Derecho
+de la Unión que también requieran la colocación del marcado CE, este indicará que los
+sistemas de IA de alto riesgo también cumplen los requisitos de esas otras disposiciones.
+
+El marcado CE no está previsto para los modelos de IA de uso general.
+
+4.5.4 Las autoridades notificantes y los organismos notificados
+
+4.5.4.1 Autoridades notificantes
+
+La autoridad notificante es la autoridad pública encargada de llevar a cabo los
+procedimientos necesarios para la evaluación, designación y notificación de los
+organismos de evaluación de la conformidad en virtud de la legislación de armonización
+de la Unión.
+
+Cada Estado miembro debe designar al menos a una autoridad notificante que será
+responsable de la evaluación, la notificación y el seguimiento de los organismos de
+evaluación de la conformidad. En España existe una única autoridad notificante por cada
+uno de los actos legislativos de armonización23.
+
+Por tanto, a través de la notificación, la autoridad notificante informa a la Comisión y a los
+demás Estados miembros de que un organismo de evaluación de la conformidad ha sido
+designado para realizar la evaluación de la conformidad con arreglo a un acto de
+armonización de la Unión y que cumple los requisitos relativos a los organismos notificados
+recogidos en dicho acto de armonización de la UE.
+
+Los Estados miembros podrán decidir que la evaluación y la supervisión de los organismos
+notificados se lleve a cabo por el organismo nacional de acreditación. En España, esta
+función corresponde a la Entidad Nacional de Acreditación (ENAC).
+
+El Proyecto de Ley Orgánica para el buen uso y la gobernanza de la inteligencia artificial
+designa a la Dirección General de Inteligencia Artificial, integrada en la Secretaría de
+Estado de Digitalización e Inteligencia Artificial, como autoridad notificante del
+Reglamento de IA para los sistemas correspondientes al anexo III. Asimismo, prevé que la
+evaluación y supervisión de los organismos de evaluación de la conformidad por parte de
+dicha autoridad se apoye en la Entidad Nacional de Acreditación (ENAC). En el caso de los
+sistemas de IA regulados por la legislación armonizada recogida en el anexo I del
+
+
+
+
+    23
+        Las autoridades notificantes en España de los diferentes actos legislativos de armonización son las siguientes:
+    https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies/notifying-
+authorities?filter=countryId:724
+
+
+                                                                                                                          43
+Reglamento de IA, se mantienen las autoridades notificantes designadas conforme a la
+legislación sectorial aplicable.
+
+4.5.4.2 Los organismos notificados
+
+Los organismos notificados son organismos de evaluación de la conformidad que han sido
+designados y notificados oficialmente por las autoridades notificantes para llevar a cabo
+los procedimientos de evaluación de la conformidad previstos en la legislación de
+armonización de la Unión cuando estos textos legales contemplen la intervención de un
+tercero. Pueden ser tanto entidades públicas como privadas.
+
+Por tanto, son los encargados de llevar a cabo los diferentes procesos y fases que forman
+parte de la evaluación de la conformidad, estas son: presentación de documentos, ensayo,
+pruebas, acceso e inspección de los productos, etc.
+
+Es importante destacar que un organismo notificado normalmente no estará designado
+para todos los procedimientos de evaluación de la conformidad de un mismo producto,
+incluso ni siquiera de una misma ley de armonización.
+
+Por ejemplo, en el ámbito de los productos sanitarios, el Centro Nacional de Certificación
+de Productos Sanitarios es el único organismo notificado en España para evaluar la
+conformidad de los productos sanitarios y productos sanitarios de diagnóstico in vitro24.
+
+Otro ejemplo lo encontramos en el sector de los juguetes, actualmente solo hay un
+organismo notificado acreditado por ENAC para realizar la evaluación de la conformidad
+de los productos de la Directiva 2009/48/CE sobre la seguridad de los juguetes25.
+
+Los listados de Organismos Notificados para los diferentes actos legislativos de
+armonización se pueden encontrar en la siguiente web de la Unión Europea: Nando (New
+Approach Notified and Designated Organisations) Information System.
+
+El Reglamento Europeo de IA regula en sus artículos 29 a 39 todo lo relativo al
+procedimiento y los requisitos para que un organismo de evaluación de la conformidad
+pueda ser un organismo notificado a efectos de esta norma. Asimismo, prevé que, en
+determinados supuestos, los organismos ya notificados conforme a la legislación de
+armonización de la Unión puedan participar en la evaluación de la conformidad de
+sistemas de IA de alto riesgo, en los términos previstos por el propio Reglamento.
+
+
+
+
+24
+     https://certificaps.gob.es/
+25
+     Puede consultarse esta información en:
+
+https://ec.europa.eu/growth/tools-databases/nando/index.cfm?fuseaction=notification.pdf&dir_id=140521&ntf_id=310342
+
+
+
+                                                                                                                  44
+      5. Referencias, estándares y
+      normas
+      Para la elaboración de esta guía se han utilizado diversas fuentes.
+
+      Se recomienda especialmente a los proveedores y responsables del despliegue la lectura
+      de la “Guía azul sobre la aplicación de la normativa europea relativa a los productos”
+      elaborada por la Comisión Europea en 2022.
+
+
+      5.1 Estándares de referencia de la Guía
+
+      Los siguientes estándares han sido consultados a la hora de desarrollar algunos de los
+      contenidos indicados en esta Guía.
+
+         •   ISO/IEC 17000:2004, "Conformity assessment — Vocabulary and general principles"
+
+         •   ISO/IEC 17007:2009,"Conformity assessment — Guidance for drafting normative
+             documents suitable for use for conformity assessment"
+
+         •   prEN 18285 AI Conformity assessment framework.
+
+
+      5.2 Estándares cuya lectura se recomienda
+
+      Se recomienda las normas y guías internacionales pertinentes por ISO e IEC conocidas
+      como la caja de herramientas CASCO . Algunas de estas Guías son:
+
+[1]    ISO/IEC 23053:2022, "Framework for Artificial Intelligence (AI) Systems Using Machine
+       Learning (ML)"
+
+[2]    ISO 9001:2015, "Quality management systems — Requirements".
+
+[3]    UNE-ISO/IEC 42001:2025. Tecnología de la información. Inteligencia artificial. Sistema de
+       gestión.
+
+
+      5.3 Estándares relacionados con la evaluación de la conformidad
+      no destinados a los proveedores de sistemas de IA.
+
+[4]    ISO/IEC 17021-3:2018, "Conformity assessment — Requirements for bodies providing
+       audit and certification of management systems — Part 3: Competence requirements for
+       auditing and certification of quality management systems". (Estándar destinado a
+       organismos notificados)
+
+
+
+
+                                                                                               45
+[5]   ISO/IEC 17021-1:2015, "Conformity assessment — Requirements for bodies providing
+      audit and certification of management systems — Part 1: Requirements". (Estándar
+      destinado a organismos notificados)
+
+[6]   ISO/IEC 17029:2019, "Conformity Assessment — General principles and requirements for
+      validation and verification bodies". (Estándar destinado a organismos notificados)
+
+[7]   ISO/IEC 17065:2012, "Conformity Assessment - Requirements for bodies certifying
+      products, processes and services".(Estándar destinado a organismos notificados)
+
+[8]   ISO/IEC 17011, "Evaluación de la conformidad — Requisitos generales para los
+      organismos de acreditación que realizan la acreditación de organismos de evaluación de
+      la conformidad".(Estándar destinado a organismos notificados)
+
+
+
+
+         5.4 Enlaces webs relevantes
+
+[9]   Listado de la legislación de armonización sobre productos: https://single-market-
+      economy.ec.europa.eu/single-market/goods/new-legislative-
+      framework_en?prefLang=es
+
+[10] Listado de normas armonizadas sobre productos sometidos a la legislación de
+     armonización:   https://single-market-economy.ec.europa.eu/single-market/european-
+     standards/harmonised-standards_en
+
+[11] Listado de organismos notificados para realizar la evaluación de la conformidad de los
+     productos     sometidos       a     la    legislación      de      la    armonización:
+     https://webgate.ec.europa.eu/single-market-compliance-space/notified-bodies
+
+[12] Listado de autoridades de vigilancia del mercado de los productos sometidos a
+     legislación de armonización por sector y por país: https://single-market-
+     economy.ec.europa.eu/single-market/goods/building-blocks/market-
+     surveillance/organisation_en
+
+
+
+
+                                                                                           46
+47
+

@@ -1,0 +1,432 @@
+                                                                              SECRETARÍA DE ESTADO DE
+                                                                              DIGITALIZACIÓN E
+
+
+
+                                                                                                        16
+                                                    MINISTERIO PARA LA
+                                                                              INTELIGENCIA ARTIFICIAL
+                                                    TRANSFORMACIÓN DIGITAL
+                                                    Y DE LA FUNCIÓN PÚBLICA   ESPAÑA DIGITAL 2030 E
+                                                                              INTERNACIONALIZACIÓN
+
+
+
+
+     M
+
+
+
+
+                                                                                                        Empresas en mejora de sus protocolos de calidad
+
+
+
+
+       Empresas en mejora de sus protocolos de calidad
+
+
+
+
+Este documento es de carácter confidencial y tiene efectos meramente informativos. No tiene
+carácter vinculante ni sustituye ni desarrolla la normativa aplicable.
+Este manual ha sido desarrollado en el marco del desarrollo del piloto
+español de sandbox regulatorio de IA, en colaboración entre los
+participantes, asistencias técnicas, potenciales autoridades nacionales
+competentes y el grupo asesor de expertos del sandbox.
+
+El manual tiene como objetivo servir de apoyo introductorio a la normativa
+europea de Inteligencia Artificial y sus obligaciones aplicables. Si bien no
+tiene carácter vinculante ni sustituye ni desarrolla la normativa aplicable,
+proporciona recomendaciones prácticas alineadas con los requisitos
+regulatorios a la espera de que se aprueben las normas armonizadas de
+aplicación para todos los estados miembros.
+
+El presente documento está sujeto a un proceso permanente de evaluación
+y revisión, con actualizaciones periódicas conforme al desarrollo de los
+estándares y las distintas directrices publicadas desde la Comisión Europea,
+y será actualizada una vez se apruebe el Ómnibus digital que modifica el
+Reglamento de Inteligencia Artificial.
+
+Guía 16. Manual de checklist de guías de requisitos © 2026 por el Ministerio
+para la Transformación Digital y de la Función Pública está bajo una licencia
+Creative Commons Atribución 4.0 Internacional
+NIPO: 230260293
+
+
+
+                                     Fecha de versión: 30 de junio de 2026
+
+
+
+
+                                                                        1
+  •    Control de versiones del documento:
+
+Versión     Fecha de versión    Cambios principales
+1.0         10/12/2025          Publicación de la primera versión
+1.1.        30/06/2026          Cambios menores de forma
+
+
+
+
+                                                                    2
+Contenido general
+1. Contexto ................................................................................................................................... 5
+2. Introducción ............................................................................................................................ 7
+3. Estructura de la herramie nta de checklist ...................................................................... 8
+4. Conclusión ............................................................................................................................. 15
+
+
+
+
+                                                                                                                                       3
+Índice detallado
+1. Contexto ................................................................................................................................... 5
+   1.1 FASE DE DIAGNÓSTICO ............................................................................................................... 6
+2. Introducción ............................................................................................................................ 7
+3. Estructura de la herramie nta de checklist ...................................................................... 8
+   3.1 PORTADA [INFORMATIVA] ........................................................................................................... 8
+   3.2 INTRO [INFORMATIVA] ................................................................................................................ 8
+   3.3 ARTÍCULO RIA [INFORMATIVA]..................................................................................................... 9
+   3.4 MEDIDAS GUÍAS (MG) [INFORMATIVA] ......................................................................................... 9
+   3.5 RELACIÓN MG-APART. [INFORMATIVA] ...................................................................................... 10
+   3.6 AUTOEVAL MG. [OPERATIVA] .................................................................................................... 11
+   3.7 MEDIDAS ADICIONALES (MA). [OPERATIVA] ............................................................................... 12
+   3.8 RELACIÓN MA-APART. [OPERATIVA] .......................................................................................... 13
+   3.9 AUTOEVAL MA. [OPERATIVA] .................................................................................................... 13
+4. Conclusión ............................................................................................................................. 15
+
+
+
+
+                                                                                                                                       4
+1. Contexto
+Los sandboxes regulatorios desempeñan un papel clave en la experimentación y validación de
+marcos normativos, permitiendo a las entidades participantes desarrollar e implementar
+soluciones innovadoras en un entorno controlado y supervisado. Este enfoque facilita la detección
+temprana de riesgos, la adaptación ágil a los requisitos regulatorios y la generación de
+conocimiento práctico para la mejora continua de la regulación.
+
+En el caso concreto del sandbox español, la iniciativa es un entorno de pruebas teórico que
+promueve el desarrollo y uso de una IA responsable, centrándose en la formación,
+acompañamiento y asesoramiento para el cumplimiento de las obligaciones del Reglamento por
+parte de entidades que desarrollan sistemas de inteligencia artificial de alto riesgo, en el contexto
+del Reglamento Europeo de IA (REGLAMENTO (UE) 2024/1689 DEL PARLAMENTO EUROPEO Y
+DEL CONSEJO -en adelante “RIA”-), e incluyendo una simulación de evaluación de conformidad.
+
+Este sandbox persigue los objetivos que se detallan a continuación:
+
+   •   Aportar claridad sobre los requisitos establecidos en el Reglamento.
+   •   Evaluar el impacto del Reglamento y sus obligaciones en un entorno controlado.
+   •   Validar la aplicabilidad de las guías técnicas de requisitos y el resto de material puesto a
+       disposición de las entidades participantes.
+   •   Transferir conocimiento sobre el cumplimiento del Reglamento a entidades que
+       desarrollan soluciones de IA.
+   •   Fomentar el desarrollo de sistemas de IA innovadores y confiables.
+   •   Aumentar las capacidades y el conocimiento en materia de supervisión de Inteligencia
+       Artificial, que luego será reutilizable por la Agencia Española de Supervisión de
+       Inteligencia Artificial (AESIA).
+   •   Influir en el desarrollo de los actos de ejecución y los procesos de estandarización
+       europeos del Reglamento.
+   •   Convertir a España en referente del desarrollo de IA responsable en la UE y en el mundo.
+
+Para todo ello, el sandbox se ha llevado a cabo a lo largo de diferentes fases.
+
+
+
+
+                                                                                              5
+1.1 Fase de diagnóstico
+La fase de diagnóstico tiene dos objetivos:
+
+   •   Que las entidades realicen un autodiagnóstico de su sistema, conforme a los requisitos
+       del RIA, a partir de las medidas propuestas para la facilitación de su cumplimiento. Tras
+       este autodiagnóstico cada entidad conocerá la brecha teórica que le queda para el
+       cumplimiento del RIA.
+   •   Diseñar el Plan de Adaptación (PDA) que permitirá planificar la implementación de las
+       medidas necesarias para dicho cumplimiento, y que será ejecutado en una fase posterior.
+
+Para llevar a cabo esta fase de diagnóstico se ha diseñado una herramienta orientativa de checklist
+que permite que las entidades puedan cumplir los objetivos descritos:
+
+   •   Autodiagnosticando su cumplimiento del RIA de manera sencilla, pudiendo además
+       extraer indicadores sobre el grado de avance del mismo y conclusiones acerca del
+       estado de sus sistemas en el inicio del proceso.
+   •   Diseñando un Plan de Adaptación (PDA) que consiste en el plan de trabajo que cada
+       entidad ejecutará para implementar las medidas que le lleven al cumplimiento del RIA.
+
+Existe una herramienta checklist para cada uno de los 12 requisitos sobre los cuales es necesario
+realizar el diagnóstico: sistema de gestión de la calidad, sistema de gestión de riesgos, supervisión
+humana, datos y gobernanza de datos, transparencia, precisión, solidez, ciberseguridad, registros,
+documentación técnica, vigilancia poscomercialización y gestión de incidentes graves.
+
+
+
+
+                                                                                              6
+2. Introducción
+Estas checklists han sido testadas con éxito en el sandbox, pero su uso no está restringido al
+mismo, pudiendo ser utilizadas por cualquier entidad para conseguir los objetivos mencionados
+anteriormente: llevar a cabo un autodiagnóstico del cumplimiento de los requisitos establecidos
+por el Reglamento por parte de sus sistemas de IA de alto riesgo, y diseñar un plan de adaptación
+de sus sistemas a los requisitos establecidos por el mismo.
+
+El uso de esta herramienta es sencillo e intuitivo y, además, está soportado por las guías de
+requisitos que la acompañan y en las que se detalla cada una de las medidas propuestas y la razón
+de su elección para cumplir cada uno de los requisitos del RIA para sistemas IA de alto riesgo.
+
+
+
+
+                                                                                          7
+3. Estructura de la herramienta de
+checklist
+Dicha herramienta es un documento Excel que tiene la misma estructura para todos los requisitos.
+Se compone de 9 pestañas, 5 de ellas informativas con instrucciones de uso e información de
+contexto, y otras 4 pestañas operativas en las que se completa la información requerida. Para que
+su uso esté alineado con el procedimiento operativo de esta fase, se recomienda abordar las
+pestañas en el orden en el que aparecen en la propia herramienta.
+
+
+
+
+A continuación, se describe la información y funcionalidad de cada una de las pestañas, indicando
+entre corchetes la naturaleza de la misma (informativa u operativa).
+
+
+3.1 Portada [Informativa]
+Contiene el recordatorio de confidencialidad obligatorio para la SEDIA (Secretaría de Estado de
+Digitalización e Inteligencia Artificial) y todas las entidades participantes en el sandbox, que
+incluye el uso y distribución de esta checklist.
+
+
+
+
+                      E JEMPLO DE PORTADA DE LA CHECKLIST DEL REQUISITO DE T RANSPARENCIA
+
+
+
+3.2 Intro [Informativa]
+Describe de manera resumida los pasos y lo que permite realizar la herramienta.
+
+
+
+
+                                                                                            8
+3.3 Artículo RIA [Informativa]
+Muestra los apartados del artículo sobre los cuales la entidad va a hacer el autodiagnóstico. El
+campo “Descripción resumida” es un resumen de cada apartado para facilitar su contextualización
+en pestañas posteriores.
+
+
+
+
+                                    E JEMPLO DE LA CHECKLIST DE T RANSPARENCIA
+                      ( EL CONTENIDO DE LA IMAGEN ES PARTE DE LA EXISTENTE EN LA HERRAMIENTA )
+
+
+
+3.4 Medidas Guías (MG) [Informativa]
+Expone las medidas orientativas explicadas con detalle, recogidas en la correspondiente guía,
+las cuales:
+    • Han sido recogidas de buenas prácticas de la industria del software, y han sido validadas
+        por entidades nacionales y europeas.
+    • Se espera que sean de mayor detalle que los estándares que se espera que sean
+        liberados por la CE, ya que estos estarán más encaminados a describir QUÉ hay que hacer
+        para cumplir el RIA, mientras que las medidas descritas en las guías (y en las checklists) dan
+        pautas sobre CÓMO llegar al cumplimiento de cada requisito (o artículo). Estas pautas no
+        son de obligado cumplimiento
+
+                                                                                                 9
+   •   No todas tienen por qué aplicar en cualquier sistema atendiendo a las características del
+       mismo.
+   •   En base a la experiencia, se ha detectado que pueden existir medidas adicionales que las
+       empresas ya están utilizando en sus sistemas y que sean igualmente válidas para el
+       cumplimiento del RIA. Por eso en la pestaña "Medidas Adicionales (MA)", descrita más
+       adelante en este documento, podrán ser agregadas.
+
+Adicionalmente, para cada medida se han definido unas cuestiones orientativas con el fin de
+contextualizarla, de manera que la respuesta a las mismas pueda dar una idea de si el sistema ya
+cumple o no la medida en cuestión.
+
+
+
+
+                                   E JEMPLO DE LA CHECKLIST DE T RANSPARENCIA
+                     ( EL CONTENIDO DE LA IMAGEN ES PARTE DE LA EXISTENTE EN LA HERRAMIENTA )
+
+
+
+3.5 Relación MG-Apart. [Informativa]
+Resume de manera ejecutiva la potencial aplicación de las medidas expuestas en la pestaña
+anterior (Medidas guías (MG)) a cada uno de los apartados del artículo. Se trata de un resumen
+visual de la relación entre las medidas propuestas y todos los apartados del artículo.
+
+
+
+
+                                   E JEMPLO DE LA CHECKLIST DE T RANSPARENCIA
+
+
+
+
+                                                                                                10
+3.6 Autoeval MG. [Operativa]
+Esta es la primera pestaña operativa de la herramienta, que permitirá identificar tanto el nivel de
+madurez de implantación de la medida propuesta en el sistema, como el nivel de dificultad
+percibido para llevarla a cabo. De la cumplimentación de esta pestaña va a surgir el diseño del
+Plan de Adaptación mencionado anteriormente, que será completado con plazos y esfuerzos, y
+que constituirá la herramienta de planificación para la fase posterior.
+
+Esta pestaña aparece pre-informada con una fila por cada una de las relaciones descritas entre
+medidas y subapartados del artículo.
+
+
+
+
+                                   E JEMPLO DE LA CHECKLIST DE T RANSPARENCIA
+                     ( EL CONTENIDO DE LA IMAGEN ES PARTE DE LA EXISTENTE EN LA HERRAMIENTA )
+
+Si además la entidad considera que alguna medida puede servir para ser aplicada a algún
+apartado adicional, podrá indicarlo al final de las filas pre-informadas. Para cada relación se han
+de cumplimentar únicamente dos columnas:
+
+   •   Nivel de dificultad percibido, indicando cuál es la dificultad que la entidad entiende que
+       la aplicación de dicha medida tendría en su sistema para ese apartado, en base a los
+       siguientes valores cualitativos:
+           o 00. Alto
+           o 01. Medio
+           o 02. Bajo
+   •   Nivel de madurez, indicando cuál es el nivel de madurez de dicha medida en su sistema
+       para el apartado indicado, utilizando los siguientes valores en función del estado de su
+       documentación e implementación en el sistema:
+           o L1. No documentada ni implementada
+           o L2. Documentación en curso y no implementada
+           o L3. Documentada y no implementada
+           o L4. Documentada e Implementación en curso
+           o L5. Documentada e Implementada
+           o L6. No documentada e Implementada
+           o L7. Documentación en curso e Implementada
+           o L8. Medida no necesaria, en caso de que la medida propuesta se considera que no
+               es necesaria para el cumplimiento del apartado ya que, como se ha indicado
+               anteriormente, no todas las medidas pueden tener que aplicar a todos los tipos de
+               sistemas inteligentes.
+
+       Al seleccionar cualquiera de los anteriores valores del Nivel de madurez,
+       automáticamente:
+
+
+                                                                                                11
+          o   La columna Estado Diagnóstico se actualiza con el valor 01. Ya diagnosticada (por
+              defecto, dicha columna aparece con el valor 00. Pdte diagnóstico), lo que permitirá
+              conocer el grado de avance del diagnóstico.
+          o   La columna Plan de Adaptación se actualiza con un valor que servirá para diseñar
+              el Plan de Adaptación de cada sistema, en base a la siguiente relación:
+
+                 Nivel de madurez                                     Plan de adaptación
+                 L1. No documentada ni implementada                   01. Documentar e implementar
+                 L2. Documentación en curso y no implementada         01. Documentar e implementar
+                 L3. Documentada y no implementada                    02. Implementar
+                 L4. Documentada e Implementación en curso            02. Implementar
+                 L5. Documentada e Implementada                       03. Adaptación completa
+                 L6. No documentada e Implementada                    04. Documentar
+                 L7. Documentación en curso e Implementada            04. Documentar
+                 L8. Medida no necesaria en mi sistema                05. Ninguna adaptación requerida
+                    R ELACIÓN ENTRE LOS NIVELES DE MADUREZ Y EL P LAN DE A DAPTACIÓN A REALIZAR
+
+
+
+3.7 Medidas Adicionales (MA). [Operativa]
+A partir de esta pestaña, junto a las dos siguientes, el autodiagnóstico consiste en la información
+de las entidades acerca de medidas que ellas mismas proponen como posibles para el
+cumplimiento del RIA y de las que la SEDIA evalúa su idoneidad.
+
+Esta pestaña aparece sin informar, con el objetivo de que la entidad indique las medidas que, en
+su experiencia, permiten el cumplimiento de apartados del artículo.
+
+Para ello deberá agregar una fila por cada una de dichas medidas, indicando la siguiente
+información:
+
+   •   Descripción breve: una descripción identificativa de la medida. Se recomienda utilizar la
+       misma concreción que la utilizada en las Medias Guías (MG).
+   •   Nombre del archivo: donde dicha medida será detallada por la entidad. Cuando este
+       campo se informe, la columna “Medida adicional documentada” automáticamente se
+       actualizará con el valor “01. Ya aportada” (por defecto, al estar el campo en blanco
+       aparecerá con el valor “00. Pendiente de aportar”)
+
+Las medidas adicionales deben ser validadas por la institución correspondiente (la SEDIA en el
+caso del sandbox), que informará las siguientes columnas:
+
+   •   Evaluación SEDIA. Estado, que incluye los siguientes valores:
+          o 00. Evaluación Medida Adicional SEDIA. Pendiente, para cuando la medida esté
+              pendiente de valorar por la SEDIA.
+          o 01. Evaluación Medida Adicional SEDIA. OK., cuando la SEDIA haya dado su OK a la
+              medida. Esto supondrá un éxito para la entidad, ya que habrá aportado una medida
+              hasta el momento no identificada que permitirá su aplicación en España y Europa.
+          o 02. Evaluación Medida Adicional SEDIA. NO_OK, para cuando la SEDIA rechace la
+              medida tras, además de utilizar el criterio de sus expertos internos, haya recurrido
+              a expertos y entidades externas para su evaluación.
+
+
+                                                                                                         12
+   •   Evaluación SEDIA. Comentarios, donde la SEDIA incluye comentarios adicionales a
+       cualquiera de los tres estados mencionados anteriormente.
+
+
+
+
+                                           M EDIDAS A DICIONALES DE PRUEBA
+
+
+
+3.8 Relación MA-Apart. [Operativa]
+Permite resumir de manera ejecutiva la potencial aplicación de las medidas informadas en la
+pestaña anterior a cada uno de los apartados del artículo.
+
+Los identificadores de las medidas aportadas en dicha pestaña anterior aparecen
+automáticamente en las columnas superiores.
+
+Únicamente es necesario marcar con una X (mayúscula) a qué apartado del artículo aplica cada
+medida.
+
+
+
+
+         R ELACIÓN DE PRUEBA DE LAS M EDIDAS A DICIONALES APORTADAS EN LA PESTAÑA ANTERIOR CON LOS APARTADOS
+
+
+
+3.9 Autoeval MA. [Operativa]
+Este es el último paso. La pestaña aparece automáticamente pre-informada con una fila por cada
+una de las relaciones descritas en la pestaña anterior. Al igual que en la pestaña “Autoeval MG”,
+para cada relación se han de informar únicamente dos columnas: "Nivel de dificultad percibido"
+y “Nivel de madurez”. Las columnas “Estado Diagnóstico”, y “Plan de adaptación” se actualizan
+automáticamente al informar las dos anteriores columnas de igual manera que en la pestaña
+“Autoeval MG" descrita anteriormente.
+
+
+
+
+                                                                                                               13
+A UTOEVALUACIÓN DE PRUEBA DE LAS M EDIDAS A DICIONALES APORTADAS EN LA PESTAÑA ANTERIOR CON LOS APARTADOS
+
+
+
+
+                                                                                                       14
+4. Conclusión
+La herramienta de checklist permite que las entidades realicen de manera sencilla el
+autodiagnóstico de su sistema conforme a las medidas propuestas para el cumplimiento de los
+requisitos del RIA, que están recogidas en las guías de modo más exhaustivo.
+
+Esto permitirá que las empresas diseñen un plan de trabajo (Plan de Adaptación) que les facilite
+la planificación del desarrollo de las medidas que apliquen a sus sistemas, así como la elaboración
+de la documentación técnica a la que obliga el RIA.
+
+
+
+
+                                                                                           15
+16
+

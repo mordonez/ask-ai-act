@@ -18,6 +18,17 @@ import {
  * (miguelordonez.com/blog/reglamento-europeo-ia-que-debe-comprobar-tu-empresa/)
  * y en las guías 1 y 2 de AESIA.
  *
+ * Nota de procedencia sobre el filtro del art. 6.3 (Q_TAREA_LIMITADA,
+ * Q_MEJORA_TRABAJO_HUMANO, Q_DETECTA_PATRONES, Q_TAREA_PREPARATORIA,
+ * Q_PERFILADO): las guías de AESIA en sources/aesia/guias-txt/ no
+ * desarrollan este filtro con detalle (solo se menciona de pasada en
+ * la guía 15). Las cuatro letras a-d y el párrafo de perfilado están
+ * verificados contra el texto del propio artículo 6(3) del
+ * Reglamento (UE) 2024/1689 (confirmado vía espejo de
+ * artificialintelligenceact.eu/article/6/, no vía guías AESIA — EUR-Lex
+ * no es accesible por fetch directo). Si se consigue el texto
+ * consolidado oficial en `sources/`, revisar esta nota contra él.
+ *
  * Principio de AGENTS.md: si falta una respuesta, o la respuesta es
  * "no lo sé" en un punto donde eso impide concluir, el resultado es
  * "no_determinado" — nunca una clasificación inventada. "no lo sé" NO

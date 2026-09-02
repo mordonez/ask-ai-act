@@ -1,0 +1,2694 @@
+15   Empresas desarrollando   0
+Esta guía ha sido elaborada en el marco del desarrollo del piloto español de sandbox
+regulatorio de IA, en colaboración con los participantes, asistencias técnicas,
+autoridades nacionales competentes y el grupo asesor de expertos del sandbox.
+La guía tiene como objetivo servir de apoyo a los proveedores de sistemas de IA que
+deban cumplir con la normativa europea de Inteligencia Artificial y sus obligaciones
+aplicables. Si bien no tiene carácter vinculante ni sustituye ni desarrolla la
+normativa aplicable, proporciona recomendaciones prácticas alineadas con los
+requisitos regulatorios a la espera de que se aprueben las normas armonizadas de
+aplicación para todos los estados miembros.
+El presente documento está sujeto a un proceso permanente de evaluación y
+revisión, con actualizaciones periódicas conforme al desarrollo de los estándares y las
+distintas directrices publicadas desde la Comisión Europea. La guía ha sido
+actualizada conforme al Ómnibus digital que modifica el Reglamento de Inteligencia
+Artificial.
+Entre las referencias técnicas relevantes actualmente aplicables, destacan las normas
+ISO/IEC 42001 “Artificial Intelligence — Management System”, ISO/IEC 23894-2
+“Information Technology — Artificial Intelligence — Risk Management” e ISO/IEC
+24027 “Information Technology — Artificial Intelligence (AI) — Bias in AI systems
+and AI-aided decision making”, que establecerán un marco de gestión, evaluación
+de riesgos y mitigación de sesgos aplicable a los sistemas de inteligencia artificial,
+garantizando su fiabilidad, transparencia y equidad en el contexto del cumplimiento
+del Reglamento Europeo de Inteligencia Artificial.
+
+
+
+Guía 15. Documentación técnica © 2026 por el Ministerio para la Transformación
+Digital   y   de    la   Función    Pública   está      bajo    una     licencia
+Creative Commons Atribución 4.0 Internacional.
+
+NIPO: 230260204
+
+                                               Fecha de versión: 17 de julio de 2026
+
+
+
+
+                                                                                      1
+  •    Control de versiones del documento:
+
+Versión     Fecha de versión    Cambios principales
+1.0.        10/12/2025          Publicación de la primera versión
+                                Adaptación de acuerdo con los cambios
+2.0.        17/07/2026          introducidos por el Ómnibus Digital y cambios
+                                menores de forma
+
+
+
+
+                                                                                2
+Contenido General
+1. Preámbulo ..................................................................................................................................................... 5
+2. Introducción .................................................................................................................................................. 7
+3. Reglamento de Inteligencia Artificial ....................................................................................................... 10
+4. ¿Cómo abordar los requisitos? ................................................................................................................. 17
+5. Documentación técnica ............................................................................................................................. 24
+6. Cuestionario de autoevaluación ............................................................................................................... 58
+7. Referencias, estándares y normas ............................................................................................................ 59
+
+
+
+
+                                                                                                                                                                   3
+Índice detallado
+1. Preámbulo ..................................................................................................................................................... 5
+  1.1 Objetivo del documento ........................................................................................................................ 5
+  1.2 ¿Cómo leer esta guía? ............................................................................................................................ 5
+  1.3 ¿A quién está dirigido? ........................................................................................................................... 6
+  1.4 Casos de uso utilizados en la guía ......................................................................................................... 6
+2. Introducción .................................................................................................................................................. 7
+  2.1 ¿Qué es la documentación técnica para IA? ........................................................................................ 7
+3. Reglamento de Inteligencia Artificial ....................................................................................................... 10
+  3.1 Análisis previo y relación de los artículos ........................................................................................... 10
+  3.2 Contenido de los artículos en el Reglamento de IA .......................................................................... 11
+  3.3 Correspondencia del artículo con los apartados de la guía ............................................................. 16
+4. ¿Cómo abordar los requisitos? ................................................................................................................. 17
+  4.1 Elaboración de la documentación....................................................................................................... 17
+  4.2 Conservación de la documentación.................................................................................................... 21
+5. Documentación técnica ............................................................................................................................. 24
+  5.1 Descripción general del sistema de IA ............................................................................................... 25
+  5.2 Descripción detallada de los elementos y procesos del sistema de IA .......................................... 34
+  5.3 Seguimiento del funcionamiento y control del sistema de IA .......................................................... 48
+  5.4 Resultados no deseados y fuentes de riesgo ..................................................................................... 49
+  5.5 Medidas de supervisión humana ......................................................................................................... 50
+  5.6 Especificación sobre los datos de entrada ......................................................................................... 51
+  5.7 Descripción de la idoneidad de los parámetros de rendimiento .................................................... 51
+  5.8 Descripción detallada del sistema de gestión de riesgos ................................................................ 52
+  5.9 Control de cambios realizados ............................................................................................................ 52
+  5.10 Normas armonizadas o documentación equivalente ..................................................................... 53
+  5.11 Declaración de conformidad ............................................................................................................. 54
+  5.12 Sistema de vigilancia poscomercialización ...................................................................................... 56
+6. Cuestionario de autoevaluación ............................................................................................................... 58
+7. Referencias, estándares y normas ............................................................................................................ 59
+   7.1 Relación de ISO Consultadas ............................................................................................................... 59
+
+
+
+
+                                                                                                                                                                   4
+   1.         Preámbulo
+1.1 Objetivo del documento
+
+La presente guía en el marco del sandbox de inteligencia artificial de España proporciona, a
+título ilustrativo y no vinculante, indicaciones del contenido de la documentación técnica
+del sistema de IA de alto riesgo y los criterios de conservación de ésta. El objetivo de esta
+guía es por tanto explicar qué exige el Reglamento Europeo de IA a la documentación
+técnica, cómo reflejarlo y cómo debe ser conservada toda la documentación requerida.
+
+Esta guía, por tanto, presenta en su contenido el entendimiento de los requisitos de
+documentación técnica, las medidas a considerar y también, como en otras guías como
+estructurar la documentación, en detalle.
+
+
+1.2 ¿Cómo leer esta guía?
+
+La relación de esta guía con las restantes no termina en la guía de evaluación de conformidad,
+sino que esta guía está relacionada con las demás de manera directa. En esta guía se indica
+de qué modo la documentación detallada en cada guía debería incorporarse a la
+documentación técnica. Por ejemplo, en la guía veremos dónde encaja la documentación de
+plan de riesgos dentro de la documentación técnica.
+
+Con esta guía se encajan las piezas de documentación específicas de cada guía dentro de las
+exigencias establecidas por el Reglamento Europeo de IA, que como se ha visto le otorga a la
+documentación técnica un papel importante dentro del marco regulatorio que establece,
+especialmente dentro del marco de evaluación de conformidad.
+
+Así, se recomienda al proveedor considerar el apartado destinado a abordar los requisitos
+como las medidas a considerar, apartado 3.2. Una vez realizada esta lectura, el apartado 4 y
+5, se alinean con lo descrito en el Reglamento Europeo de IA al respecto, tanto en su artículo
+11, documentación técnica, Anexo IV, como el artículo 18, conservación de la documentación,
+exclusivamente. En ningún caso se debe considerar que esta es exhaustiva en lo referente a
+otras obligaciones que el proveedor pueda tener en el cumplimiento de otras regulaciones
+(RGPD, normativa sectorial u otras), y para garantizar la licitud de sus actividades.
+
+El apartado de Autoevaluación en esta guía cubre, por un lado, la evaluación por el proveedor
+de las medidas como viene siendo usual, y por otro, verificar que la estructura y contenido de
+la documentación técnica encaja con lo propuesto; para ello se han añadido cuestiones de
+autoevaluación, a modo orientativo, que permitan al proveedor evaluar el avance, estado y en
+definitiva calidad de la documentación técnica.
+
+
+
+
+                                                                                             5
+1.3 ¿A quién está dirigido?
+
+Esta guía está exclusivamente dirigida al proveedor del sistema de IA, que es el responsable
+tal y como indica el Reglamento Europeo de IA, de la elaboración de la documentación técnica
+del sistema de IA.
+
+Esta guía por tanto no tiene destinados apartados para el responsable del despliegue, que,
+en todo caso, y en algunas ocasiones (por ejemplo, instrucciones) deberá tener acceso al
+resultado de la documentación técnica, para su utilización, nunca en ningún caso para su
+elaboración.
+
+Esta es esencialmente una guía destinada al proveedor del sistema de IA, que es el
+responsable de generar, actualizar y conservar la documentación del sistema de IA. Debe
+considerarse la guía como un marco en el que desarrollar la documentación técnica del
+sistema de IA que deberá adaptarse a la naturaleza específica de éste, manteniendo los
+requerimientos descritos en el Reglamento Europeo de IA.
+
+
+1.4 Casos de uso utilizados en la guía
+
+A lo largo de la guía se utilizarán dos casos de uso a modo de ejemplo de cómo elaborar la
+documentación técnica. Los ejemplos estarán centrados únicamente en el proveedor que es
+el responsable de generar y conservar la documentación.
+
+La descripción detallada de los casos de uso utilizados podrá encontrarse en la Guía práctica
+y ejemplos para entender el Reglamento de IA.
+
+Nota: Siempre que se ponga un ejemplo, se hará de manera ilustrativa. Proveedor y
+responsable del despliegue han de considerar la aplicación de todas las medidas indicadas
+en esta guía.
+
+Los casos de uso se han seleccionado atendiendo a dos motivos:
+
+   •   La capacidad para explicar la información y procedimientos detallados en la guía. Para
+       facilitar la compresión del proceso de documentación, al ser bastante completos en
+       todos los apartados específicos que esta guía de documentación en su continuidad
+       con el resto de las guías establece.
+   •   Aplicar continuidad sobre otras guías del sandbox que permita desarrollar el ejemplo
+       de documentación que se muestra en esta guía.
+
+Los casos seleccionados son:
+
+   •   Sistema de promoción de empleados.
+   •   Sistema automático de concesión de ayudas
+
+
+
+
+                                                                                            6
+   2.         Introducción
+2.1 ¿Qué es la documentación técnica para IA?
+
+En el Reglamento Europeo de IA, en el considerando (71) cuando aborda los criterios tenidos
+en cuenta para establecer la documentación, establece varios aspectos importantes sobre la
+documentación.
+
+
+  AI Act
+       (71)
+       Para permitir la trazabilidad de los sistemas de IA de alto riesgo, verificar si
+       cumplen los requisitos previstos en el presente Reglamento, así como vigilar su
+       funcionamiento y llevar a cabo la vigilancia poscomercialización, resulta esencial
+       disponer de información comprensible sobre el modo en que se han
+       desarrollado y sobre su funcionamiento durante toda su vida útil. A tal fin, es
+       preciso llevar registros y disponer de documentación técnica que contenga la
+       información necesaria para evaluar si el sistema de IA de que se trate cumple los
+       requisitos pertinentes y facilitar la vigilancia poscomercialización. Dicha
+       información debe incluir las características generales, las capacidades y las
+       limitaciones del sistema y los algoritmos, datos y procesos de
+       entrenamiento, prueba y validación empleados, así como documentación
+       sobre el sistema de gestión de riesgos pertinente, elaborada de manera clara y
+       completa. La documentación técnica debe mantenerse adecuadamente
+       actualizada durante toda la vida útil del sistema de IA. Además, los sistemas de
+       IA de alto riesgo deben permitir técnicamente el registro automático de
+       acontecimientos, mediante archivos de registro, durante toda la vida útil del
+       sistema.
+
+
+
+
+Como podemos ver, en el texto presentado se pone el foco en tres puntos importantes:
+
+   •   La documentación técnica es tan importante como los registros de actividad del
+       sistema de IA.
+   •   Se realiza una enumeración de los aspectos de debe cubrir, que serán ampliados como
+       veremos en el articulado y a lo largo de la guía.
+   •   La gestión y realización de la documentación no termina con la puesta en servicio de
+       sistema de inteligencia artificial, se debe mantener actualizada
+
+En este sentido, y para una definición del ciclo de vida a la que se refiere el Reglamento
+Europeo de IA, recomendamos la referencia al proyecto normativo ISO/IEC 5338 - Information
+technology — Artificial intelligence — AI system life cycle processes. 6. AI System life cycle
+
+
+                                                                                             7
+processes, donde aparece ampliamente desarrollado el concepto del ciclo de vida y las fases
+que lo componen, pero cuya extensión y profundización escapa al alcance de esta guía.
+
+Adicionalmente, y en relación con procedimiento de evaluación de conformidad, el
+Reglamento Europeo de IA establece en su considerando (173).
+
+
+  AI Act
+
+      (173)
+      […] los procedimientos de evaluación de la conformidad, las disposiciones que
+      establecen a qué sistemas de IA de alto riesgo deben aplicarse el procedimiento
+      de evaluación de la conformidad basado en la evaluación del sistema de gestión
+      de la calidad y en la evaluación de la documentación técnica [...].
+
+
+
+
+El procedimiento de evaluación de conformidad, en el marco del sandbox de IA cuenta con
+una guía propia donde se explica cómo debe afrontarse, sin embargo, es muy importante
+tener en cuenta que la documentación técnica es una parte significativa de lo que implica
+el proceso de evaluación de conformidad.
+
+El Reglamento Europeo de IA considera por un lado qué debe contener la documentación
+técnica, y, por otro lado, cómo debe conservarse esta documentación. Esta guía se ha
+estructurado conservando ese criterio. En el apartado 4 se presenta una propuesta de
+estructura de documentación técnica basada en el Artículo 11, documentación técnica, y el
+Anexo IV del Reglamento Europeo de IA. Del mismo modo, en el apartado 5 se detallan los
+requerimientos y las medidas para la conservación de la documentación establecidas en el
+articulado. La información presentada en los apartados 4 y 5 debe ser tomada como un
+ejemplo y no una obligación.
+
+
+
+
+                                                                                          8
+Una manera resumida y visual de contemplar los requerimientos del reglamento de
+inteligencia artificial acerca de la documentación técnica impuestos por:
+
+
+
+
+                                                                              9
+3. Reglamento de Inteligencia
+ Artificial
+La puesta en servicio o la utilización de sistemas de IA de alto riesgo debe supeditarse al
+cumplimiento de determinados requisitos obligatorios, entre los cuales está el de
+generar la documentación técnica y conservación de la documentación. Estos requisitos
+tienen como objetivo garantizar que los sistemas de IA de alto riesgo disponibles en la Unión
+o cuyos resultados de salida se utilicen en la Unión no representen riesgos inaceptables para
+intereses públicos importantes reconocidos y protegidos por el Derecho de la Unión.
+En este apartado se incluye los artículos referentes a la generación de registros del
+Reglamento 2024/1689 del Parlamento Europeo y del Consejo, de 13 de junio de 2024
+(Reglamento Europeo de Inteligencia Artificial) y se detalla en que secciones de esta guía se
+abordan los diferentes elementos de dichos artículos.
+
+
+3.1 Análisis previo y relación de los artículos
+
+Las obligaciones sobre la generación de adecuada documentación técnica se encuentran
+principalmente en el Reglamento Europeo de IA, artículo 11 “Documentación técnica” junto
+al anexo referenciado en el artículo 11.1 “Anexo IV Documentación técnica contemplada en
+el apartado 1 del artículo 11” y está estrechamente relacionado con el artículo 18
+“Conservación de la documentación”.
+Por la naturaleza y contenido de estos artículos, se tratarán, en el caso concreto de esta guía,
+de forma conjunta. En este sentido:
+   •   Artículo Documentación técnica → se definen y establecen las características
+       generales que la documentación técnica del sistema de IA deberá tener. Desde la
+       necesidad de preparar la documentación antes de la introducción al mercado y la
+       necesidad de mantenerla actualizada, hasta entrar en detalla en cómo debe ser
+       redactada, y los requisitos que debe cumplir no solo en su forma, si no en el objetivo
+       de demostrar que se cumplen los requisitos del capítulo 3 sección II del Reglamento
+       Europeo de IA.
+   •   Artículo Conservación de la documentación → se establece, la conservación de
+       toda la documentación del sistema de IA, a mayores de la documentación técnica
+       en el apartado anterior, se indica el periodo de mantenimiento de la documentación,
+       se enumera la documentación habrá de estar disponible siempre que el sistema se
+       encuentre activo y en producción y qué documentación se debe conservar.
+   •   Anexo IV → en este anexo referenciado en el artículo 11.1, se define el contenido
+       mínimo que deberá tener la documentación técnica.
+
+
+
+
+                                                                                              10
+3.2 Contenido de los artículos en el Reglamento de IA
+
+
+ AI Act
+     Art.11 – Documentación técnica
+     1. La documentación técnica de un sistema de IA de alto riesgo se elaborará antes
+     de su introducción en el mercado o puesta en servicio, y se mantendrá
+     actualizada.
+
+     La documentación técnica se redactará de modo que demuestre que el sistema
+     de IA de alto riesgo cumple los requisitos establecidos en la presente sección y
+     que proporcione de manera clara y completa a las autoridades nacionales
+     competentes y a los organismos notificados la información necesaria para evaluar
+     la conformidad del sistema de IA con dichos requisitos. Contendrá, como
+     mínimo, los elementos contemplados en el anexo IV. Las pymes, incluidas las
+     empresas emergentes y pequeñas empresas de mediana capitalización, podrán
+     facilitar los elementos de la documentación técnica especificada en el anexo IV
+     de manera simplificada. A tal fin, la
+     Comisión establecerá un formulario simplificado de documentación técnica
+     orientado a las necesidades de las pequeñas empresas y las microempresas.
+     Cuando una pyme, incluidas las empresas emergentes, opte por facilitar la
+     información exigida en el anexo IV de manera simplificada, utilizará el formulario
+     a que se refiere el presente apartado. Los organismos notificados aceptarán
+     dicho formulario a efectos de la evaluación de la conformidad.
+
+     2. Cuando se introduzca en el mercado o se ponga en servicio un sistema de IA
+     de alto riesgo asociado a un producto que entre en el ámbito de aplicación de
+     los actos legislativos de armonización de la Unión mencionados en el anexo I,
+     sección A, se elaborará un único conjunto de documentos técnicos que contenga
+     toda la información mencionada en el apartado 1, así como la información que
+     exijan dichos actos legislativos.
+
+     3. La Comisión estará facultada para adoptar actos delegados con arreglo al
+     artículo 97 al objeto de modificar el anexo IV, cuando sea necesario, para
+     garantizar que, en vista de los avances técnicos, la documentación técnica
+     proporcione toda la información necesaria para evaluar si el sistema cumple los
+     requisitos establecidos en la presente sección.
+
+
+
+
+                                                                                          11
+AI Act
+   Art.18 – Conservación de la documentación
+   1. Durante un período de diez años a contar desde la introducción en el mercado
+   o la puesta en servicio del sistema de IA de alto riesgo, el proveedor mantendrá
+   a disposición de las autoridades nacionales competentes:
+          a) la documentación técnica a que se refiere el artículo 11;
+          b) la documentación relativa al sistema de gestión de la calidad a que se
+          refiere el artículo 17;
+          c) la documentación relativa a los cambios aprobados por los organismos
+          notificados, si procede;
+          d) las decisiones y otros documentos expedidos por los organismos
+          notificados, si procede;
+          e) la declaración UE de conformidad contemplada en el artículo 47.
+   2. Cada Estado miembro determinará las condiciones en las que la
+   documentación a que se refiere el apartado 1 permanecerá a disposición de las
+   autoridades nacionales competentes durante el período indicado en dicho
+   apartado en los casos en que un proveedor o su representante autorizado
+   establecido en su territorio quiebre o cese en su actividad antes del final de dicho
+   período.
+
+   3. Los proveedores que sean entidades financieras sujetas a requisitos relativos
+   a su gobernanza, sus sistemas o sus procesos internos en virtud del Derecho de
+   la Unión en materia de servicios financieros mantendrán la documentación
+   técnica como parte de la documentación conservada en virtud del Derecho
+   pertinente de la Unión en materia de servicios financieros.
+
+
+
+
+AI Act
+   Anexo IV – Documentación técnica a que refiere el artículo
+   11 apartado 1
+   La documentación técnica a que se refiere el artículo 11, apartado 1, incluirá
+   como mínimo la siguiente información, aplicable al sistema de IA pertinente:
+
+   1. Una descripción general del sistema de IA que incluya:
+
+          a) su finalidad prevista, el nombre del proveedor y la versión del sistema
+          de tal manera que se refleje su relación con versiones anteriores;
+
+
+
+                                                                                          12
+      b) la manera en que el sistema de IA interactúa o puede utilizarse para
+      interactuar con hardware o software, también con otros sistemas de IA,
+      que no formen parte del propio sistema de IA, cuando proceda;
+
+      c) las versiones de software o firmware pertinentes y todo requisito
+      relacionado con la actualización de versiones;
+
+      d) la descripción de todas las formas en que el sistema de IA se introduce
+      en el mercado o se pone en servicio, como paquetes de software
+      integrados en el hardware, descargas o API;
+
+      e) la descripción del hardware en el que está previsto que se ejecute el
+      sistema de IA;
+
+      f) en el caso de que el sistema de IA sea un componente de un producto,
+      fotografías o ilustraciones de las características exteriores, el marcado y la
+      configuración interna de dicho producto;
+
+      g) una descripción básica de la interfaz de usuario facilitada al responsable
+      del despliegue;
+
+      h) instrucciones de uso para el responsable del despliegue y una
+      descripción básica de la interfaz de usuario facilitada al responsable del
+      despliegue, cuando proceda.
+
+2. Una descripción detallada de los elementos del sistema de IA y de su proceso
+de desarrollo, incluidos:
+
+      a) los métodos y las medidas adoptados para el desarrollo del sistema de
+      IA, incluido, en su caso, el recurso a sistemas o herramientas previamente
+      entrenados facilitados por terceros y la manera en que han sido utilizados,
+      integrados o modificados por el proveedor;
+
+      b) las especificaciones de diseño del sistema, a saber, la lógica general del
+      sistema de IA y de los algoritmos; las decisiones clave de diseño, incluidos
+      la lógica y los supuestos de los que se ha partido, también con respecto a
+      las personas o colectivos de personas en relación con los que está previsto
+      que se utilice el sistema; las principales decisiones de clasificación;
+      aquello que el sistema está diseñado para optimizar y la pertinencia de los
+      diversos parámetros; la descripción de los resultados de salida esperados
+      del sistema y la calidad de dichos resultados; las decisiones adoptadas
+      acerca de cualquier posible concesión con respecto a las soluciones
+      técnicas adoptadas para dar cumplimiento a los requisitos establecidos
+      en el capítulo III, sección 2;
+
+      c) la arquitectura del sistema, con una explicación de la manera en que los
+      componentes del software se utilizan o enriquecen mutuamente y de la
+      manera en que se integran en el procesamiento general; los recursos
+      informáticos utilizados para desarrollar, entrenar, probar y validar el
+      sistema de IA;
+
+
+
+                                                                                       13
+       d) cuando proceda, los requisitos en materia de datos, en forma de fichas
+       técnicas que describan las metodologías y técnicas de entrenamiento, así
+       como los conjuntos de datos de entrenamiento utilizados, e incluyan una
+       descripción general de dichos conjuntos de datos e información acerca
+       de su procedencia, su alcance y sus características principales; la manera
+       en que se obtuvieron y seleccionaron los datos; los procedimientos de
+       etiquetado (p. ej., para el aprendizaje supervisado) y las metodologías de
+       depuración de datos (p. ej., la detección de anomalías);
+
+       e) una evaluación de las medidas de supervisión humana necesarias de
+       conformidad con el artículo 14, incluida una evaluación de las medidas
+       técnicas necesarias para facilitar la interpretación de los resultados de
+       salida de los sistemas de IA por parte de los responsables del despliegue,
+       con arreglo al artículo 13, apartado 3, letra d);
+
+       f) en su caso, una descripción detallada de los cambios predeterminados
+       en el sistema de IA y su funcionamiento, junto con toda la información
+       pertinente relativa a las soluciones técnicas adoptadas con el objetivo de
+       garantizar la conformidad permanente del sistema de IA con los requisitos
+       pertinentes establecidos en el capítulo III, sección 2;
+
+       g) los procedimientos de validación y prueba utilizados, incluida la
+       información acerca de los datos de validación y prueba empleados y sus
+       características principales; los parámetros utilizados para medir la
+       precisión, la solidez y el cumplimiento de otros requisitos pertinentes
+       establecidos en el capítulo III, sección 2, así como los efectos
+       potencialmente discriminatorios; los archivos de registro de las pruebas y
+       todos los informes de las pruebas fechados y firmados por las personas
+       responsables, también en lo que respecta a los cambios predeterminados
+       a que se refiere la letra f);
+
+       h) las medidas de ciberseguridad adoptadas.
+
+3. Información detallada acerca de la supervisión, el funcionamiento y el control
+del sistema de IA, en particular con respecto a sus capacidades y limitaciones de
+funcionamiento, incluidos los niveles de precisión para las personas o colectivos
+de personas específicos en relación con los que está previsto que se utilice el
+sistema y el nivel general de precisión esperado en relación con su finalidad
+prevista; los resultados no deseados previsibles y las fuentes de riesgo para la
+salud y la seguridad, los derechos fundamentales y la discriminación, en vista de
+la finalidad prevista del sistema de IA; las medidas de supervisión humana
+necesarias de conformidad con el artículo 14, incluidas las medidas técnicas
+establecidas para facilitar la interpretación de los resultados de salida de los
+sistemas de IA por parte de los responsables del despliegue; las especificaciones
+de los datos de entrada, según proceda.
+
+4. Una descripción de la idoneidad de los parámetros de rendimiento para el
+sistema de IA concreto.
+
+
+
+                                                                                    14
+5. Una descripción detallada del sistema de gestión de riesgos con arreglo al
+artículo 9.
+
+6. Una descripción de los cambios pertinentes realizados por el proveedor en el
+sistema a lo largo de su ciclo de vida.
+
+7. Una lista de las normas armonizadas, aplicadas total o parcialmente, cuyas
+referencias se hayan publicado en el Diario Oficial de la Unión Europea; cuando
+no se hayan aplicado normas armonizadas, una descripción detallada de las
+soluciones adoptadas para cumplir los requisitos establecidos en el capítulo III,
+sección 2, incluida una lista de otras normas y especificaciones técnicas
+pertinentes que se hayan aplicado.
+
+8. Una copia de la declaración UE de conformidad con el artículo 47.
+
+9. Una descripción detallada del sistema establecido para evaluar el
+funcionamiento del sistema de IA en la fase posterior a la comercialización, de
+conformidad con el artículo 72, incluido el plan de vigilancia poscomercialización
+a que se refiere el artículo 72, apartado 3.
+
+
+
+
+                                                                                     15
+3.3 Correspondencia del artículo con los apartados de la guía
+
+En la tabla dispuesta a continuación se detalle en que secciones de esta guía se abordan los
+diferentes elementos de dicho artículo:
+
+ Artículo Reglamento                Requerimiento Reglamento                   Sección guía
+     Artículo 11       Elaboración de la documentación técnica.                Apartado 4.1
+     Artículo18        Conservación de la documentación                        Apartado 4.2
+                       Información mínima que recoger en la descripción
+     Anexo IV.1                                                                Apartado 5.1
+                       general del sistema de IA.
+                       Una descripción detallada de los elementos del
+     Anexo IV.2                                                                Apartado 5.2
+                       sistema de IA y de su proceso de desarrollo.
+                       Seguimiento del funcionamiento y control del
+     Anexo IV.3                                                                Apartado 5.3
+                       sistema de IA.
+                       La aparición de resultados no deseados previsibles y
+     Anexo IV.3                                                                Apartado 5.4
+                       fuentes de riesgo.
+                       La documentación de las medidas técnicas de
+     Anexo IV.3                                                                Apartado 5.5
+                       supervisión humana.
+     Anexo IV.3        Las especificaciones de los datos de entrada.           Apartado 5.6
+                       Una descripción de la idoneidad de los parámetros
+     Anexo IV.4                                                                Apartado 5.7
+                       de rendimiento para el sistema de IA.
+                       Una descripción detallada del sistema de gestión de
+     Anexo IV.5                                                                Apartado 5.8
+                       riesgos.
+                       Una descripción de los cambios pertinentes
+     Anexo IV.6        realizados por el proveedor en el sistema a lo largo    Apartado 5.9
+                       de su ciclo de vida.
+                       Una lista de las normas armonizadas o en su ausencia,
+                       una descripción detallada de las soluciones              Apartado
+     Anexo IV.7
+                       adoptadas para cumplir los requisitos establecidos         5.10
+                       en el capítulo III, sección 2.
+                       Una copia de la declaración UE de conformidad de         Apartado
+     Anexo IV.8
+                       conformidad.                                               5.11
+                       Una descripción detallada del sistema establecido
+                                                                                Apartado
+     Anexo IV.9        para evaluar el funcionamiento del sistema de IA en
+                                                                                  5.12
+                       la fase posterior a la comercialización.
+
+
+
+
+                                                                                              16
+   4.         ¿Cómo abordar los requisitos?
+4.1 Elaboración de la documentación
+
+En este apartado se van a describir las medidas necesarias que permitan a los proveedores
+participantes conocer qué documentación técnica se espera y su relación con otras guías del
+sandbox de IA en la que se encuentra enmarcado.
+
+En este apartado vamos a abordar las medidas que permitirán cumplir el entendimiento de
+los requisitos tal y como se han definido en el apartado anterior.
+
+La generación y conservación de la documentación técnica es responsabilidad del proveedor
+del sistema.
+
+El sistema de inteligencia artificial de alto riesgo debe disponer de una documentación
+técnica completa antes de que se comercialice y se ponga en servicio, para que se pueda
+garantizar que se han cubierto los requisitos del capítulo III sección 2. Para conocer qué
+documentación técnica conviene realizarse, el proveedor podrá seguir las guías de sandbox,
+que proporcionan indicaciones claras y con ejemplos de cómo realizar la cobertura de cada
+concepto. Adicionalmente el proveedor deberá:
+
+       •   Planificar desde el diseño y adecuadamente el alcance de la documentación
+           técnica del sistema de IA, incluyendo la comunicación a los diferentes
+           departamentos/áreas implicadas. La documentación técnica de esta manera
+           permitirá demostrar el cumplimiento de la responsabilidad activa en cumplimiento
+           del Reglamento de la IA en lo relativo a su estructura y contenido, tal y como se
+           abordará a lo largo de esta guía.
+       •   Identificar la existencia de normas armonizadas aprobadas disponibles.
+       •   Identificar la existencia de estándares disponibles.
+       •   Posibilidad de certificación en estándares existentes o de la obtención de sellos
+           de calidad asociados
+
+Las normas armonizadas y estándares relacionados con Inteligencia Artificial actualmente se
+encuentran en redacción y elaboración, por ello se incide en la importancia, en el marco del
+sandbox de referirse a las guías entregadas. Las principales organizaciones de trabajo en esa
+normalización son:
+
+   •   En el ámbito Europeo CEN/CENELEC, ver https://www.cencenelec.eu/
+   •   En el ámbito internacional ISO/IEC, ITU https://www.iso.org/organization/9657.html
+   •   Y en el ámbito nacional, el comité de trabajo de UNE, CTN71 SC 42
+
+
+
+
+                                                                                           17
+ Ejemplo - Sistema de promoción de empleados
+ El proveedor de este sistema de IA es una empresa emergente, en la que, por su naturaleza,
+ la flexibilidad y los roles múltiples de los empleados son habituales.
+ Para este sistema de IA, se ha optado por integrar una herramienta colaborativa de código
+ abierto de tipo Wiki/documental, que permite gestionar las versiones de la información
+ que se incorpora. De manera transversal en la propia herramienta ha indicado las personas
+ responsables de cada documentación y una guía de cómo ésta debe ser incorporada
+ acompañada de este mismo documento.
+ El proveedor ha estructurado esta plataforma de tal manera que existe una sección principal
+ que hace de nexo con los otros apartados relacionados con los elementos de esta guía y
+ con un enlace para facilitar el proceso y la gestión.
+ Para el acceso del organismo notificado ha establecido un acceso gestionado por su
+ sistema de gestión de autorización interno. Los usuarios del sistema tienen una zona de la
+ Wiki, que se encuentra accesible de manera pública desde su página web, de esta manera
+ la documentación y el acceso de la propia herramienta están accesibles para los usuarios
+ en un mismo contexto.
+
+
+
+
+Pymes, empresas emergentes y pequeñas empresas de mediana capitalización: La
+documentación técnica del sistema de inteligencia artificial debería cubrir todos los aspectos
+incluidos en la guía. Dado que en ocasiones en estas empresas una misma persona
+desempeña varios roles, es importante coordinar cómo se va a ejecutar el proceso de
+documentación. En caso de existir normas armonizadas y/o especificaciones comunes, es
+importante que estos puedan cubrir en la mayor medida posible la información requerida.
+
+
+
+Es favorable que la documentación técnica esté completamente actualizada de manera
+continua una vez comercializado y puesto en servicio el sistema de IA, especialmente cada vez
+que se realicen actualizaciones de este, como se detallará en la presente guía.
+
+ Ejemplo - Sistema de promoción de empleados
+ El proveedor del sistema ha incluido en sus procesos dentro del ciclo de vida de este
+ sistema de IA una serie de hitos destinados a ir aportando la información necesaria acorde
+ a cada apartado de la documentación técnica. Dentro de su organización, ha dispuesto en
+ cada equipo la persona responsable para revisar y mantener actualizada esa
+ documentación. Ha definido un mecanismo de seguimiento conjunto de todos los
+ responsables, para coordinar los esfuerzos.
+ Para gestionar todo el proceso, ha utilizado un repositorio centralizado de gestión de
+ documentos en la nube de mercado, con el que ya contaba, estructurado por carpetas
+ acorde a la información descrita en esta guía de documentación, con un documento
+ maestro en el que se refiere toda la información, su relación con el Reglamento de la IA y su
+ ubicación en las diferentes localizaciones.
+
+
+
+
+                                                                                             18
+ Para permitir el acceso a los organismos notificados, ha establecido un nivel de acceso de
+ toda la documentación controlado por sus sistemas de autenticación. En la parte pública de
+ su web corporativa ha habilitado para los usuarios (Administración General del Estado,
+ Comunidades Autónomas y entidades locales) un enlace de descarga que consolida toda
+ la información del sistema destinada a ellos, siempre actualizada, que está sincronizada con
+ el repositorio.
+ Nota: En la guía no se hace referencia a ninguna herramienta específica comercial, porque
+ se considera que los sistemas de gestión documental o repositorios existentes, de los
+ proveedores de tecnología, son entre ellos equivalentes. Igualmente, el ejemplo del uso de
+ un entorno en la nube es equivalente a un sistema propio de la empresa que cumpla las
+ mismas funciones.
+
+
+
+En ese sentido, el proveedor podrá realizar las siguientes medidas, orientadas a que esa
+actualización sea ágil, continuada en el tiempo y fehaciente:
+
+   •   Establecer, dentro de los procesos de gestión del sistema de inteligencia artificial, un
+       procedimiento de seguimiento de los cambios que tenga su reflejo en la
+       actualización de la documentación.
+   •   Generar una cadena de responsabilidad, o establecer un responsable de la gestión
+       del cambio sobre el sistema, que se encargue de actualizar la documentación acorde
+       a los cambios.
+   •   La documentación de los cambios en el sistema de inteligencia artificial debería tener
+       el nivel de completitud del resto de la documentación técnica descrita en esta guía.
+   •   Establecer, definir y dimensionar un sistema de gestión documental o solución
+       técnica equivalente, que le permita garantizar la conservación y cambios de esta. Se
+       recomienda que el sistema garantice la conservación de la documentación y la
+       posibilidad de acceso al mismo por parte de organismos notificados para su
+       evaluación. Igualmente, aquella documentación técnica que tenga como objetivo
+       servir de instrucciones al responsable del despliegue, debería estar accesible a este.
+
+La documentación técnica debe abarcar todo lo concerniente, como mínimo, a los requisitos
+del capítulo III sección 2 del Reglamento Europeo, esto es, los aspectos descritos en las
+guías que acompañan a ésta, dejando constancia documentada de las acciones, medidas,
+métricas y decisiones tomadas.
+
+La documentación debe recoger todos los conceptos cubiertos. La aplicación de cada una de
+las medidas propuestas en las anteriores guías, deberían tener una adecuada documentación,
+que conviene considerarse como parte de la documentación técnica, en aquellos apartados
+donde se indicará.
+
+Más adelante en este guía se detallan los contenidos específicos que debe contener la
+documentación técnica descritos en el Anexo IV del Reglamento Europeo de IA y su relación
+con las otras guías con una propuesta de estructura paralela al contenido del Anexo.
+
+El proveedor deberá elaborar la documentación técnica de tal manera que recoja la
+información necesaria para realizar la evaluación de conformidad del sistema de IA,
+evaluación de conformidad que será realizada por un organismo notificado o a través de un
+
+
+                                                                                             19
+mecanismo de autoevaluación (ver la guía de evaluación de conformidad para más detalle
+del proceso).
+
+En el marco del sandbox se llevará a cabo una autoevaluación del cumplimiento de los
+requisitos definidos en todas las guías, entre las que se encuentra una guía sobre cómo llevar
+a cabo la evaluación de conformidad que los sistemas tendrán que realizar antes de que
+salgan al mercado. En términos generales (Reglamento Europeo de la IA en los Anexos VI y
+VII) el proceso de evaluación de conformidad implica la documentación técnica descrita en
+esta guía, así como la documentación del sistema de control de calidad (Artículo 17, sistema
+de gestión de la calidad, del Reglamento Europeo de la IA). Es por esto, que la elaboración
+de la documentación técnica tal y como se desarrolla en esta guía, tiene una relación directa
+con el citado proceso de evaluación de conformidad.
+
+Como se ha indicado, el Anexo IV del Reglamento Europeo de la IA define el contenido
+mínimo de documentación técnica que debe generarse y conservarse sobre el Sistema de IA
+de alto riesgo. Establece, los aspectos necesarios para la cobertura mínima de la
+documentación técnica. Se debe realizar un inventario de toda la documentación
+necesaria, y mantenerla centralizada y al alcance de los responsables de cada área. Estos
+deben ser notificados y se debe establecer la organización y plazos de cada apartado descrito
+en el Anexo IV.
+
+
+
+Pymes, empresas emergentes y pequeñas empresas de mediana capitalización: Las
+empresas que desarrollan sistemas de IA pueden tener tamaños diferentes, o no disponer de
+alcance suficiente en recursos y personal. El articulado indica que se podrá presentar
+documentación equivalente siempre que cubra los mismos objetivos.
+
+Las guías presentadas en este sandbox describen las medidas a seguir de manera explicada
+y con detalle. En este tipo de empresas se recomienda establecer una distribución del
+trabajo de documentación, que permita asignar cada tarea de documentación a un tópico
+específico a la persona o personas que hayan llevado a cabo los aspectos descritos en las
+guías, o al jefe de proyecto/producto en su caso. Al cubrir de esta manera el Anexo IV del
+Reglamento Europeo de la IA en sus apartados, establecidos los requisitos mínimos, es una
+aproximación adecuada para este tipo de empresas.
+
+
+
+La documentación técnica para los sistemas de IA de alto riesgo del Anexo I apartado A del
+Reglamento Europeo de la IA debe formar parte de toda la que ya se genere para el producto
+que ya se encuentra regulado por la legislación armonizada correspondiente. Los
+proveedores de este tipo de sistemas pueden considerar:
+
+   •   Los recursos de personal necesarios, para que en los procesos actuales de
+       documentación para la evaluación de conformidad todos los aspectos descritos en
+       esta guía queden cubiertos. En su caso podría ser necesario formar adecuadamente al
+       equipo o personal responsable, para poder alcanzar los requisitos de documentación
+       indicados en el Artículo 11 Documentación técnica.
+   •   La actualización de los procesos que actualmente disponga de documentación para
+       que contemplen la realización de documentación adicional necesaria.
+
+                                                                                            20
+Como hemos visto en el apartado dicho artículo, finaliza en su párrafo tercero indicando que
+la Comisión tendrá poderes para modificar el contenido del Anexo IV. Esto implica que,
+dado que la documentación debe mantenerse actualizada, el proveedor deberá disponer un
+procedimiento de vigilancia de los cambios en el Anexo IV que en virtud del artículo 97,
+ejercicio de delegación, puedan realizarse sobre la legislación del Reglamento Europeo de la
+IA y que puedan serle de aplicación.
+
+
+4.2 Conservación de la documentación
+
+El Artículo 18, conservación de la documentación, del Reglamento Europeo de la IA establece
+en primer lugar, durante cuánto tiempo se tiene que conservar la documentación del sistema
+de IA, tras su puesta en servicio, plazo que será de 10 años.
+
+
+  AI Act
+       Art.18.1 – Conservación de la documentación
+      Durante un período de diez años a contar desde la introducción en el mercado
+      o la puesta en servicio del sistema de IA de alto riesgo, el proveedor mantendrá
+      a disposición de las autoridades nacionales competentes.
+
+
+
+En este artículo se incluye otra documentación que debe conservarse durante ese periodo.
+
+
+  AI Act
+       Art.18.1 – Conservación de la documentación
+      a) la documentación técnica a que se refiere el artículo 11;
+
+      b) la documentación relativa al sistema de gestión de la calidad a que se
+      refiere el artículo 17;
+
+      c) la documentación relativa a los cambios aprobados por los organismos
+      notificados, si procede;
+
+      d) las decisiones y otros documentos expedidos por los organismos
+      notificados, si procede;
+
+      e) la declaración UE de conformidad contemplada en el artículo 47.
+
+
+
+Como se ha indicado ya, la declaración de conformidad, durante el periodo de ejecución del
+sandbox no estará disponible, aunque se proporcionará información en el mismo a través de
+una guía de cómo se operará su proceso.
+
+
+
+
+                                                                                           21
+El requerimiento sobre la conservación de la documentación durante 10 años obliga a
+seleccionar un formato de almacenamiento que garantice que dicha documentación no se
+pierde durante dicho periodo, el proveedor deberá disponer de las medidas técnicas
+necesarias para preservar la documentación y que esta no tenga el riesgo de perderse.
+
+Adicionalmente, como se detalla en este mismo artículo se deberá mantener a disposición de
+las Autoridades Nacionales en el formato que estas hayan podido establecer.
+
+Aunque no es de aplicación directa al sandbox, el párrafo 2 del artículo 18, conservación de
+la documentación, establece:
+
+
+  AI Act
+        Art.18.2 – Conservación de la documentación
+        Cada Estado miembro determinará las condiciones en las que la
+        documentación a que se refiere el apartado 1 permanecerá a disposición de las
+        autoridades nacionales competentes durante el período indicado en dicho
+        apartado en los casos en que un proveedor o su representante autorizado
+        establecido en su territorio quiebre o cese en su actividad antes del final de
+        dicho período.
+
+
+
+En ningún caso se debe considerar que las indicaciones de conservación de documentación
+prescritas en este apartado se aplican a otras obligaciones que el proveedor pueda tener en
+el cumplimiento de otras regulaciones (RGPD, normativa sectorial u otras), y para garantizar la
+licitud de sus actividades. El objetivo de este apartado particularmente y de la presente guía
+en general se ciñe a la documentación técnica descrita en el Reglamento Europeo de la IA
+exclusivamente.
+
+Es importante disponer de una vigilancia, tras la salida del sandbox, y en relación con lo
+establecido en un futuro por la Autoridad Nacional Competente, que determine como podrá
+estar disponible dicha documentación, para poder cumplir con dicho requerimiento.
+
+Igualmente es importante tener en cuenta que un proveedor está obligado a mantener dicha
+documentación, o bien su representante autorizado, durante el periodo indicado de 10
+años, aunque se declare en quiebra o cese su actividad.
+
+ Ejemplo - Sistema de promoción de empleados
+ El proveedor, como se ha comentado, ha escogido el formato de Wiki colaborativa para la
+ gestión y organización de la documentación técnica. Este sistema se encuentra instalado en
+ la infraestructura propia del proveedor.
+ Para garantizar el cumplimiento de lo requerido en el artículo 18, conservación de la
+ documentación, del Reglamento de la IA, que se desarrolla en este apartado, en relación
+ con la conservación de la documentación, el proveedor ha puesto en marcha las siguientes
+ medidas:
+
+
+
+
+                                                                                             22
+   • Migrar a una infraestructura de alta disponibilidad, que permita garantizar la
+     disponibilidad de la documentación dentro de la organización, para los responsables
+     del despliegue y para el organismo notificado.
+   • Proporcionar a la herramienta donde reside la documentación, un mecanismo de
+     copia de seguridad, que permita almacenar los cambios y recuperarlos. La última
+     copia de seguridad se almacena en un sistema de almacenamiento en la nube, que
+     garantiza redundancia, para evitar perder los datos.
+   • Asesorados en la medida de conservación de documentación, deciden depositar ante
+     notario, por un periodo de 10 años, la información de acceso al sistema de copia
+     persistente, incluyendo datos de acceso.
+ Adicionalmente, establece un proceso de vigilancia de la normativa, para permitir al
+ proveedor adaptarse a la solicitud de la Autoridad Nacional correspondiente.
+
+
+
+Los proveedores que sean entidades financieras sujetas a requisitos en virtud de legislación
+de la Unión, en materia de servicios financieros, deberán cumplir con los mismos criterios
+respecto a la documentación para sistemas de IA, pero mantendrán la documentación técnica,
+como parte ya exigida en virtud de la legislación que les aplique. Tal y como indica en su
+párrafo tercero el artículo 18, conservación de la documentación.
+
+
+  AI Act
+       Art.18.3 – Conservación de la documentación
+      Los proveedores que sean entidades financieras sujetas a requisitos relativos a su
+      gobernanza, sus sistemas o sus procesos internos en virtud del Derecho de la
+      Unión en materia de servicios financieros mantendrán la documentación técnica
+      como parte de la documentación conservada en virtud del Derecho pertinente
+      de la Unión en materia de servicios financieros.
+
+
+
+
+                                                                                           23
+   5.        Documentación técnica
+El Artículo 11, documentación técnica, establece que el Anexo IV define el contenido
+mínimo que deberá tener la documentación técnica. Este comienza indicando que:
+
+
+  AI Act
+      Anexo IV – Documentación técnica referida al artículo
+      11, apartado 1
+      La documentación técnica a que se refiere el artículo 11, apartado 1, incluirá
+      como mínimo la siguiente información, aplicable al sistema de IA pertinente:
+
+
+
+Para ofrecer un contexto amplio al lector de la guía, se ha dispuesto el texto completo de
+dicho Anexo en el apartado 3.2. Documentación Técnica a que se refiere el artículo 11,
+Apartado 1: Anexo IV del Reglamento Europeo de la IA, en los propios anexos que acompaña
+esta guía para que pueda ser consultado de manera íntegra y con todas sus partes en
+contexto.
+
+Este apartado se presenta como ejemplo de la estructura que deberá tener la
+documentación técnica, para el sistema de IA al completo. En cada apartado vamos a indicar
+qué elementos se van cubriendo del Anexo IV y la documentación necesaria a aplicar para
+cumplir con dichos elementos. De esta manera, esta sección de la guía sirve de ejemplo para
+la construcción de la documentación. En el artículo 11, documentación técnica, párrafo 1 y
+referido a las pymes, incluidas las empresas emergentes, y pequeñas empresas de mediana
+capitalización, indica:
+
+
+  AI Act
+      Art.11.1– Documentación técnica
+      “[…] Las pymes, incluidas las empresas emergentes, y pequeñas empresas de
+      mediana capitalización, podrán facilitar los elementos de la documentación
+      técnica especificada en el anexo IV de manera simplificada. A tal fin, la Comisión
+      establecerá un formulario simplificado de documentación técnica orientado a
+      las necesidades de las pequeñas empresas y las microempresas. Cuando una
+      pyme, incluidas las empresas emergentes, y pequeñas empresas de mediana
+      capitalización, opte por facilitar la información exigida en el anexo IV de manera
+      simplificada, utilizará el formulario a que se refiere el presente apartado. Los
+      organismos notificados aceptarán dicho formulario a efectos de la evaluación de
+
+      la conformidad.
+
+
+
+                                                                                           24
+El artículo establece que puede ser elaborada una documentación equivalente simplificada,
+que cumpla los mismos objetivos, haciendo uso del formulario simplificado que establecerá
+la Comisión.
+
+
+
+El Anexo IV es extenso y detallado, y tiene el objetivo de indicar qué debe contener la
+documentación técnica del sistema de IA. En este apartado, para poder abordar el nivel de
+granularidad requerido, se ha dividido el anexo en apartados. Dentro de cada apartado se
+fragmenta el texto del anexo para ayudar a completar la documentación técnica exigida,
+explicando cada aspecto.
+
+
+
+ Ejemplo - Sistema automático de concesión de ayudas
+ El proveedor ha estructurado la documentación del sistema de IA acorde a los once
+ diferentes apartados que se detallan en esta sección de la guía. De esta manera ha
+ definido un documento maestro donde se estructura una información inicial de la sección y
+ su ubicación, asociado a una estructura de carpetas y/o documentos por cada uno de los
+ apartados.
+ Del mismo modo, basado en estos apartados ha establecido el responsable de cada uno
+ de ellos. Por ejemplo, el apartado 5.2 ha sido asignado dentro del equipo de expertos en
+ IA y desarrollo del modelo. Igualmente, el apartado 5.4, ha sido asignado al departamento
+ de gestión de riesgos.
+ Finalmente, como guía de cada uno de los documentos específicos por apartado
+ (referenciados en el documento maestro), se utiliza la estructura para ese apartado descrita
+ en esta guía, alineada con el contenido del Anexo IV.
+
+
+
+5.1 Descripción general del sistema de IA
+
+Este apartado tendrá que contener la descripción general del sistema, cubriendo la
+información que se indica en el párrafo 1 del Anexo IV del Reglamento Europeo de la IA
+establece que los contenidos que una descripción general del sistema de IA debe tener.
+
+
+
+  AI Act
+       Anexo IV.1 – Documentación técnica referida al artículo
+       11, apartado 1
+       (a) su finalidad prevista, el nombre del proveedor y la versión del sistema de
+       tal manera que se refleje su relación con versiones anteriores;
+
+
+
+La finalidad prevista que debe indicar de manera clara y concisa:
+
+
+                                                                                            25
+   ✓ Descripción del uso para el que ha sido diseñado y desarrollado el sistema de
+     inteligencia artificial.
+   ✓ El contexto de utilización de dicho sistema de inteligencia artificial.
+   ✓ Las condiciones de uso del sistema.
+
+El nombre del proveedor (y del representante autorizado si procede) y la documentación contendrá
+la razón o denominación social de la empresa. Se recuerda aquí que se debe incluir también como parte
+de la documentación los recursos utilizados para el desarrollo del sistema, debiendo de estar incluidos
+como mínimo en el sistema de gestión de calidad. Debiendo indicar:
+
+  ✓ El rol o roles de la persona en el contexto de la concepción, implementación y ciclo de
+    vida del sistema de IA. Tomando como referencia al menos los siguientes ámbitos:
+          o Actores sobre datos: perfiles que actúen sobre los datos que alimentan el
+              aprendizaje del sistema de IA (Analistas de datos, Científicos de datos,
+              Ingenieros informáticos, Expertos en IA, etc.);
+          o Actores sobre la configuración y operación del sistema de IA (Expertos en AI,
+              Ingenieros informáticos, Administradores del sistema de IA, Analistas de
+              sistemas, Expertos en ML, etc.);
+          o Desarrolladores de integración y/o interacción con el sistema de IA (Incluido
+              MLOps, en su caso) (Ingenieros informáticos, Desarrolladores, etc.);
+          o Actores de administración de sistemas que hospedan y operan el sistema de IA
+              (Administradores del sistema de IA, Analistas de sistemas, etc.);
+          o Actores sobre la concepción, diseño, implementación y mantenimiento del
+              software que materializa el sistema de IA en sí mismo (Investigadores en IA,
+              Ingenieros informáticos, Desarrolladores, Analistas, Expertos en IA, etc.);
+          o Actores sobre la arquitectura, administración y mantenimiento del sistema de
+              IA en su ciclo de vida, tanto durante el desarrollo como una vez puesto en
+              marcha (Investigadores en IA, Ingenieros informáticos, Expertos en AI,
+              Administradores del sistema de IA, Expertos en ML, etc.)
+   ✓ La cualificación o cualificaciones específicas en materia de IA y en el campo de la
+      ingeniería informática en general, con especial mención de los conocimientos técnicos
+      sobre tecnologías de inteligencia artificial, datos y computación de datos.
+      Opcionalmente a la cualificación podrá recogerse la experiencia, especialmente en el
+      caso de investigadores.
+   ✓ Expertos en el dominio de aplicación del sistema de AI, que hayan participado en el
+      diseño y desarrollo.
+   ✓ Perfiles relacionados con los servicios del proveedor a los responsables del despliegue
+      del sistema de IA (implementación, explotación, mantenimiento y soporte del Sistema
+      de IA por parte de los responsables del despliegue del sistema de IA.)
+
+Versión del sistema
+
+   ✓ En el proceso de desarrollo del sistema, para soportar el versionado adecuado y fiable
+     del sistema, el proveedor deberá establecer técnicamente el control de versiones y
+     detallarlo en esta sección.
+   ✓ El sistema de versionado debe estar correctamente definido, incluyendo en la
+     información o los metadatos de la versión la fecha correspondiente y su relación con
+     versiones anteriores.
+
+
+
+                                                                                                    26
+   ✓ Tanto la versión como la de la fecha deberán ser aquellos correspondientes a la más
+     reciente del sistema de IA; es decir, que la documentación presentada sea aquella
+     correspondiente a la versión referida y no a otra. Los cambios se documentarán en el
+     apartado 0 Descripción detallada del sistema de gestión de riesgos.
+
+
+
+  AI Act
+     Anexo IV.1 – Documentación técnica referida al artículo
+     11, apartado 1
+      (b) la manera en que el sistema de IA interactúa o puede utilizarse para interactuar
+      con hardware o software, también con otros sistemas de IA, que no formen
+      parte del propio sistema de IA, cuando proceda;
+
+
+
+Interacción con soportes físicos (hardware)
+
+   ✓ Tecnología de la interoperabilidad con el elemento físico (Driver, API, acceso directo a
+     elementos del dispositivo, etc.) Si se trata de una interacción basada en actuadores,
+     relés o mecanismos que permitan la interacción del sistema de IA con el exterior, por
+     ejemplo, el sistema de IA activa una alarma sonora y visual de aviso de emergencia
+     dentro de un rango de salidas establecidas. En ese caso indicar, en su caso, los
+     parámetros técnicos adicionales que permitan especificar dicha interacción.
+   ✓ Descripción de la información intercambiada con dicho sistema. Como mínimo sobre
+     el formato de intercambio (llamadas, formato personalizado, embebido en la
+     programación, etc.) y el conjunto de informaciones y tipos de datos intercambiados
+     (por ejemplo, binaria, alfanumérica, comunicación directa por GPIO, o cualquier otro
+     formato de comunicación hardware/software.)
+   ✓ Información sobre el tipo de conexión entre los sistemas;
+   ✓ Descripción del mecanismo de interconexión del sistema de IA con el hardware; por
+     ejemplo, si es cableado directo paralelo, Cableado directo USB, Cableado directo
+     coaxial, a través de internet, comunicación inalámbrica Wifi, Comunicación inalámbrica
+     5G, VPN, …
+   ✓ En el caso de sistemas de entrada, debe proveerse de una identificación única del
+     sistema (sensor, máquina dedicada, ordenador dedicado, etc.) que quede asociada
+     como fuente a los datos que en su caso se almacenen o registren como parte del
+     funcionamiento del sistema de IA.
+
+Interacción con el software
+
+   ✓ Formato de integración con el sistema: el software en cuestión recibe la salida del
+     sistema de IA o proporciona el input del sistema de IA.
+   ✓ Información de interoperabilidad: En particular sobre el mecanismo de interacción
+     (API, directo dentro del entorno de ejecución, etc.) y el formato de la información
+     intercambiada por los sistemas. Como mínimo sobre el formato de intercambio (XML,
+     formato personalizado, etc.) y el conjunto de informaciones y tipos de datos
+     intercambiados (binaria, alfanumérica, etc.).
+
+
+                                                                                             27
+   ✓ Descripción del canal de comunicación del sistema IA con el software. Por ejemplo, en
+     la misma máquina, en otra máquina de una red local física, en otra máquina de modo
+     inalámbrico, en otra máquina vía VPN, etc.
+   ✓ Ubicación del elemento del software en relación con el sistema de IA (ejecución en el
+     mismo contexto computacional, servicio externo, microservicio externo).
+   ✓ Indicación de si se trata de un servicio propio gestionado por el proveedor, o por el
+     entorno de ejecución del sistema de IA, o es un servicio externo propiedad de un
+     tercero al que el sistema de IA accede en calidad de Software as a service.
+   ✓ En el caso de software que genere datos que sean entradas del sistema de IA, debe
+     proveerse de una identificación única del software que quede asociada como fuente a
+     los datos que en su caso se almacenen o registren como parte del funcionamiento del
+     sistema de IA.
+
+
+
+ AI Act
+       Anexo IV.1 – Documentación técnica referida al artículo
+       11, apartado 1
+       (c) las versiones de software o firmware pertinentes y todo requisito
+       relacionado con la actualización de versiones
+
+
+
+La documentación técnica deberá contener un listado tanto de software como de firmware,
+que integra el sistema de IA. Esto incluye la información de las versiones de librerías,
+componentes software, o elementos de terceros ya sean en formato código abierto (en
+cualquiera de sus versiones de licenciamiento) o como elementos comerciales que hayan
+podido incorporarse para el desarrollo del sistema de IA y formen parte de éste. Para cada
+uno de estos elementos conviene incluir:
+
+   ✓ Identificación del software; su nombre identificativo, o nombre comercial en su caso,
+     tipo de software y nivel de protección de datos que incorpora.
+   ✓ Versión del elemento del componente.
+   ✓ Fecha incorporación y fecha de actualización.
+   ✓ En el caso de componentes firmware (microprogramas) el componente hardware con
+     el que pudieran estar relacionados.
+
+Durante el ciclo de vida de un sistema de IA, pueden realizarse actualizaciones de sus
+componentes software y/o firmware, sin que estos puedan afectar a la finalidad prevista
+del mismo. La información anteriormente descrita deberá mantenerse siempre actualizado
+acorde a estas actualizaciones y manteniendo un histórico de versiones del sistema de IA y su
+relación con versiones de componentes de manera clara, por ejemplo, en una tabla.
+
+El proveedor puede facilitar un esquema que recoja la totalidad de los componentes software
+y hardware relacionados con el sistema de IA, e indicará para cada uno de ellos si es de
+naturaleza totalmente algorítmica (no IA) o bien si tiene naturaleza de IA en el sentido del
+Artículo 3.1 del Reglamento Europeo de la IA:
+
+
+
+                                                                                           28
+   ✓ Componentes software que integran el sistema de IA.
+   ✓ Elementos software que interoperan con el sistema de IA pero que no forman parte
+     del sistema de IA.
+   ✓ Elementos hardware que interoperan con el sistema de IA pero que no forman parte
+     del sistema de IA.
+
+
+
+  AI Act
+       Anexo IV.1 – Documentación técnica a que se refiere el
+       artículo 11, apartado 1
+       (d) la descripción de todas las formas en que el sistema de IA se introduce en el
+       mercado o se pone en servicio, como paquetes de software integrados en el
+       hardware, descargas o API;
+
+
+
+Por cada forma de comercialización que tenga el sistema de inteligencia artificial conviene
+proporcionar, al menos, la siguiente información:
+
+   ✓ Indicar la modalidad de comercialización en términos de sistemas: Software instalado
+     en los sistemas propios del responsable del despliegue (on-premise); Software en
+     sistema instalado en modalidad Infraestructura como servicio (IaaS), Software instalado
+     en la nube del responsable del despliegue, Software instalado en la nube del
+     proveedor o de terceros (distribuidores, etc.), otras modalidades de tipo Software
+     como Servicio (SaaS), o en otros formatos como edge-computing.
+   ✓ Informar de la duración de la licencia, en caso de que esta exista y de su formato.
+   ✓ Si el sistema de IA está integrado en un hardware, indicar como se comercializa dicho
+     hardware.
+   ✓ En caso de un sistema del Anexo I A, indicar los formatos de comercialización del
+     producto que pueda ser el sistema de IA o del que pueda formar parte.
+
+Cada una de estas categorías requiere añadir información adicional.
+
+Para los formatos de comercialización tipo SaaS
+
+   ✓ Indicar la tecnología de interoperabilidad de acceso al sistema SaaS: API, interfaz
+     directa, interconexión con los sistemas del cliente.
+   ✓ Los diferentes niveles comerciales de uso del sistema de IA: sus características
+     asociadas: Peticiones máximas diarias, por segundo o cualquier formato de medida
+     que se haya seleccionado para caracterizar y limitar el acceso.
+   ✓ Indicar si el sistema de IA comparte hardware para varios responsables del despliegue,
+     o se instancia de manera individual para cada responsable del despliegue en sistemas
+     hardware específicos y aislados.
+
+Formatos de comercialización instalables
+
+   ✓ Información sobre el formato, la periodicidad y política de las actualizaciones,
+     indicando si están incluidas en el producto o no.
+
+
+                                                                                           29
+   ✓ Formato de acceso al propio sistema para su instalación en los sistemas del
+     responsable del despliegue: descarga, distribución directa etc.
+   ✓ Si el sistema de IA cuenta con un soporte para el proceso de instalación por parte del
+     proveedor.
+   ✓ Si la comercialización incluye un servicio en el que el proveedor se encarga de
+     gestionar e instalar el sistema en las instalaciones del responsable del despliegue de
+     manera total o parcial.
+
+
+Elemento de seguridad de un producto anexo I A del Reglamento Europeo de IA, o como
+producto anexo I A en sí mismo
+
+   ✓ Información del formato de adquisición del producto.
+   ✓ Información del servicio, si existe, de mantenimiento del producto, en particular,
+     aplicable al sistema de IA.
+   ✓ Al tratarse de un producto, indicar si el sistema de IA se encuentra directamente
+     integrado en el mismo, o el producto se interopera de manera remota con el sistema
+     de IA.
+
+
+
+ AI Act
+
+       Anexo IV.1 – Documentación técnica a que se refiere el
+       artículo 11, apartado 1
+       (e) la descripción del hardware en el que está previsto que se ejecute el sistema
+       de IA;
+
+
+
+La descripción del soporte físico (hardware) debería contener al menos:
+
+    ✓ Los requisitos y recomendaciones de recursos netos para el funcionamiento del
+      sistema de IA en términos de capacidad de computación (procesadores y/o máquinas
+      y características) y almacenamiento (memoria RAM, memoria caché, memoria
+      secundaria y su tipo). Se recomienda establecer al menos los mínimos, y se podrán
+      indicar los recomendados para diferentes configuraciones de uso. En su caso con la
+      indicación del rol en la arquitectura del sistema de IA de la máquina o máquinas que
+      van a ser utilizadas para su ejecución, así como sus características físicas y de sistemas
+      operativos.
+    ✓ La máquina o máquinas que van a ser utilizadas para su ejecución y las características
+      de estas.
+    ✓ En su caso se pueden indicar las características de la red necesaria para el
+      funcionamiento del sistema (ancho de banda, disponibilidad, latencia etc.), tanto a
+      nivel mínimo como recomendado.
+    ✓ Se recomienda especificar las características de los recursos de almacenamiento
+      secundario para la operación del sistema de IA: tamaño, velocidad, disponibilidad,
+      tolerancia a fallos etc. En el caso de existir algún requisito de tecnología de manejo de
+
+
+                                                                                              30
+     ficheros o gestión de bases de datos se puede indicar tecnología, y en su caso
+     producto y versión.
+   ✓ Se recomienda describir el hardware necesario recomendado para diferentes
+     configuraciones de uso, en particular en relación con los volúmenes e intensidades
+     esperadas de entrada de datos al sistema y con los tiempos establecidos de respuesta
+     en su diseño, debiendo indicarse dichos tiempos.
+     o Si el sistema de inteligencia artificial forma parte o se encuentra embebido dentro
+         de un hardware específico en el que es distribuido (es decir, incluido dentro de un
+         equipamiento). Se pueden proporcionar los elementos de diseño y la descripción
+         de los componentes utilizados. En estos casos, este tipo de nivel de detalle de
+         descripción podrá ya estar cubierto por los requerimientos de evaluación de
+         conformidad ya aplicables al producto, dentro de la legislación armonizada que le
+         sea de aplicación de acuerdo con el Anexo I A.
+
+
+
+ AI Act
+      Anexo IV.1 – Documentación técnica a que se refiere el
+      artículo 11, apartado 1
+      (f) en el caso de que el sistema de IA sea un componente de un producto,
+      fotografías o ilustraciones de las características exteriores, el marcado y la
+      configuración interna de dicho producto;
+
+
+
+El apartado es claramente prescriptivo en lo requerido. En estas fotografías o imágenes
+(diseños del producto) deben de quedar referido que:
+
+     ✓ Para las características externas las imágenes deben mostrar todo el producto.
+     ✓ La ubicación del marcado se deberá resaltar claramente.
+     ✓ En la disposición interna se indicará aquellas partes o componentes que
+       corresponden al sistema de inteligencia artificial, para distinguirlo de otros elementos
+       accesorios al sistema.
+
+
+ AI Act
+
+      Anexo IV.1 – Documentación técnica a que se refiere el
+      artículo 11, apartado 1
+      (g) una descripción básica de la interfaz de usuario facilitada al responsable del
+      despliegue;
+
+      (h) instrucciones de uso para el responsable del despliegue y una descripción
+      básica de la interfaz de usuario facilitada al responsable del despliegue, cuando
+      proceda.
+
+
+
+                                                                                             31
+Instrucciones de uso generales, están dirigidas al responsable del despliegue del sistema.
+En cada guía proporcionada acompañando a ésta, relativas a los requisitos para cumplir con
+los requisitos del capítulo III sección 2, se indica detallada y puntualmente como generar las
+instrucciones. Es importante que, aunque en este apartado puede parecer que es redundante
+con otros de la propia documentación técnica, aquí nos referimos a las instrucciones del
+sistema de IA para el responsable del despliegue es importante recordar en este punto que
+el Reglamento Europeo de la IA el responsable del despliegue es considerado la empresa o
+institución que lo utiliza y no el usuario final u operador, por ello las instrucciones del sistema
+tienen que tener en consideración este aspecto de alto nivel y abordándolo de manera
+vertical, para que desde el responsable del despliegue (según el Reglamento Europeo de la
+IA) hasta el usuario final u operador, tengan el alcance necesario en las instrucciones.
+
+Considerando que se deben indicar las instrucciones de cada guía para su ámbito de
+aplicación, estas instrucciones deben contener al menos:
+
+   ✓ La clara indicación de que se trata de un sistema de inteligencia artificial.
+   ✓ Información de cómo interpretar los resultados, acompañadas con ejemplos de usos y
+     resultados.
+   ✓ Una descripción del nivel de supervisión humana del sistema, y de cómo se espera que
+     ésta se realice, acorde a lo descrito en la guía de supervisión. Las instrucciones incluirán
+     todos los aspectos relacionados con este aspecto de aplicación al responsable del
+     despliegue en el uso del sistema de IA.
+   ✓ Dependiendo del nivel de supervisión humana del que disponga el sistema,
+     explicación del mecanismo de anulación de la decisión del sistema o de la intervención
+     de este.
+   ✓ Información adecuada para el responsable del despliegue, acorde a las métricas
+     descritas en la guía de precisión.
+   ✓ Relativo a transparencia del sistema de IA, debe contener información de los casos de
+     uso acorde a la finalidad prevista, y aquellos casos de uso potenciales no
+     recomendados indicando usos indebidos razonablemente previsibles. En cuanto a su
+     funcionamiento, deberá incluir: rendimiento y precisión del sistema, sesgos, la
+     posibilidad de ataques al sistema de IA y una descripción de los datos utilizados.
+   ✓ Relativo a transparencia del sistema de IA, debe contener información sobre la
+     configuración de los datos de entrenamiento del sistema cuando los haya, así como de
+     los datos de validación. Si el sistema está basado en conocimiento, aportar información
+     sobre las hipótesis de aplicabilidad.
+   ✓ Información sobre cómo interpretar los archivos de registro y eventos del sistema de
+     IA.
+   ✓ Información de aplicación al responsable del despliegue sobre el análisis de riesgos
+     en lo relativo a los potenciales daños y beneficios, especialmente aplicable a ciertos
+     grupos demográficos, si entran dentro del dominio de aplicación.
+   ✓ Información acerca de los posibles sesgos en el sistema y sus riesgos.
+   ✓ En cualquier escenario la documentación debe estar versionada y actualizada respecto
+     de la versión propia del sistema de IA al que haga referencia.
+
+Si el sistema tiene una interfaz de usuario se debe añadir a las instrucciones generales:
+
+
+                                                                                                 32
+   ✓ La descripción de cómo se interactúa con el sistema, con una descripción de los
+     elementos de la interfaz y con sus funcionalidades. Si aplica, una descripción de cómo
+     gestionar los papeles/niveles de usuario y como estos actúan sobre el sistema.
+   ✓ Relación entre los elementos de la interfaz y la finalidad prevista del sistema, con una
+     clara interpretación de la información.
+   ✓ Indicar en cuantos idiomas se encuentra disponible la interfaz y el número de idiomas
+     con los que puede operar el sistema.
+   ✓ Indicar, si así se ha implementado, el nivel de accesibilidad del sistema de tal manera
+     que la interfaz, si así lo requiere, sea inclusivo con minorías con diversidad funcional.
+   ✓ Descripción detallada sobre cómo obtener desde la propia interfaz de usuario las
+     ayudas necesarias para poder interactuar correcta y satisfactoriamente con el sistema.
+
+Instrucciones de uso para productos cubiertos por el Anexo I apartado A. Dado que dichos
+productos ya disponen de sus legislaciones armonizadas específicas (indicadas en el Anexo I
+A) las instrucciones de uso ya establecidas deben ampliar para añadir e incluir los aspectos
+generales descritos.
+
+Instrucciones de instalación; aplicable a los sistemas de inteligencia artificial dependiendo
+de su forma de comercialización, instalable y/o configurables por el responsable del
+despliegue en sus sistemas (on-premise, in-house, in-cloud o edge-computing, por ejemplo)
+
+   ✓ Las indicaciones del sistema hardware requerido para la ejecución del sistema en
+     relación con sus volumetrías, tal y como se ha descrito para el apartado (e) de esta
+     misma sección.
+   ✓ Las indicaciones de los componentes software requeridos para la ejecución del
+     sistema.
+   ✓ En el caso de disponer de entornos de producción, desarrollo y/o pruebas del sistema
+     de IA, la especificación de configuración de dichos entornos.
+   ✓ Las indicaciones paso a paso de los procesos y mecanismos de instalación.
+   ✓ Aquellas medidas de ciberseguridad relativas a IA aplicables al sistema, tal y como se
+     ha descrito en la guía de ciberseguridad, a considerar en el proceso de instalación,
+     aplicable al responsable del despliegue.
+   ✓ Información sobre la implementación y mecanismo de configuración de registros del
+     sistema tal y como se ha indicado en la guía de registros, requerida en el proceso de
+     instalación.
+   ✓ Información de aplicación al responsable del despliegue, para la gestión de guardado
+     de registros en relación con las indicaciones de la guía de registros).
+
+
+ Ejemplo - Sistema automático de concesión de ayudas
+ El proveedor ha destinado un área específica de la Wiki del sistema de IA de tal manera que
+ las instrucciones para el usuario final se encuentran integradas en ella. Para que estas
+ instrucciones tengan más efecto, ha decidido involucrar al departamento de UX user
+ experience, para facilitar la compresión y manejo de éstas. Fruto de esa colaboración,
+ deciden añadir un proceso guiado paso a paso para facilitar la instalación. Para las
+ instrucciones de la parte de interfaz, se ha añadido una serie de vídeos explicativos.
+
+
+
+
+                                                                                            33
+5.2 Descripción detallada de los elementos y procesos del sistema de
+IA
+
+El párrafo 2 del Anexo IV proporciona una lista de aspectos que deben ser cubiertos en
+detalle.
+
+Este apartado de la documentación técnica requiere un detalle más amplio que la sección
+anterior. En este apartado la relación con el contenido ya descrito en otras guías es más
+directo, y será en esta sección donde se recomienda incluir la documentación que cada guía
+ha definido.
+
+
+ AI Act
+
+       Anexo IV.2 – Documentación técnica a que se refiere el
+       artículo 11, apartado 1
+       (a) los métodos y las medidas adoptados para el desarrollo del sistema de IA,
+       incluido, en su caso, el recurso a sistemas o herramientas previamente
+       entrenados facilitados por terceros y la manera en que han sido utilizados,
+       integrados o modificados por el proveedor;
+
+
+
+Metodología en el proceso de desarrollo.
+
+Existe amplia literatura para las metodologías existentes en el campo del desarrollo de sistema
+de inteligencia artificial (por ejemplo, Machine Learning, representación lógica y
+conocimiento, modelos estadísticos, etc. recogidos en el artículo 3.1 del Reglamento Europeo
+de la IA). Conviene que la documentación recoja la adecuación de la metodología
+seleccionada a la finalidad prevista del sistema de IA y su naturaleza.
+
+La documentación técnica deberá contener, al menos:
+
+    ✓ Una descripción del proceso de selección de la aproximación de IA o selección del
+      modelo, y en su caso el formato de aprendizaje utilizado, por ejemplo, supervisado o
+      no supervisado.
+    ✓ La descripción detallada de la arquitectura empleada en el modelo seleccionado para
+      el sistema de IA, con todos los elementos necesarios para su descripción y detalle, que
+      depende de los diferentes tipos de modelo posibles.
+    ✓ Una descripción detallada de los pasos realizados durante el desarrollo del software que
+      implementa el sistema de IA, comenzando por la decisión del modelo tecnológico (desarrollo
+      sobre plataformas existentes, MLOps, desarrollo propio…) indicando las etapas de diseño, los
+      procesos de selección y la metodología general de desarrollo utilizada (iterativo/secuencial; y, si
+      procede, el marco aplicado) con el objetivo de validar los controles aplicados durante el
+      desarrollo.
+    ✓ Una descripción detallada de como el modelo va a ser entrenado para alcanzar las métricas de
+      solidez y precisión establecidas; en el caso de los sistemas de IA basados en ML, describir
+
+
+                                                                                                      34
+      las condiciones de entrenamiento del sistema y cómo se garantizan las métricas
+      establecidas.
+    ✓ Detalle del proceso de refinamiento de modelo, y su relación con los experimentos
+      realizados.
+    ✓ Una enumeración de los experimentos realizados, y los criterios de validación de
+      dichos experimentos y su impacto en la elección del modelo. En este apartado se
+      detallará la relación de ensayos y metodología, pues el detalle de las pruebas se
+      realizará en la sección (d) más adelante en este apartado.
+    ✓ Una descripción de cómo se establecen los criterios de versionado de los modelos,
+      para su control y seguimiento.
+    ✓ Relativo a los datos, añadir en la documentación técnica, una descripción resumida de
+      la configuración de los datos originales y de los datos ya tratados y preparados para el
+      análisis, la descripción de los mecanismos de tratamiento de los datos dentro del
+      proceso de desarrollo. Así se debe establecer un mecanismo de versionado de los
+      datos y éste se debe reflejar en la documentación técnica.
+    ✓ Igualmente, relativo a los datos, una descripción de la tipología y forma de
+      construcción de los datos de entrenamiento, y las consideraciones de diseño que estén
+      relacionadas con los datos utilizados para el entrenamiento del sistema.
+
+Sistemas pre-entrenados por terceros. Para reflejar como se han utilizado e integrado por
+parte del proveedor, la documentación técnica debe contener:
+
+    ✓ Si el sistema de IA utiliza modelo(s) pre-entrenado(s); la motivación de la selección de
+      dichos modelos, las ventajas que aportan estos en el proceso de desarrollo y las
+      medidas tomadas para mitigar sus inconvenientes o riesgos. Esto se aplicará
+      independientemente del nivel de preentrenamiento de dichos modelos.
+    ✓ Si el sistema de IA utiliza un modelo sin pre-entrenar, pero cuya tecnología base es
+      desarrollada por un tercero, se aplicará el mismo criterio que el punto anterior.
+    ✓ En ambos casos se debe indicar la versión del sistema pre-entrenado, una referencia a
+      la documentación de este y la indicación de si el proveedor de dicho sistema lo ha
+      desarrollado siguiendo las directrices de un sistema de IA alto riesgo, o con la
+      posibilidad de ser utilizado para implementar un sistema de IA de alto riesgo.
+    ✓ Cualquier modificación o adaptación deberá detallarse, indicando su motivación en
+      relación con la finalidad prevista del sistema de IA.
+
+
+ AI Act
+      Anexo IV.2 – Documentación técnica a que se refiere el
+      artículo 11, apartado 1
+      (b.1) las especificaciones de diseño del sistema, a saber, la lógica general del
+      sistema de IA y de los algoritmos; las decisiones clave de diseño, incluidos la
+      lógica y los supuestos de los que se ha partido, también con respecto a las
+      personas o colectivos de personas en relación con los que está previsto que se
+      utilice el sistema;
+
+
+
+
+                                                                                            35
+Especificaciones de diseño del sistema. La documentación técnica en este apartado debería
+relacionar la finalidad prevista del sistema de IA, descrita previamente, con las
+especificaciones de diseño, de tal manera que la finalidad, sirva de motivación para el
+establecimiento de las especificaciones. Se recomienda detallar como mínimo:
+
+   ✓ Relacionar las especificaciones del sistema con la finalidad prevista.
+   ✓ Indicar la selección de métricas, tal y como se establece en las guías de precisión y
+     solidez utilizadas para establecer las especificaciones del sistema, indicando su
+     motivación y los rangos asociados.
+   ✓ El tiempo de procesado esperado en el diseño del sistema, y si este procesa en tiempo
+     real, en un intervalo de tiempo definido como tiempo de respuesta, o si el sistema
+     realiza un post procesado de los datos.
+
+Fundamentos y suposiciones en relación con las personas o grupos de personas. En este
+apartado se recomienda reflejar al menos:
+
+   ✓ Suposiciones sobre el dominio de los datos de entrada y la relación de dichas hipótesis
+     con las decisiones de diseño del sistema. Por ejemplo, en el caso de uso de sistema de
+     promoción de empleados, en los datos de entrada no cuantitativos, se establece la
+     hipótesis de un análisis de bag of words que incluye una lista de palabras positivas
+     (bien, correcto, eficiente etc.), con sus frecuencias estadísticas, para asignarles valores
+     que serán utilizados después en el proceso.
+   ✓ Si los datos que va a utilizar como datos de entrada el sistema de IA, son de personas
+     físicas, detallar las suposiciones relacionadas a dichos grupos, y explicar su relación
+     con la finalidad prevista.
+   ✓ En lo relacionado a la supervisión humana. Se detallarán aquellas suposiciones
+     consideradas en el diseño de la operación del sistema, de su interfaz de supervisión
+     humana y de la interacción sistema IA / Humano.
+
+
+ AI Act
+      Anexo IV.2 – Documentación técnica a que se refiere el
+      artículo 11, apartado 1
+      (b.2) […] las principales decisiones de clasificación;
+
+
+
+   ✓ Para los sistemas que clasifican en categorías discretas, una descripción detallada de las
+     diferentes categorías de clasificación y su relación con la finalidad prevista.
+   ✓ En caso de que el sistema propiamente no establezca una clasificación, si no que realice
+     una interpolación, estimación o cualquier otra operación sobre una variable continua, el
+     rango de los valores de entrada y salida del sistema, y su relación con la finalidad
+     prevista.
+   ✓ Si el sistema no se encuentra en ninguno de los dos casos anteriores, conviene indicarlo
+     en esta sección de la documentación técnica. Detallando el dominio y contexto
+     esperado de respuesta de éste. Por ejemplo, en un sistema conversacional destinado a
+     guiar en la adaptación curricular de la formación de un alumno de secundaria, indicar
+
+
+                                                                                              36
+que éste ha sido entrenado para las materias de matemáticas y ciencias, pero no para
+las correspondientes a lengua e historia, por lo que se espera que las respuestas en esas
+áreas o no sean precisas o no se puedan proporcionar.
+
+
+
+
+                                                                                     37
+ AI Act
+     Anexo IV – Documentación técnica a que se refiere el
+     artículo 11, apartado 1
+       (b.3) […] aquello que el sistema está diseñado para optimizar y la pertinencia de
+       los diversos parámetros;
+
+
+En aquellos casos en los que el sistema realice una optimización, en este apartado recomienda
+relacionar la finalidad prevista ya descrita con el objetivo de la optimización. Conviene considerar
+para establecer la relación, por tanto, entre:
+
+   ✓ El tipo de modelo utilizado (ML, estadístico, etc.), con un detalle de bajo nivel de la
+     arquitectura asociada del modelo utilizado en el sistema de IA.
+   ✓ La variante del modelo utilizado (por ejemplo, en ML supervisado vs. no supervisado, u
+     otras posibilidades como aprendizaje reforzado, aprendizaje profundo…), desarrollando
+     un diagrama que indique como interacciona este con todas las entradas y salidas y demás
+     elementos del propio sistema de IA en su conjunto.
+   ✓ Todos los parámetros del sistema, en relación con el modelo utilizado. Para cada
+     parámetro se debería describir su importancia y la relación de éste con el objetivo de
+     optimización.
+
+Por ejemplo, en un sistema de IA que controla una bomba de insulina para establecer el valor
+óptimo para proporcionar al paciente, indicar que se ha utilizado un modelo supervisado, basado
+en una RNN para predecir tendencias temporales, y que se han seleccionado los parámetros de
+tensión arterial, pulso y azúcar en sangre por ser los más significativos respecto a las necesidades
+inmediatas del paciente, descartando saturación de oxígeno en sangre por su dificultad de
+medición e imprecisión.
+
+
+
+ AI Act
+     Anexo IV – Documentación técnica a que se refiere el
+     artículo 11, apartado 1
+       (b.4) […] la descripción de los resultados de salida esperados del sistema y la
+       calidad de dichos resultados; las decisiones adoptadas acerca de cualquier
+       posible concesión con respecto a las soluciones técnicas adoptadas para dar
+       cumplimiento a los requisitos establecidos en el capítulo III, sección 2;
+
+
+
+El Reglamento Europeo de IA establece en el capítulo III sección 2 una serie de requisitos que
+requieren la aplicación de unas medidas técnicas específicas, descritas y explicadas a lo largo
+de todas las guías de este sandbox.
+
+En ocasiones, la implementación de una solución técnica puede implicar establecer una
+compensación (o trade-off) entre posibles aproximaciones, por la imposibilidad de satisfacer
+
+
+                                                                                               38
+de manera absoluta todas las posibilidades. En el caso de que durante el diseño del sistema
+se haya tomado alguna decisión de compensación entre algunos de los aspectos descritos en
+el capítulo III, dicha compensación se documentará indicando:
+
+   ✓ Aspectos implicados en la compensación, relacionados con los artículos implicados, y
+     estas guías.
+   ✓ Motivo de la necesidad de realizar compensación.
+   ✓ Descripción funcional de la compensación.
+   ✓ Descripción técnica de la compensación.
+   ✓ Consecuencias de aplicar la compensación y su relación con la finalidad prevista.
+
+ Ejemplo - Sistema automático de concesión de ayudas
+ Por ejemplo, en este sistema de IA el proveedor ha indicado en el análisis de riesgos del
+ sistema, el riesgo de excluir una unidad familiar de las ayudas por un falso negativo (en
+ definitiva, por error), y las consecuencias que para la familia tendría. Para mitigar ese riesgo,
+ en la fase de diseño del sistema de IA, y durante la definición de las métricas de precisión,
+ se decide que el sistema aumente ligeramente su tasa de falsos positivos, para excluir el
+ citado riesgo. El proveedor documenta dicho ajuste (o trade-off), acorde a los puntos
+ anteriormente indicados y lo refleja en la documentación técnica.
+
+
+
+
+   AI Act
+
+       Anexo IV.2 – Documentación técnica a que se refiere el
+       artículo 11, apartado 1
+       (c) la arquitectura del sistema, con una explicación de la manera en que los
+       componentes del software se utilizan o enriquecen mutuamente y de la manera
+       en que se integran en el procesamiento general; los recursos informáticos
+       utilizados para desarrollar, entrenar, probar y validar el sistema de IA;
+
+
+Para la descripción de la arquitectura del sistema a nivel de componentes, el diseño de la
+aplicación y por tanto su arquitectura de componentes software, se puede documentar
+utilizando:
+
+   ✓ En sistema de modelado de componentes por capas de complejidad, por ejemplo, se
+     propone la utilización del sistema C4, donde los componentes se describen de alto a
+     bajo nivel de manera progresiva identificando artefactos, sistemas y actores.
+   ✓ Utilizar el diseño y modelado UML para el último nivel de arquitectura de
+     componentes, en el que se describan a bajo nivel los componentes software y sus
+     secuencias de interacción.
+
+Para la arquitectura del sistema a nivel de recursos informáticos se puede detallar:
+
+    ✓ La arquitectura de servidores/equipos implicada, las bases de datos y la interconexión
+      de red entre los mismos. Si existe una arquitectura de contenedores desplegada sobre
+
+                                                                                                 39
+      la citada arquitectura hardware, detallar y explicar cómo arquitectura de contenedores
+      se relaciona con la arquitectura física.
+    ✓ Descripción utilizando esa arquitectura de los entornos de desarrollo, integración y
+      producción. Se indicará si estos sistemas están aislados entre sí, y los mecanismos de
+      arquitectura relacionados con MLOPS.
+    ✓ En cualquiera de los niveles en los que se describa la arquitectura hardware, se
+      recomienda relacionar con lo reflejado en la sección (e) del apartado 5.1.
+    ✓ Si se trata de un sistema de IA embebido o que es en sí mismo un producto o que es
+      componente de seguridad de un producto cubierto por Anexo I A, conviene describir
+      los recursos informáticos de emulación del entorno final del sistema.
+
+Una referencia de normativa para la descripción de la arquitectura del sistema donde se
+desarrollan conceptualmente aspectos propios de esta y que puede ser consultada para su
+aplicación, ISO/IEC 5392 Information Technology — Artificial Intelligence — Reference
+Architecture of Knowledge Engineering. 6.3.1 Functional architecture of KE.
+
+
+
+
+ AI Act
+       Anexo IV.2 – Documentación técnica a que se refiere el
+       artículo 11, apartado 1
+       (d.1) cuando proceda, los requisitos en materia de datos, en forma de fichas
+       técnicas que describan las metodologías y técnicas de entrenamiento, así
+       como los conjuntos de datos de entrenamiento utilizados, e incluyan una
+       descripción general de dichos conjuntos de datos e información acerca de su
+       procedencia, su alcance y sus características principales;
+
+
+
+La información solicitada en el apartado es bastante autodescriptiva. Los datos utilizados para
+el entrenamiento, prueba y validación tienen que estar claramente descritos, siguiendo las
+directrices de la guía de datos y gobierno del dato, que da cobertura al artículo 10, datos y
+gobernanza de datos, del Reglamento Europeo de IA.
+
+Los conjuntos de datos se distinguirán entre sí por referirse a dominios diferentes de
+aplicación según la finalidad prevista. Cada conjunto de datos debería tener una ficha
+descriptiva donde se detalle:
+
+   •   La metodología planteada, como ejemplo, utilizada para la formación de los datos.
+       • Descripción general de los mismos. Aclarando las etiquetas internas de
+          representación de los datos y asociándolas a su significado real (por ejemplo, las
+          columnas etiquetadas como EDAD podría responder a la edad de un paciente,
+          o a la edad en la que se contrae una enfermedad.
+       • Identificar si se han utilizado técnicas de ampliación o técnicas de añadido de ruido,
+          en ese caso cuáles. Indicar como es la representación interna de los datos faltantes,
+          para poderlos identificar e interpretar correctamente los datos faltantes.
+
+
+
+                                                                                             40
+      •   El dominio de los datos conviene ser descrito adecuadamente, identificando los
+          intervalos de pertenencia y rangos para los datos. Aquellos datos discretos o
+          pertenecientes a categorías, establecer y describir las categorías de estos.
+
+
+
+ AI Act
+      Anexo IV.2 – Documentación técnica a que se refiere el
+      artículo 11, apartado 1
+      (d.2) […] la manera en que se obtuvieron y seleccionaron los datos; los
+      procedimientos de etiquetado (p. ej., para el aprendizaje supervisado) y las
+      metodologías de depuración de datos (p. ej., la detección de anomalías);
+
+
+Para completar la información detallada sobre los datos, se deben añadir en la ficha de la
+documentación:
+
+  ✓ La procedencia de los datos debe registrarse indicando si estos se han obtenido de
+    fuentes públicas, de acuerdos con terceros, o recogidos por los sistemas de la propia
+    empresa. Si esos datos siguieron respecto de la fuente original un proceso de selección,
+    deberá indicarse como se ha realizado y si este afecta a categorías o al dominio que los
+    datos pudieran tener.
+  ✓ Para los aprendizajes supervisados, se debe describir la técnica utilizada para su
+    etiquetado y categorización, identificando el proceso que se ha seguido para etiquetar
+    los datos y relacionarlo con las categorías descritas previamente en la documentación
+    técnica.
+  ✓ En los casos en los que los datos son preprocesados para aumentar distribución y hacer
+    el entrenamiento del modelo más robusto, se debe detallar en la ficha el procedimiento
+    de aumentado de los datos y su relación con la finalidad prevista y con las
+    especificaciones de diseño del sistema de IA.
+  ✓ Especificar y describir con detalle todas las hipótesis que se han realizado para poder
+    pretratar y depurar los datos antes del análisis y comparar las características de los datos
+    originales con las de los datos preprocesados.
+  ✓ En lo relativo a al preprocesamiento de los datos es necesario cubrir como mínimo, en
+    los casos en los que se realice:
+         o Tratamiento de datos faltantes.
+         o Impacto del tratamiento de los datos faltantes en la distribución de los datos de
+    entrada
+         o Identificación, diagnóstico y tratamiento de valores atípicos.
+         o Transformación de variables y variables derivadas.
+  ✓ En los casos en los que los datos puedan contener valores atípicos, el procedimiento
+    para cada uno de los conjuntos de datos de eliminación utilizado tiene que estar
+    detallado y explicado, indicando la razón de su eliminación del conjunto de datos y
+    presentando un ejemplar de muestra de los datos eliminados.
+
+
+
+
+                                                                                              41
+En la guía de gobierno del dato, relativa al artículo 10, datos y gobernanza de datos, se hace
+referencia a maneras adicionales de documentar los datos y su categorización, debe
+completarse la información en esta sección, con lo descrito en dicha guía.
+
+
+
+ AI Act
+       Anexo IV.2 – Documentación técnica a que se refiere el
+       artículo 11, apartado 1
+       (e) una evaluación de las medidas de supervisión humana necesarias de
+       conformidad con el artículo 14, incluida una evaluación de las medidas técnicas
+       necesarias para facilitar la interpretación de los resultados de salida de los
+       sistemas de IA por parte de los responsables del despliegue, con arreglo al
+       artículo 13, apartado 3, letra d);
+
+
+
+En la guía de supervisión humana (artículo 14, supervisión humana) y la guía de transparencia
+(artículo 13, transparencia y comunicación de información a los responsables del despliegue)
+de este sandbox, se han dado una serie de medidas técnicas orientativas para alcanzar los
+requisitos solicitados por el Reglamento Europeo de IA. La documentación de las medidas
+técnicas generada en el cumplimiento de dichas guías podrá incluirse en esta sección.
+
+La documentación presentada deberá indicar, al menos:
+
+   ✓ Descripción de las medidas técnicas de manera funcional.
+   ✓ Un detalle de la experiencia de usuario, indicando como esta informa de los resultados.
+   ✓ Los mecanismos visuales, sonoros, de avisos o cualquier otra naturaleza que puedan
+     ayudar a interpretar los resultados proporcionados por dicha interfaz y sus rangos de
+     funcionamiento.
+   ✓ Las medidas técnicas dispuestas en la interfaz del sistema, y en su operativa, destinadas
+     a cumplir los requerimientos de transparencia.
+
+Los aspectos aquí descritos relativos a la documentación de la supervisión humana son
+exclusivamente técnicos (dado el alcance de la presente guía) y no representan el total de
+medidas aplicables que en su caso estarán descritos en la guía de supervisión humana
+correspondiente y deberán ser aplicados en el alcance descrito, para cubrir los requisitos del
+Reglamento Europeo de IA.
+
+
+
+ AI Act
+       Anexo IV.2 – Documentación técnica a que se refiere el
+       artículo 11, apartado 1
+       (f) en su caso, una descripción detallada de los cambios predeterminados en
+       el sistema de IA y su funcionamiento, junto con toda la información pertinente
+       relativa a las soluciones técnicas adoptadas con el objetivo de garantizar la
+
+                                                                                            42
+       conformidad permanente del sistema de IA con los requisitos pertinentes
+       establecidos en el capítulo III, sección 2;
+
+
+A lo largo del ciclo de vida, el sistema de IA tendrá actualizaciones programadas destinadas
+a proporcionar mejoras, a actualizar recursos o a solventar problemas que hayan podido
+producirse. En cualquiera de los casos, esas mejoras conviene reflejarlas en la documentación.
+Es importante tener en cuenta que cada una de las mejoras, debe replicar, en aquellos
+apartados de la documentación técnica que le sean de aplicación, lo explicado en esta guía
+para todo el sistema de IA.
+
+La información debería contener, mínimo:
+
+   ✓ Una fecha del cambio y de su entrada en operación del sistema.
+   ✓ La identificación de la versión del sistema.
+   ✓ Una descripción de la motivación del cambio o cambios implementados, a modo de
+     registro de cambios evolutivo.
+   ✓ Registro de los cambios sobre el sistema de IA realizados en la actualización
+   ✓ Se recomienda que la documentación de actualización sea autocontenida con relación
+     a toda la documentación del sistema, referenciando en los ámbitos en los que sea
+     aplicable, los apartados aquí descritos en esta guía.
+   ✓ Descripción de los resultados de las pruebas de validación y su comparación pre-post
+     cambio/actualización, no solo en términos de precisión de los modelos, sino también
+     en términos de costes de computación o volúmenes de datos.
+
+
+
+
+                                                                                            43
+ Ejemplo – Sistema de promoción de empleados
+ Durante el uso del sistema, dos grandes compañías (seguros y banca), usuarios del
+ sistema de IA, han indicado que es necesario mejorar el tiempo que tarda el sistema de IA
+ en analizar los datos, dado que ambas tienen un gran volumen de empleados y varios
+ periodos de promoción a lo largo del año, por lo que los tiempos de respuesta son
+ esenciales.
+ Para ello se elaboran unas nuevas especificaciones de tiempo de respuesta, que son
+ remitidas al equipo de diseño e implementación del sistema de IA.
+ La actuación supone una mejora en los tiempos de respuesta del sistema que ha
+ requerido diversas actuaciones en diferentes partes del sistema; Se elabora una ficha de la
+ actualización cubriendo los puntos descritos en este apartado (f). La ficha contiene la
+ siguiente información:
+    •   La fecha en la que el cambio se ha realizado, cuando entra en efecto, así como la
+        versión del sistema de IA que la incluye.
+    •   Se recoge la información proporcionada por los usuarios de sistema sobre la
+        necesidad de la mejora, con sus comentarios y la necesidad de que este tiempo
+        sea más corto para agilizar sus procesos de evaluación.
+    •   Se recoge un registro de todos los cambios realizados para alcanzar los objetivos
+        descritos en el punto anterior. Es este caso se recogen los siguientes cambios.
+            • Actualización de librerías específicas, a versiones que permiten el cómputo
+               en paralelo.
+            • Ajustes en la arquitectura de componentes para soportar el cálculo en
+               paralelo de manera adecuada.
+            • Modificaciones en la interfaz donde se indica el tiempo de procesado de un
+               empleado individual.
+    •   La documentación técnica se ha adaptado también para reflejar dichos cambios,
+        por lo que en esta ficha de actualización indica los apartados de la documentación
+        modificados y un resumen del motivo de su modificación:
+            • En la descripción general (ver 5.1) se ha modificado el apartado (c) para
+               indicar las nuevas librerías utilizadas.
+            • En las especificaciones generales (ver 5.1) en el apartado (g), se han
+               modificado las instrucciones de uso, para reflejar la información del cambio
+               en la interfaz.
+            • En la descripción detallada (ver 5.2) apartado (c) se actualiza el diagrama de
+               interacción de componentes para reflejar la adaptación al procesado en
+               paralelo.
+            • En la descripción detallada (ver 5.2) apartado (g) los procesos de validación
+               y prueba se han ajustado para incluir la verificación del tiempo de
+               procesado, así como utilizar como un parámetro adicional de solidez el
+               tiempo de procesado.
+
+
+
+Es importante tener en cuenta que este tipo de cambios obligan a mantener una relación
+entre la versión del sistema de IA y la propia documentación, como se ha indicado en el
+apartado 5.1.
+
+
+                                                                                             44
+  AI Act
+       Anexo IV.2 – Documentación técnica a que se refiere el
+       artículo 11, apartado 1
+       (g.1) los procedimientos de validación y prueba utilizados, incluida la
+       información acerca de los datos de validación y prueba empleados y sus
+       características principales;
+
+
+Se deberá describir los procedimientos de validación utilizados durante el diseño del sistema,
+para considerar que este alcanza en el proceso la finalidad prevista. No se deben confundir
+los ensayos (pruebas), únicamente con la evaluación del modelo en relación con otros
+parámetros propios (por ejemplo, solidez, precisión o ciberseguridad).
+
+La documentación debe dejar constancia de la metodología de pruebas considerando el
+sistema de IA como artefacto software:
+
+   ✓ Descripción del alcance de las pruebas unitarias, tanto del modelo propiamente dicho
+     como de los elementos relacionados con éste y que formen parte integrante del
+     sistema de inteligencia artificial y puedan afectar a su finalidad prevista, su precisión y
+     solidez; independientemente de que seas piezas de IA/ML, por ejemplo: si existe un
+     proceso de preprocesado de los datos antes de ser introducidos al sistema las pruebas
+     unitarias del mismo, indicando el porcentaje de cobertura de código.
+   ✓ Las pruebas de integración realizadas entre los diferentes componentes que
+     conforman el sistema de IA, incluyendo el modelo y la interacción de éste con las
+     partes.
+   ✓ Metodología utilizada para las pruebas sobre la interfaz del sistema destinada a la
+     supervisión y/o interfaces de configuración que el sistema pueda tener.
+
+Respecto a los datos de validación y ensayo utilizados para evaluar el modelo la
+documentación puede reflejar:
+
+   ✓ La naturaleza de los datos y sus variables implicadas. Por ejemplo, si se trata de datos
+     tabulados, las diferentes variables consideradas; si se tratase de datos en forma de
+     imágenes o audios una descripción de sus características o duración.
+   ✓ Indicación de las dimensiones del conjunto total de datos y del reparto de prueba,
+     validación y ensayo.
+   ✓ Registro de los cambios en el conjunto de datos desde su creación y a lo largo de la
+     vida del sistema de IA, cuando éstos se modifiquen. Por ejemplo, se puede utilizar para
+     los datos textuales una herramienta de control de versiones tipo Git.
+   ✓ Las relaciones entre los ensayos y los cambios en el modelo que esto pudieran causar,
+     y el valor obtenido en cada prueba de las métricas de precisión.
+
+En algunos estándares que actualmente se encuentran en fase de desarrollo, se abordan estos
+aspectos desde un punto de vista formal y normativo, como puede ser ISO/IEC 17847
+Information technology — Artificial intelligence — Verification and validation analysis of AI
+systems. Igualmente existen otros estándares ya consolidados, que podrían servir a modo de
+guía en la fase de Testing de un sistema basado en IA, como por ejemplo ISO/IEC TR 29119-
+
+
+                                                                                              45
+11:2020(en) Software and systems engineering — Software testing — Part 11: Guidelines on the
+testing of AI-based systems
+
+(https://www.iso.org/standard/79016.html)
+
+
+
+ AI Act
+       Anexo IV.2 – Documentación técnica a que se refiere el
+       artículo 11, apartado 1
+       (g.2) […] los parámetros utilizados para medir la precisión, la solidez y el
+       cumplimiento de otros requisitos pertinentes establecidos en el capítulo III,
+       sección 2
+
+       (h) las medidas de ciberseguridad adoptadas
+
+
+
+En las guías correspondientes al artículo 15, relativo a precisión y solidez se definen una serie
+de métricas que permiten definir los rangos de trabajo del sistema y su comportamiento,
+dentro de la finalidad prevista. Las métricas seleccionadas, sus rangos establecidos y la
+motivación de estas debe estar reflejada en esta sección de la documentación, acompañados
+de la documentación generada indicada en aquellas guías.
+
+La guía de ciberseguridad, también relativa al artículo 15, precisión, solidez y ciberseguridad,
+establece una serie de controles para mitigar los riesgos de un sistema de IA. En lo relativo a
+este aspecto, se debe reflejar en la documentación:
+
+   ✓ El plan de ciberseguridad para IA establecido.
+   ✓ Los activos y actores identificados.
+   ✓ Las vulnerabilidades identificadas y los controles aplicados sobre los datos para los
+     ataques de envenenamiento.
+   ✓ Las vulnerabilidades identificadas y los controles aplicados para la protección frente a
+     ataques adversarios.
+   ✓ Vulnerabilidades y controles para la protección de ataques que utilicen los defectos
+     del modelo.
+
+El resto de las guías que acompañan el sandbox también establecen una serie de requisitos y
+definen métricas para asegurar su cumplimiento. En esta sección se recomienda reflejar
+dichas métricas. Con relación al resto de guías siempre que haya una medida técnica que
+disponga de una métrica para su seguimiento, podrá estar reflejado en esta sección.
+
+
+
+
+                                                                                               46
+ AI Act
+
+       Anexo IV.2 – Documentación técnica a que se refiere el
+       artículo 11, apartado 1
+       (g.3) […] así como los efectos potencialmente discriminatorios
+
+
+
+En la guía de gobierno del dato se ha establecido que en el procesamiento de datos se debe
+realizar un examen "atendiendo a posibles sesgos que puedan afectar a la salud y la seguridad
+de personas o que conduzcan a una discriminación prohibida por el Derecho de la Unión". Al
+respecto, la documentación técnica debería contar con el resultado del análisis realizado,
+indicando especialmente las repercusiones discriminatorias que puedan aparecer,
+relacionadas con la finalidad prevista, indicando la métrica seleccionada. De acuerdo con la
+guía de Datos dichas métricas podrán ser:
+
+   ✓   Diferencias de paridad.
+   ✓   Impacto desigual.
+   ✓   Disparidad en los resultados.
+   ✓   Diferencia de rasgos indicadores en los valores predichos.
+   ✓   Diferencia de igualdad de oportunidades.
+   ✓   Diferencia de probabilidades media.
+
+Acompañado de un análisis previo de los datos de entrenamiento a partir de los cuáles se
+construye el modelo, para poder poner en contexto los puntos indicados. Para este análisis
+de discriminación se recomienda valorar que tipos de datos recoger y si dicha recogida es
+viable en el marco de la finalidad prevista.
+
+Igualmente, en la guía de precisión se indica que es necesario realizar ensayos para detectar
+posibles tipos de sesgos que pueda sufrir el sistema afectando a la precisión para categorías
+de datos que puedan resultar ser discriminadas, y cómo las mismas métricas provistas a nivel
+global de modelos para medir la precisión, no presentan impacto desigual o disparatado
+(disparate impact) para diferentes grupos pertenecientes a variables sensibles. Este análisis
+desde el punto de vista de precisión del modelo, en relación con las repercusiones
+potencialmente discriminatorias, puede estar documentado en esta sección.
+
+En cuanto al análisis de posibles sesgos y limpieza del algoritmo se recomienda los estándares
+normativos siguientes:
+
+       •   ISO/IEC TR 24027:2021, Information technology — Artificial intelligence (AI) — Bias
+           in AI systems and AI aided decision making.
+       •   Y actualmente en desarrollo el relativo al tratamiento de sesgos no deseados
+           ISO/IEC AWI TS 12791 - Information technology — Artificial intelligence —
+           Treatment of unwanted bias in classification and regression machine learning
+           tasks.
+
+
+
+
+                                                                                            47
+ AI Act
+       Anexo IV.2 – Documentación técnica a que se refiere el
+       artículo 11, apartado 1
+       (g.4) […] requisitos pertinentes establecidos en el capítulo III, sección 2, así como
+       los efectos potencialmente discriminatorios; los archivos de registro de las
+       pruebas y todos los informes de las pruebas fechados y firmados por las personas
+       responsables, también en lo que respecta a los cambios predeterminados a que
+       se refiere la letra f)
+
+
+
+A lo largo de este apartado (g) del Anexo IV se ha hablado de los ensayos que se han
+realizado para la validación del modelo, la documentación deberá disponer registros de la
+información sobre la realización de los ensayos. Dicha información contendrá al menos:
+
+   ✓   La fecha de realización del ensayo.
+   ✓   La versión de los datos relacionada.
+   ✓   La versión del sistema de IA.
+   ✓   Los resultados del ensayo.
+   ✓   La firma de las personas responsables.
+
+En el caso de que se hayan realizado cambios predeterminados, o actualizaciones, los ensayos
+realizados deberán incorporarse y contener la misma información.
+
+
+5.3 Seguimiento del funcionamiento y control del sistema de IA
+
+El Anexo IV en su párrafo 3, indica al proveedor que la documentación técnica deberá
+contener información del seguimiento y control del sistema.
+
+
+
+ AI Act
+       Anexo IV.3 – Documentación técnica a que se refiere el
+       artículo 11, apartado 1
+       Información detallada acerca de la supervisión, el funcionamiento y el control del
+       sistema de IA, en particular con respecto a sus capacidades y limitaciones de
+       funcionamiento, incluidos los niveles de precisión para las personas o colectivos
+       de personas específicos en relación con los que está previsto que se utilice el
+       sistema y el nivel general de precisión esperado en relación con su finalidad
+       prevista;
+
+
+
+
+                                                                                               48
+Como se establece en la guía de solidez del sistema de IA la documentación debe incluir los
+rangos posibles de los parámetros configurables del modelo, rangos de datos de entrada
+y salida, así como las medidas de latencia y eficiencia estimadas para obtener la solidez
+establecida. Conviene que la documentación indique el procedimiento utilizado para
+monitorizar adecuadamente estos rangos definidos. La documentación puede reflejar las
+medidas técnicas realizadas para registrar (ver guía de registros) la información recogida de
+monitorización.
+
+La documentación adicionalmente debería contener:
+
+   ✓ Los valores mínimos aceptables para las métricas de solidez y precisión aplicables que
+     deben reflejar y ser una señal de la calidad del sistema.
+   ✓ En el momento que éstas no se puedan garantizar, la documentación reflejará los
+     mecanismos de notificación de una posible interrupción/apagado del sistema.
+   ✓ Debe explicar el funcionamiento del sistema en cuanto a desafíos de compromiso
+     tomados más comunes. Por ejemplo, indicando garantías mínimas que provee el
+     sistema para conocidos compromisos: entre imparcialidad global de grupo y
+     privacidad individual (demostrado).
+   ✓ La documentación deberá establecer las mínimas garantías esperadas, así como
+     aquellos compromisos que han probado no poder garantizarse y que afectan al
+     resultado de la finalidad prevista, tanto en el dominio de entrada como en los valores
+     esperados.
+
+
+5.4 Resultados no deseados y fuentes de riesgo
+
+El foco de este apartado está centrado en la aparición de resultados no deseados previsibles
+y fuentes de riesgo. Se presentan de forma conjunta en el párrafo 3 del Anexo IV, pero su
+conceptualización es diferente.
+
+
+  AI Act
+       Anexo IV.3 – Documentación técnica a que se refiere el
+       artículo 11, apartado 1
+       […] los resultados no deseados previsibles y las fuentes de riesgo para la
+       salud y la seguridad, los derechos fundamentales y la discriminación en vista de
+       la finalidad prevista del sistema de IA;
+
+
+
+Resultados no deseados, previsibles: Es este un aspecto que, a lo largo del Reglamento
+Europeo de IA, se menciona específicamente en este apartado de documentación.
+
+Este tipo de resultados se refiere a respuestas del sistema que dada su finalidad prevista son
+no deseados, pero que dado su diseño y características puedan ser previsibles, es decir, un
+resultado que no debe producirse en ningún caso, pero que cuando el sistema realiza la
+inferencia éste puede aparecer. Por ejemplo, en un sistema de concesión de ayudas, denegar
+las mismas a un grupo familiar (siendo beneficiarios), por encontrarse sus parámetros
+
+                                                                                            49
+incompletos o fuera del dominio de entrenamiento y el sistema no estar preparado para
+analizarlos; es un resultado previsible, dentro del ejemplo, pero no deseado.
+
+En la guía del sistema de gestión de riesgos, que da cobertura al artículo 9, sistema de
+gestión de riesgos, del Reglamento Europeo de IA, se detalla como inventariar, gestionar y
+documentar los riesgos asociados a los conceptos de salud, derechos fundamentales y
+discriminación. La documentación técnica debería incluir un resumen que cubra todos los
+riesgos identificados en dicho proceso para los aspectos indicados.
+
+
+5.5 Medidas de supervisión humana
+
+El párrafo 3 del Anexo IV también indica que se deben documentar las medidas técnicas de
+supervisión humana.
+
+
+  AI Act
+      Anexo IV.3 – Documentación técnica a que se refiere el
+      artículo 11, apartado 1
+      […] las medidas de supervisión humana necesarias de conformidad con el
+      artículo 14, incluidas las medidas técnicas establecidas para facilitar la
+      interpretación de los resultados de salida de los sistemas de IA por parte de
+      los responsables del despliegue;
+
+
+
+En la guía de supervisión humana, se establecen que para que el responsable del despliegue
+pueda interpretar la información de salida se recomienda documentar:
+
+      ✓ La descripción de su precisión, sus fallos típicos, sus causas y el intervalo de
+        confianza de los resultados.
+      ✓ Qué elementos se toman en cuenta para la toma de decisiones.
+      ✓ Unas guías simplificadas para la supervisión humana a modo de prospecto que
+        incluyan: que permite hacer el sistema, cuáles son sus usos adecuados, que es lo
+        que no se puede hacer y cuáles son los usos inadecuados previsibles.
+      ✓ La documentación debe contener ejemplos en los que el sistema puede tomar
+        decisiones dispares y muestras de casos en los que se falla o acierta más.
+      ✓ Información sobre el sesgo de automatización y como evitarlo.
+      ✓ En la citada guía también se propone la elaboración de un video explicativo para
+        el proceso de supervisión humana que pueda cubrir además de los citados
+        elementos, un detalle de la operativa de la interfaz humano-máquina (si existiera)
+        de supervisión humana. La documentación debe incluir un enlace o referencia a
+        dicho vídeo.
+
+
+
+
+                                                                                        50
+5.6 Especificación sobre los datos de entrada
+
+El párrafo 3 finaliza indicando que deben proporcionarse las especificaciones de los datos de
+entrada.
+
+
+  AI Act
+       Anexo IV.3 – Documentación técnica a que se refiere el
+       artículo 11, apartado 1
+       […] las especificaciones de los datos de entrada, según proceda.
+
+
+Descripción técnica sobre las especificaciones que se esperan en los datos de entrada, para
+contar con información de qué se espera que reciba el sistema cómo input. Esta descripción
+técnica puede contener:
+
+   •   El formato esperado de los datos de entrada, indicando si se trata de texto, imágenes,
+       sonidos, series temporales, datos tabulados o cualquier otro tipo.
+   •   La frecuencia de recepción de estos para la que está diseñado el sistema, manteniendo
+       las especificaciones de solidez y tiempo de respuesta.
+   •   Las validaciones realizadas sobre dichos datos que llevan a que se descarten y no sean
+       introducidos en el sistema ya sea por motivos de seguridad (ataques de inversión o
+       extracción) o valores fuera de dominio.
+   •   La manera en la que dichos datos de entrada quedan registrados en el sistema, tanto
+       aceptados como no, y en relación con el sistema de mantenimiento de registros.
+
+
+5.7 Descripción de la idoneidad de los parámetros de rendimiento
+
+Como indica el párrafo 4 del Anexo IV, la documentación técnica debe incluir:
+
+
+  AI Act
+       Anexo IV.4 – Documentación técnica a que se refiere el
+       artículo 11, apartado 1
+       Una descripción de la idoneidad de los parámetros de rendimiento para el
+       sistema de IA concreto;
+
+
+De acuerdo con lo detallado en la guía de solidez, se puede identificar cuáles son los
+parámetros allí detallados con una mayor relevancia para el sistema de IA en concreto e incluir
+una descripción de la idoneidad de éstos en la documentación técnica.
+
+
+
+
+                                                                                             51
+5.8 Descripción detallada del sistema de gestión de riesgos
+
+Como indica el párrafo 5 del Anexo IV, la documentación técnica debe incluir:
+
+
+  AI Act
+       Anexo IV.5 – Documentación técnica a que se refiere el
+       artículo 11, apartado 1
+       Una descripción detallada del sistema de gestión de riesgos con arreglo al
+       artículo 9;
+
+
+De acuerdo con lo detallado en la guía de gestión de riesgos, se debe incluir en la
+documentación técnica el informe resultante de su aplicación y la documentación asociada de
+controles y medidas aplicadas, como parte integrante de la documentación técnica.
+
+
+5.9 Control de cambios realizados
+
+ AI Act
+       Anexo IV.6 – Documentación técnica a que se refiere el
+       artículo 11, apartado 1
+       Una descripción de los cambios pertinentes realizados por el proveedor en el
+       sistema a lo largo de su ciclo de vida.
+
+
+En este párrafo 6, se establecen aspectos equivalentes al apartado correspondiente
+relacionado con las actualizaciones descritas en el apartado 2(f) del Anexo IV y ya previamente
+descrito en el apartado 5.2, y debe replicarse la misma información indicada en dicho
+apartado.
+
+La documentación de cada cambio realizado sobre el sistema de IA debería indicar los
+apartados de la documentación técnica que han sido adaptados para reflejar la actualización
+realizada en el sistema y seguir manteniendo el requisito de completitud y actualización en
+aquellos casos en los que el cambio afecte a alguno de los apartados. Es decir, además de los
+cambios sufridos por el sistema de IA la documentación de estos deberá referir los apartados
+adaptados de la documentación para adecuarse a dichos cambios. Por ello la documentación
+técnica deberá relacionar, fecha versión de sistema de IA y versión de documentación, tal
+como se ha indicado en el apartado 5.1.
+
+Los aspectos descritos en el apartado 5.2 son aplicables para los cambios pertinentes a la hora
+de reflejar su documentación.
+
+
+
+
+                                                                                             52
+5.10 Normas armonizadas o documentación equivalente
+
+En el párrafo 7 del Anexo IV, se establece la necesidad que la documentación técnica
+contenga una lista de normas armonizadas utilizadas.
+
+
+  AI Act
+       Anexo IV.7 – Documentación técnica a que se refiere el
+       artículo 11, apartado 1
+       Una lista de las normas armonizadas, aplicadas total o parcialmente, cuyas
+       referencias se hayan publicado en el Diario Oficial de la Unión Europea;
+
+
+
+Todas las normas armonizadas utilizadas en la planificación, organización, gobierno, diseño,
+implementación y puesta en marcha deberán inventariarse indicando el ámbito de aplicación.
+Necesariamente sus referencias estarán publicadas en el Diario Oficial de la Unión Europea.
+Cuando se encuentren disponibles, estarán emitidas por el organismo CEN-CENELEC
+https://www.cencenelec.eu/
+
+
+  AI Act
+       Anexo IV.7 – Documentación técnica a que se refiere el
+       artículo 11, apartado 1
+       […] cuando no se hayan aplicado normas armonizadas, una descripción
+       detallada de las soluciones adoptadas para cumplir los requisitos establecidos
+       en el capítulo III, sección 2, incluida una lista de otras normas y especificaciones
+       técnicas pertinentes que se hayan aplicado.
+
+
+En el ámbito del sandbox de IA en el que se enmarcan estas guías, dichas normas
+armonizadas no se encuentran publicadas, y otros estándares referencia ISO o NIST están en
+proceso de desarrollo. Si se diera el caso que para la cobertura de alguno de los apartados
+descritos en las guías del sandbox de IA se hubiera publicado alguno de dichos estándares
+(ISO o NIST) se podría indicar a cuál apartado corresponde y su aplicación.
+
+En el Anexo que acompaña esta guía se referencian aquellos estándares que se han
+consultado (así como su relación con los apartados), para la elaboración de la
+documentación. Por otro lado, cada una de las guías compañeras de esta de documentación,
+y relativo a los aspectos que en ellas se cubren, realizan una recopilación de los estándares
+(en curso o aplicables) que le son también de aplicación.
+
+Para el caso en el que durante la duración del sandbox dichas normas armonizadas, u otras
+especificaciones técnicas, no se encuentren publicadas, se deberá incluir en la documentación
+
+                                                                                              53
+las acciones y medidas que cada una de las guías proporcionadas indican para los aspectos
+cubiertos por el capítulo III sección 2 del Reglamento Europeo de IA.
+
+
+5.11 Declaración de conformidad
+
+El párrafo 8 del Anexo IV establece que se debe incorporar en la documentación técnica una
+copia de la declaración de conformidad de la UE.
+
+En el periodo de realización del sandbox, dicho procedimiento de conformidad no estará
+establecido, al no estar definidos los organismos notificados, entre otros condicionantes. No
+obstante, el sandbox se acompaña de una guía dedicada a la evaluación de conformidad, en
+la que se establece qué es necesario realizar para obtener dicha conformidad.
+
+La documentación técnica deberá incluir esta declaración de conformidad de la UE, en el
+momento que esta se encuentre disponible.
+
+A continuación, indicamos el contenido que la declaración de conformidad debería contener,
+cuando el proceso de evaluación de conformidad se encuentre disponible, de acuerdo con el
+Reglamento Europeo de IA.
+
+El Reglamento Europeo de IA establece en el artículo 47 Declaración UE de conformidad, en
+su párrafo 1.
+
+
+
+
+   AI Act
+      Art.47.1 – Declaración UE de la conformidad
+       El proveedor redactará una declaración UE de conformidad por escrito en un
+       formato legible por máquina, con firma electrónica o manuscrita, para cada
+       sistema de IA de alto riesgo y la mantendrá a disposición de las autoridades
+       nacionales competentes durante un período de diez años a contar desde la
+       introducción del sistema de IA de alto riesgo en el mercado o su puesta en
+       servicio. En la declaración UE de conformidad se especificará el sistema de IA de
+       alto riesgo para el que ha sido redactada.
+
+
+
+El contenido de esta declaración de conformidad se indica que debe estar referido al Anexo
+V del Reglamento Europeo de IA, así se indica en el párrafo 2 del citado artículo.
+
+
+
+
+                                                                                           54
+  AI Act
+     Art.47.2 – Declaración UE de la conformidad
+       En la declaración UE de conformidad constará que el sistema de IA de alto riesgo
+       de que se trate cumple los requisitos establecidos en la sección 2. La
+       declaración UE de conformidad contendrá la información indicada en el anexo
+       V.
+
+
+
+Adicionalmente, el párrafo 3 del artículo 47, de aplicación para sistemas de IA del Anexo I, al
+estar sujetos dichos sistemas de IA a otra legislación de armonización de la Unión Europea se
+establecerá una única declaración y esta contendrá toda la información necesaria para
+identificar la legislación de armonización aplicable a la declaración de conformidad.
+
+Acorde al Anexo V del Reglamento Europeo de IA, la declaración de conformidad
+deberá contener:
+
+ 1.    Nombre y tipo del sistema de IA, y toda información que permita identificar y
+   trazar de manera inequívoca el sistema de IA.
+ 2.    Nombre y dirección del proveedor. Si el proveedor tiene un representante
+   autorizado, esta información debe añadirse también.
+ 3.    El proveedor debe indicar un párrafo afirmando que esta evaluación de
+   conformidad se emite bajo su exclusiva responsabilidad.
+ 4.    Igualmente deberá afirmar que el sistema de IA es conforme al Reglamento
+   Europeo de IA. Para ello, el proceso de evaluación de conformidad ha debido ser
+   superado, el detalle de dicho proceso se establece en la guía de evaluación de
+   conformidad que se ha proporcionado en el presente sandbox.
+ 5.    Referencia a las normas armonizadas y/o especificaciones comunes respecto a
+   las que se ha declarado conformidad. Este apartado dentro de la declaración de
+   conformidad es equivalente a las indicaciones descritas en esta misma guía en el
+   apartado 5.10.
+ 6.    Como se puede consultar en la guía de evaluación de conformidad en detalle, el
+   proceso de evaluación de conformidad puede incluir la participación de un
+   organismo notificado, en esos casos, deberá identificarse adecuadamente el nombre
+   y la identificación de dicho organismo. Es importante tener en consideración que
+   durante la realización del sandbox de IA dicho organismo notificado no estará
+   establecido.
+ 7.    Lugar, fecha de emisión de la declaración con el nombre y cargo de la persona
+   firmante.
+
+
+
+
+                                                                                             55
+5.12 Sistema de vigilancia poscomercialización
+
+Como parte final de la documentación técnica del sistema de IA, el Anexo IV en el párrafo 9
+establece que se debe aportar el sistema de vigilancia poscomercialización, en los siguientes
+términos.
+
+
+
+   AI Act
+      Anexo IV.9 – Documentación técnica a que se refiere el
+      artículo 11, apartado 1
+       Una descripción detallada del sistema establecido para evaluar el
+       funcionamiento del sistema de IA en la fase posterior a la comercialización,
+       de conformidad con el artículo 72, incluido el plan de vigilancia
+       poscomercialización a que se refiere el artículo 72, apartado 3.
+
+
+
+Las guías de precisión y solidez establecen las medidas técnicas para la evaluación del
+rendimiento del sistema. La documentación debería reflejar como esas medidas técnicas y las
+métricas asociadas se evalúan a lo largo de la vida del sistema, una vez puesto en producción.
+
+El plan de vigilancia poscomercialización, también establece los mecanismos y medidas
+necesarios para tener en cuenta una vez puesto en marcha, tal y como establece el artículo
+72, vigilancia poscomercialización, del Reglamento Europeo de Inteligencia Artificial.
+Dicho sistema de vigilancia poscomercialización estará diseñado para cubrir los riesgos
+identificados en el sistema. Las medidas tomadas deberían documentar adecuadamente
+cómo realizan la función de vigilancia sobre los riesgos detectados.
+
+La documentación del sistema de medición del rendimiento en fase posterior a la
+comercialización debe incluir las soluciones adoptadas para la conservación registros
+(artículos 12, registros, y 19, archivo de registros generados automáticamente, del
+Reglamento Europeo de inteligencia artificial), tal y como se indica en la guía correspondiente,
+relacionando dicha información almacenada con el sistema de evaluación del rendimiento.
+
+En el sandbox se ha proporcionado un plan de vigilancia poscomercialización, como guía para
+la completitud de este apartado, junto con los detalles técnicos ya indicados previamente.
+
+Sin embargo, las empresas participantes en el sandbox deberán tener en cuenta que de
+acuerdo con el artículo 72 vigilancia poscomercialización, párrafo 3 se indica:
+
+
+
+
+                                                                                              56
+AI Act
+      Art. 72.3 – Vigilancia poscomercialización por parte de
+      los proveedores y plan de vigilancia
+      poscomercialización para sistemas de IA de alto riesgo
+      […]La Comisión adoptará un acto de ejecución en el que se establecerán
+      disposiciones detalladas que constituyan un modelo para el plan de vigilancia
+      poscomercialización y la lista de elementos que deberán incluirse en él a más
+      tardar el 2 de febrero de 2026. Dicho acto de ejecución se adoptará de
+      conformidad con el procedimiento de examen a que se refiere el artículo 98,
+      apartado 2.
+
+
+
+Por lo que es necesario que se tenga una especial vigilancia de estas disposiciones, que
+puedan afectar a la documentación técnica y al plan de vigilancia poscomercialización.
+
+
+
+
+                                                                                      57
+   6.         Cuestionario de autoevaluación
+Para realizar una autoevaluación del cumplimiento de los requisitos del Reglamento de
+Inteligencia Artificial referidos en esta guía, se ha generado un cuestionario orientativo de
+autoevaluación global con una serie de preguntas con los puntos clave a tener en cuenta
+respecto a las obligaciones que dictaminan los artículos del Reglamento de IA mencionados
+en esta guía.
+
+Será necesario referirse a ese documento para realizar el apartado del cuestionario de
+autoevaluación correspondiente a esta guía.
+
+
+
+
+                                                                                           58
+   7. Referencias, estándares y
+    normas
+7.1 Relación de ISO Consultadas
+
+En este apartado se presenta la relación con las ISO consultadas para ayudar a referenciar y
+estructurar la documentación técnica. Es importante indicar que dichos estándares se han
+consultado y referenciado se alinean con lo que indica el Reglamento Europeo de IA, relativo
+a documentación técnica tratada en esta guía, pero no son una prescripción genérica para el
+cumplimiento del Reglamento.
+
+Las normas ISO consultadas han sido:
+
+   •   ISO/IEC 42001 Artificial Intelligence Management System. Esta ISO contiene
+       importante información sobre como documentar adecuadamente, pero no como foco
+       principal, dado que su objetivo es el sistema de gestión para el desarrollo en IA. Los
+       aspectos referenciados relativos a documentación se han contrastado con el Anexo IV
+       del Reglamento Europeo de IA.
+   •   ISO/IEC 23894-2 Information Technology — Artificial Intelligence — Risk
+       Management. Se ha consultado por su relación paralela con un proceso que requiere
+       un alto nivel de documentación, pero tiene menor relación con la documentación
+       técnica. El propio sistema de gestión de riesgos, tal y como se detalla en su guía
+       específica, ya establece un importante mecanismo de documentación que se extiende
+       al proceso de documentación técnica con la directriz de incluir el documento del plan
+       de riesgos, tal y como se ha indicado.
+   •   ISO/IEC 24027 Information technology - Artificial Intelligence (AI) – Bias in AI
+       systems and AI-aided decision making. Ocurre de manera similar a la norma anterior,
+       se transparenta su uso a través de la documentación generada a partir de la guía de
+       datos. No obstante, se han recurrido a dos secciones de ésta, para apoyar en el análisis
+       de la documentación técnica necesaria en los ámbitos de sesgos y datos.
+
+En la siguiente tabla se indica la relación entre las Normas ISO y sus apartados frente al Anexo
+IV en relación con este documento.
+
+
+
+
+                                                                                              59
+          Norma ISO                           Relación con Anexo IV / Guía
+
+                                 Detalla como comentar recursos y un pequeño detalle
+ISO/IEC 42001 Artificial         de cómo realizarlo.
+Intelligence Management          Reglamento: anexo IV párrafo 1 completo, párrafo
+System                           2(a), 2(b) y 2(c).
+B.4.2 Resource documentation     Guía: apartado 5.1 y secciones (a), (b) y (c) del
+                                 apartado 5.2.
+
+ISO/IEC 42001 Artificial         Establece una lista breve de documentación se debe
+Intelligence Management          añadir a los datos.
+System                           Reglamento: Anexo IV párrafo 2(d)
+B.4.3. Data resources            Guía: Sección (d) en el apartado 5.2.
+
+                                  Proporciona información sobre como documentar el
+                                  uso de las herramientas particularmente: modelos
+ISO/IEC      42001     Artificial
+                                  algoritmos, métodos de optimización etc.
+Intelligence      Management
+System B.4.4 Tooling resources. Reglamento Europeo de IA Anexo IV: 2(a)
+                                 Guía: Sección (a) en el apartado 5.2.
+
+ISO/IEC      42001   Artificial Información que documentar sobre el sistema y los
+Intelligence      Management recursos de computación.
+System
+                                Reglamento Europeo de IA Anexo IV: 1(b) y 1(e)
+B.4.5 System and computing
+                                Guía: Secciones (b) y (e) en el apartado 5.1.
+resources
+
+ISO/IEC      42001   Artificial Relativo a la documentación de los recursos humanos
+Intelligence      Management a considerar.
+System                          Reglamento Europeo de IA Anexo IV: 1(a)
+B.4.6 Human resources            Guía: Sección (a) en apartado 5.1.
+
+                                 Describe cómo documentar los impactos previsibles
+ISO/IEC      42001    Artificial del sistema. También aporta referencias a cómo
+Intelligence      Management describir el propósito del sistema de IA.
+System
+                                 Reglamento Anexo IV: Párrafo 3 principalmente, con
+B.5.3 Documentation of AI detalles aplicables al 1(a).
+system impact assessments
+                                 Guía: apartado 5.4 y sección (a) en apartado 5.1.
+
+
+
+
+                                                                                      60
+           Norma ISO                            Relación con Anexo IV / Guía
+
+ISO/IEC      42001    Artificial Apartado específico sobre contenido recomendado
+Intelligence      Management para la documentación técnica del sistema de IA.
+System
+                                 Reglamento Europeo de IA Anexo IV: Párrafo 2(a) y 2(b)
+B.6.2.2 Documentation of AI
+                                 Guía: secciones apartado 5.2.
+system design and development
+
+ISO/IEC      42001   Artificial Breve indicación de la documentación a generar para
+Intelligence      Management verificaciones y validaciones.
+System
+                                Reglamento Europeo de IA Anexo IV: Párrafo 2(g)
+B.6.2.3 AI system verification
+                                Guía: sección (g) en el apartado 5.2.
+and validation
+
+                                  El enfoque sobre la operación de este apartado aporta
+ISO/IEC      42001     Artificial detalles sobre cómo documentar la parte de uso del
+Intelligence       Management ciclo de vida del sistema de IA.
+System                            Reglamento Europeo de IA Anexo IV: Parcialmente
+B.6.2.5 AI system operation and párrafo 3 en lo relativo al seguimiento y especialmente
+monitoring                        párrafo 8 relativo a la vigilancia poscomercialización.
+                                   Guía: apartado 5.3 y apartado 5.11.
+
+ISO/IEC      42001   Artificial Establece de manera resumida las necesidades de
+Intelligence      Management documentación técnica.
+System
+                                Reglamento Europeo de IA: Anexo IV párrafos 1 y 2
+B.6.2.6 AI system technical completos, pero de manera distribuida a lo largo de
+documentation                   ellos porque establece de manera muy resumida las
+                                necesidades.
+                                   Guía: apartados 5.1 y apartado 5.2.
+
+
+
+
+ISO/IEC      42001      Artificial Respecto a la información para los responsables del
+Intelligence       Management despliegue, un listado de lo que debe contener la
+System                             documentación.
+
+B.8.2 System documentation Reglamento Europeo de IA: Párrafo 1(g)
+and information for users          Guía: sección (g) en apartado 5.1.
+
+                                   La relación con la documentación técnica se
+                                   transparenta a través de la indicación del Reglamento
+ISO/IEC 23894-2 Information
+                                   de IA de incorporar la información de riesgos.
+Technology        —     Artificial
+Intelligence — Risk Management Reglamento Europeo de IA: Párrafo 4
+                                   Guía: sección en apartado 5.8.
+
+
+
+                                                                                        61
+            Norma ISO                               Relación con Anexo IV / Guía
+
+ ISO/IEC 24027 Information             Indicaciones básicas de como documentación técnica
+ technology       -     Artificial     de los aspectos relativos a los datos.
+ Intelligence (AI) – Bias in AI
+                                       Reglamento Europeo de IA: relacionado con los
+ systems and AI-aided decision
+                                       aspectos relativos a datos descritos en el párrafo 3.
+ making
+                                       Guía: apartado 5.6.
+ 9.2.6     Selection        and
+ documentation of data sources
+
+ ISO/IEC 24027 Information             Indicaciones básicas de como documentar               los
+ technology       -     Artificial     aspectos a las herramientas para transparencia.
+ Intelligence (AI) – Bias in AI        Reglamento Europeo de IA: Anexo IV, párrafo 1(g) y
+ systems and AI-aided decision         2(e) en los puntos relacionados con transparencia.
+ making
+                                       Guía: secciones correspondientes en apartado 5.1 y
+ 9.3.3 Transparency tools              apartado 5.2
+
+
+
+Adicionalmente, se añaden las siguientes referencias a estándares, con el objetivo de
+contextualizar mejor la guía en el marco normativo internacional ISO/IEC:
+
+   •   ISO/IEC 22989 - Information technology — Artificial intelligence — Artificial intelligence
+       concepts and terminology
+   •   ISO/IEC 5339 - Information technology — Artificial intelligence — Guidance for AI
+       applications
+   •   ISO/IEC 5338 - Information technology — Artificial intelligence — AI system life cycle
+       processes
+   •   ISO/IEC 24368 - Information technology — Artificial intelligence —
+   •   Overview of ethical and societal concerns
+
+Del mismo modo al estar indirectamente relacionadas con el Reglamento Europeo de IA y la
+relevancia con el proceso de conformidad, se incluyen dos referencias normativas
+relacionadas con la conformidad, que se están trabajando desde CEN/CENELEC en el nuevo
+marco normativo.
+
+
+
+
+                                                                                               62
+63
+

@@ -8,13 +8,29 @@ Guía de referencia para agentes de IA que trabajen en este repositorio.
 
 ## Estado actual
 
-🚧 **Fase de planificación.** No hay código todavía — solo los documentos de planificación. No hay comandos de build, lint o test que ejecutar porque no hay nada que construir aún. Cuando empiece a escribirse código de la Fase 1, esta sección debe actualizarse con los comandos reales.
+🚧 **Fase 1 en construcción.** El árbol de reglas del clasificador existe, está tipado y tiene tests que pasan contra los 5 casos reales de la guía 2 de AESIA. Falta: desplegarlo públicamente, y pulir el wizard (hoy es HTML mínimo sin estilo real).
+
+## Comandos
+
+```bash
+npm install       # instalar dependencias
+npm test          # ejecutar los tests del árbol de reglas (Vitest) — hazlo antes de tocar src/rules/
+npm run test:watch
+npm run dev       # wizard en local, http://localhost:5173
+npm run build     # tsc -b && vite build -> dist/
+npm run preview   # sirve dist/ para comprobar el build de producción
+```
+
+No hay lint configurado todavía (deliberado — proyecto pequeño, revisitar si crece).
 
 ## Dónde está cada cosa
 
 - **[`README.md`](README.md)** — pitch del proyecto, qué NO es, visión general.
 - **[`docs/ROADMAP.md`](docs/ROADMAP.md)** — el plan de trabajo. Fuente de verdad sobre el alcance de cada fase (1: clasificador sin estado, 2: gestor con estado, 3: capa conversacional/RAG). Antes de proponer o construir algo, comprueba si ya está descrito aquí como entregable, como fuera de alcance, o como pregunta abierta.
 - **[`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md)** — decisiones técnicas por fase, marcadas 🟡 abierto o 🟢 decidido. No asumas un stack que aquí sigue marcado como abierto.
+- **`src/rules/`** — el árbol de reglas: `types.ts` (tipos), `questions.ts` (qué se pregunta y por qué, con cita legal), `classify.ts` (la única función que decide — pura, sin efectos secundarios), `cases.ts` (los 5 casos reales de la guía 2 de AESIA, con la cita exacta de Anexo/apartado). Si tocas la lógica de clasificación, tócala aquí, no en la UI.
+- **`src/ui/wizard.ts`** — UI mínima que recorre `classify()` pregunta a pregunta. Sin frameworks, sin estado persistente (Fase 1: sin cuentas, sin base de datos). No es el sitio para lógica legal nueva.
+- **`tests/classify.test.ts`** — tests contra los 5 casos reales de AESIA y contra los casos límite del árbol (incluida la regla de que "no lo sé" nunca se trata como "sí" o "no" por defecto). Cualquier cambio en `classify.ts` debe seguir pasando estos tests, y cualquier rama nueva del árbol necesita su test.
 
 ## Cómo trabajar en este repo de forma iterativa
 

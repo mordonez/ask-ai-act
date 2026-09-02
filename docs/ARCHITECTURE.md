@@ -4,19 +4,16 @@ Nada de este documento está decidido todavía. Es el sitio donde recoger las op
 
 ## Fase 1 — Clasificador sin estado
 
-**Estado: 🟡 abierto**
+**Estado: 🟢 decidido (código ya en el repo)**
 
-No necesita backend con estado: es lógica de reglas + una UI. Opciones a valorar:
+- **Lenguaje/build:** TypeScript + Vite. Sin framework de UI (React, Vue...) — el wizard es DOM manual en `src/ui/wizard.ts`, porque el flujo es "una pregunta, un resultado" y no justifica la dependencia todavía. Si el wizard crece (ramas condicionales visuales, animaciones, i18n), revisar esta decisión.
+- **Árbol de reglas:** TypeScript puro y tipado en `src/rules/` (`types.ts`, `questions.ts`, `classify.ts`), sin JSON externo — así el compilador detecta preguntas mal referenciadas. `classify()` es una función pura `Answers -> ClassificationResult`, sin dependencias del DOM ni de red: se puede testear, reutilizar desde un worker en fase 3, o exponer como librería si hiciera falta.
+- **Tests:** Vitest, corriendo contra los 5 casos reales de la guía 2 de AESIA (`src/rules/cases.ts`, con la cita exacta de Anexo/apartado sacada del PDF) más los casos límite del árbol. `npm test` antes de tocar `classify.ts`.
+- **Hosting:** Cloudflare Pages — coherente con el resto del stack del autor (`miguelordonez.com` ya vive en Cloudflare/Netlify + Workers). **Pendiente de ejecutar** (requiere login de `wrangler`/dashboard, no hecho todavía): el build (`npm run build` → `dist/`) ya está listo para desplegarse tal cual.
 
-| Opción | A favor | En contra |
-|---|---|---|
-| Sitio estático (Astro/Vite) + lógica en cliente, desplegado en Cloudflare Pages | Coherente con el stack que ya usa `miguelordonez.com` (Cloudflare); barato; sin servidor que mantener | El árbol de reglas queda expuesto en el cliente (no es grave para la fase 1, sí a tener en cuenta si en fase 3 se combina con datos sensibles) |
-| Next.js en Vercel | Buen punto de partida si en fase 2 hace falta backend con estado sin cambiar de plataforma; ecosistema de componentes/UI maduro | Introduce una plataforma nueva respecto al resto del trabajo del autor, que hoy vive en Cloudflare + Netlify |
-| Worker de Cloudflare sirviendo HTML+JS, sin framework | Mínima dependencia, control total | Más trabajo manual de UI para un wizard que se beneficia de un framework |
+Descartado por ahora: Next.js/Vercel (introduce una plataforma nueva sin necesidad — no hay backend con estado en esta fase que lo justifique) y un Worker de Cloudflare sirviendo HTML a mano (Vite da recarga en caliente y build de producción gratis, sin coste real frente a "control total" que aquí no hace falta).
 
-El árbol de reglas en sí (independientemente del framework elegido) debería vivir como datos versionados y testeables — por ejemplo un JSON o TS con la estructura de nodos, artículo/anexo asociado a cada rama, y un runner de tests que valide los 5 casos de ejemplo de las guías AESIA. Esto es independiente de la decisión de framework y puede fijarse ya.
-
-**Decisión pendiente:** framework y hosting concretos.
+**Pendiente, no bloqueante:** desplegar a Cloudflare Pages; dar estilo real al wizard (hoy es CSS mínimo inline); decidir si un único idioma (es) basta para el lanzamiento.
 
 ## Fase 2 — Backend con estado
 

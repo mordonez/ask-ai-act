@@ -27,17 +27,26 @@ Válidos para las tres fases, no negociables sin discutirlo explícitamente:
 
 **Entregables:**
 
-- Árbol de reglas documentado y versionado (formato a decidir — ver arquitectura).
-- Tests automáticos que verifican que los 5 casos de uso de las guías AESIA (promoción de empleados, bomba de insulina, ayudas sociales, control de asistencia biométrico, detección de denuncias falsas) clasifican igual que en las guías originales.
-- UI del wizard, desplegada y accesible públicamente.
+- ✅ Árbol de reglas documentado y versionado en TypeScript (`src/rules/`) — cubre art. 5, Anexo I/III, filtro art. 6.3 completo (las 4 tareas limitadas + perfilado + influencia material), obligaciones de transparencia del art. 50.
+- ✅ Tests automáticos (Vitest, `npm test`) que verifican que los 5 casos de uso reales de la guía 2 de AESIA clasifican como "alto riesgo" con el Anexo/apartado exacto citado en el PDF. 19 tests en verde, incluidas regresiones sobre el manejo de "no lo sé".
+- 🟡 UI del wizard: existe y funciona en local (`npm run dev`), construye para producción (`npm run build`) — **todavía no desplegada públicamente.**
+- ❌ Rol en la cadena (proveedor / responsable del despliegue / importador / distribuidor): las etiquetas están definidas (`questions.ts`, `ROLE_LABELS`) pero **no está conectado a `classify()` ni al wizard** — el resultado hoy no pregunta por el rol.
+- ❌ Plan de acción (obligaciones aplicables, fechas relevantes, guías de AESIA a consultar, próxima acción concreta): el resultado actual da la clasificación y su cita legal, pero no el plan de acción — es el hueco más importante que falta de todo lo que promete el alcance de esta fase.
+- ❌ Resultado exportable o copiable: no implementado.
+
+**Próximos pasos concretos de esta fase, en orden:**
+
+1. Desplegar el wizard actual a Cloudflare Pages (aunque esté incompleto) para poder compartir el enlace y recibir feedback real cuanto antes.
+2. Conectar la pregunta de rol al flujo (después de la clasificación, no antes — la clasificación no depende del rol).
+3. Añadir el plan de acción: mapear cada `ClassificationLabel` a sus obligaciones y a qué guía de AESIA consultar (reutilizar el contenido ya escrito en el post del blog).
+4. Botón de copiar/exportar el resultado.
 
 **Preguntas abiertas:**
 
-- Stack y hosting (ver `ARCHITECTURE.md`).
-- Diseño exacto del árbol: ¿cuántos nodos de decisión, cómo se versiona, cómo se referencia el artículo/anexo en cada rama?
-- ¿El wizard permite volver atrás y cambiar respuestas sin perder el progreso?
+- ¿El wizard permite volver atrás y cambiar respuestas sin perder el progreso? (hoy no: cada respuesta es definitiva dentro de la sesión)
 - ¿Un único idioma (es) o también inglés desde el principio?
 - ¿Cómo se comunica que esto no es asesoramiento legal, sin que el disclaimer arruine la confianza en la herramienta?
+- ~~Stack y hosting~~ → decidido, ver `ARCHITECTURE.md` (Vite + TS + Vitest, Cloudflare Pages).
 
 **Criterio de éxito para pasar a la fase 2:**
 

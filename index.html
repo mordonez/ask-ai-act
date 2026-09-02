@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ask-ai-act — clasificador del Reglamento europeo de IA</title>
+    <style>
+      body { font-family: system-ui, sans-serif; max-width: 640px; margin: 3rem auto; padding: 0 1rem; line-height: 1.5; }
+      h1 { font-size: 1.3rem; }
+      .question { margin: 1.5rem 0; }
+      .help { color: #555; font-size: 0.9rem; }
+      .legal-ref { color: #888; font-size: 0.8rem; }
+      button { margin-right: 0.5rem; padding: 0.4rem 1rem; cursor: pointer; }
+      #result { border: 1px solid #ccc; padding: 1rem; border-radius: 6px; margin-top: 1rem; }
+      #result.alto_riesgo, #result.uso_prohibido { border-color: #c0392b; }
+      #result.fuera_de_ambito, #result.sin_obligaciones_especificas { border-color: #27ae60; }
+    </style>
+  </head>
+  <body>
+    <h1>ask-ai-act — prototipo Fase 1</h1>
+    <p class="help">
+      Prototipo del clasificador. No es asesoramiento legal — ver
+      <a href="https://github.com/mordonez/ask-ai-act">README</a>.
+    </p>
+    <div id="app"></div>
+    <script type="module" src="/src/ui/wizard.ts"></script>
+  </body>
+</html>

@@ -1,43 +1,64 @@
 # ask-ai-act
 
-> Convierte el Reglamento europeo de Inteligencia Artificial en un plan de trabajo — con responsables y evidencias — en vez de otro PDF por leer.
+Clasificador abierto y en español para convertir el Reglamento europeo de Inteligencia Artificial en una evaluación trazable y un plan de acción.
 
-## Estado del proyecto
+**[Probar la demo](https://ask-ai-act.pages.dev)**
 
-🚧 **Fase 1 desplegada, muy temprana.** Prueba el clasificador en **[ask-ai-act.pages.dev](https://ask-ai-act.pages.dev)**. Funciona (árbol de reglas testeado contra los 5 casos reales de las guías de AESIA, con rol y plan de acción), pero le falta pulido: sin estilo real, sin exportar el resultado, sin volver atrás en el wizard. Ver qué falta exactamente en [`docs/ROADMAP.md`](docs/ROADMAP.md).
+## Qué hace
 
-## El problema
+- Guía la evaluación de un sistema de IA mediante preguntas sencillas.
+- Clasifica el caso con un árbol de reglas determinista.
+- Muestra las respuestas y referencias legales que justifican el resultado.
+- Si el sistema es de alto riesgo, identifica el rol de la organización y genera un plan de acción.
+- Si faltan datos, indica qué preguntas siguen sin respuesta en vez de inventar una conclusión.
 
-El [Reglamento (UE) 2024/1689](https://eur-lex.europa.eu/legal-content/ES/TXT/?uri=CELEX:32024R1689) ya está en vigor y sus obligaciones se activan por fases hasta 2028. La mayoría de organizaciones no sabe:
+El árbol está probado contra los cinco casos de ejemplo de la guía 2 de AESIA.
 
-- si alguno de sus sistemas de IA está afectado,
-- qué papel juegan (¿proveedor? ¿responsable del despliegue?),
-- ni por dónde empezar a comprobarlo.
+## Estado
 
-Es un momento parecido al de la ley de cookies: una regulación extensa, poco entendida, con una ventana clara para que aparezcan herramientas que la conviertan en un proceso manejable. La diferencia es que aquí no basta con un banner — cada organización puede tener varios sistemas, papeles y niveles de riesgo distintos, y esa clasificación puede cambiar con el tiempo.
+🚧 **Fase 1, versión temprana.**
 
-## Qué NO es este proyecto
+El clasificador funciona, está desplegado y cuenta con 34 tests automatizados. Todavía faltan:
 
-- **No sustituye** el [Compliance Checker oficial de la Comisión Europea](https://digital-strategy.ec.europa.eu/en/policies/ai-act) (en beta) — es el punto de referencia oficial y el primer sitio por el que empezar.
-- **No es asesoramiento legal.** El árbol de clasificación es trazable y cita el artículo o anexo que sustenta cada conclusión, pero no sustituye una revisión jurídica cuando hay ambigüedad.
-- **No deja que un modelo de IA decida la clasificación por su cuenta.** Ver [Principios de diseño](docs/ROADMAP.md#principios-de-diseño) en el roadmap.
+- copiar o exportar el resultado;
+- mejorar el diseño del wizard;
+- permitir volver atrás y cambiar respuestas.
 
-## Qué es (visión)
+Esta fase no incluye cuentas, persistencia, inventario de varios sistemas ni llamadas a modelos de IA.
 
-Una herramienta abierta, en español, que parte de donde termina el comprobador oficial:
+## Principios
 
-1. **Inventaría** los sistemas de IA de una organización.
-2. Los **clasifica** con un árbol de reglas trazable y versionado — cada conclusión muestra qué respuesta la provocó y qué artículo o anexo la sustenta.
-3. Convierte el resultado en un **plan de trabajo**: obligaciones aplicables, fechas, responsable, evidencias necesarias y próxima acción.
-4. Mantiene ese plan **vivo**: seguimiento por estado, evidencias adjuntas, alertas cuando cambia el sistema o la normativa.
-5. Usa un modelo de IA como capa conversacional de apoyo (explicar artículos, convertir una descripción libre en respuestas estructuradas, responder citando fuentes) — nunca para decidir la clasificación.
+- La clasificación legal la decide código versionado y testeado, nunca un modelo de IA.
+- Cada resultado debe ser trazable hasta una respuesta y una referencia legal.
+- La falta de información produce un resultado no determinado.
+- Español primero.
 
-El plan completo, dividido en tres fases, está en [`docs/ROADMAP.md`](docs/ROADMAP.md). Las decisiones técnicas aún abiertas están en [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
+> Esta herramienta no ofrece asesoramiento legal ni sustituye una revisión jurídica. Consulta también el [Reglamento (UE) 2024/1689](https://eur-lex.europa.eu/legal-content/ES/TXT/?uri=CELEX:32024R1689) y los recursos oficiales de la Comisión Europea.
 
-## Origen
+## Desarrollo local
 
-Este proyecto nace de un post en [miguelordonez.com](https://miguelordonez.com) sobre el Reglamento europeo de IA y las guías de AESIA. Las guías siguen siendo material de consulta útil, pero el trabajo real vive aquí.
+```bash
+npm install
+npm run dev
+```
+
+La aplicación estará disponible en `http://localhost:5173`.
+
+```bash
+npm test       # ejecuta los tests
+npm run build  # crea el build de producción
+```
+
+## Hoja de ruta
+
+El proyecto avanza por fases:
+
+1. Clasificador sin estado.
+2. Inventario y seguimiento con persistencia.
+3. Capa conversacional sobre el Reglamento y las guías.
+
+Consulta el [roadmap](docs/ROADMAP.md) para conocer el alcance y la [arquitectura](docs/ARCHITECTURE.md) para revisar las decisiones técnicas.
 
 ## Licencia
 
-[MIT](LICENSE) — proyecto público, pensado para que cualquiera pueda usarlo, adaptarlo o contribuir.
+[MIT](LICENSE)

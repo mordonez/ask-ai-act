@@ -1,4 +1,10 @@
+import { PROHIBITED_PRACTICE_QUESTIONS } from "./questions";
 import type { Answers } from "./types";
+
+/** Las 9 preguntas de prácticas prohibidas, todas "no" — para componer casos que no las activan. */
+export const NOT_PROHIBITED: Answers = Object.fromEntries(
+  PROHIBITED_PRACTICE_QUESTIONS.map((q) => [q.id, "no"])
+);
 
 /**
  * Los 5 casos de ejemplo de la guía 2 de AESIA ("Guía práctica y
@@ -33,7 +39,7 @@ export const KNOWN_CASES: KnownCase[] = [
       "Guía 2, sección 2.1 — Anexo III, apartado 1 (Biometría), subapartado a (identificación biométrica remota)",
     answers: {
       es_sistema_ia: "si",
-      practica_prohibida: "no",
+      ...NOT_PROHIBITED,
       anexo_i_o_iii: "si",
       realiza_perfilado: "no",
       influye_materialmente: "si", // determina directamente el tiempo trabajado registrado
@@ -47,7 +53,7 @@ export const KNOWN_CASES: KnownCase[] = [
     source: "Guía 2, sección 2.2 — Anexo III, apartado 4 (Empleo, gestión de trabajadores y autoempleo)",
     answers: {
       es_sistema_ia: "si",
-      practica_prohibida: "no",
+      ...NOT_PROHIBITED,
       anexo_i_o_iii: "si",
       realiza_perfilado: "si", // evalúa parámetros de la persona empleada
     },
@@ -60,7 +66,7 @@ export const KNOWN_CASES: KnownCase[] = [
     source: "Guía 2, sección 2.3 — Anexo III, apartado 5 (Acceso a servicios públicos y privados esenciales)",
     answers: {
       es_sistema_ia: "si",
-      practica_prohibida: "no",
+      ...NOT_PROHIBITED,
       anexo_i_o_iii: "si",
       realiza_perfilado: "si", // datos de la unidad familiar
     },
@@ -73,7 +79,7 @@ export const KNOWN_CASES: KnownCase[] = [
     source: "Guía 2, sección 2.4 — Anexo I, apartado A, subapartado 11 (Productos sanitarios)",
     answers: {
       es_sistema_ia: "si",
-      practica_prohibida: "no",
+      ...NOT_PROHIBITED,
       anexo_i_o_iii: "si",
       realiza_perfilado: "no",
       influye_materialmente: "si", // decide la dosis de insulina administrada
@@ -88,7 +94,7 @@ export const KNOWN_CASES: KnownCase[] = [
       "Guía 2, sección 2.5 — Anexo III, apartado 6.c (Garantía del cumplimiento del Derecho — evaluar la fiabilidad de pruebas)",
     answers: {
       es_sistema_ia: "si",
-      practica_prohibida: "no",
+      ...NOT_PROHIBITED,
       anexo_i_o_iii: "si",
       realiza_perfilado: "no",
       influye_materialmente: "si", // la probabilidad calculada orienta directamente la investigación

@@ -1,5 +1,6 @@
 import type { Answer, Answers, ClassificationResult } from "./types";
 import {
+  PROHIBITED_PRACTICE_QUESTIONS,
   Q_ANEXO_I_O_III,
   Q_DETECTA_PATRONES,
   Q_ES_SISTEMA_IA,
@@ -7,7 +8,6 @@ import {
   Q_MEJORA_TRABAJO_HUMANO,
   Q_OBLIGACIONES_TRANSPARENCIA,
   Q_PERFILADO,
-  Q_PRACTICA_PROHIBIDA,
   Q_TAREA_LIMITADA,
   Q_TAREA_PREPARATORIA,
 } from "./questions";
@@ -53,6 +53,30 @@ function needsReview(question: { text: string; legalRef: string }): Classificati
     legalRefs: [question.legalRef],
     missingQuestions: [],
   };
+}
+
+type ProhibitedResult =
+  | { status: "clear" } // ninguna de las 9 prácticas aplica
+  | { status: "prohibited"; question: { text: string; legalRef: string } }
+  | { status: "missing"; id: string }
+  | { status: "unclear"; question: { text: string; legalRef: string } };
+
+/**
+ * Recorre las 9 preguntas de prácticas prohibidas del artículo 5, una
+ * a una. Una sola "sí" basta para prohibir el sistema; no hace falta
+ * responder al resto para concluir eso.
+ */
+function evaluateProhibitedPractices(answers: Answers): ProhibitedResult {
+  for (const question of PROHIBITED_PRACTICE_QUESTIONS) {
+    const answer: Answer | undefined = answers[question.id];
+    if (answer === "si") return { status: "prohibited", question };
+  }
+  for (const question of PROHIBITED_PRACTICE_QUESTIONS) {
+    const answer: Answer | undefined = answers[question.id];
+    if (answer === undefined) return { status: "missing", id: question.id };
+    if (answer === "no_se") return { status: "unclear", question };
+  }
+  return { status: "clear" };
 }
 
 type Filter63Result =
@@ -115,15 +139,14 @@ export function classify(answers: Answers): ClassificationResult {
     };
   }
 
-  const practicaProhibida = answers[Q_PRACTICA_PROHIBIDA.id];
-  if (practicaProhibida === undefined) return notDetermined([Q_PRACTICA_PROHIBIDA.id]);
-  if (practicaProhibida === "no_se") return needsReview(Q_PRACTICA_PROHIBIDA);
-  if (practicaProhibida === "si") {
+  const prohibido = evaluateProhibitedPractices(answers);
+  if (prohibido.status === "missing") return notDetermined([prohibido.id]);
+  if (prohibido.status === "unclear") return needsReview(prohibido.question);
+  if (prohibido.status === "prohibited") {
     return {
       label: "uso_prohibido",
-      summary:
-        "Uso prohibido. No puede clasificarse como sistema de alto riesgo: no puede comercializarse ni ponerse en servicio, salvo excepción expresa del propio Reglamento.",
-      legalRefs: [Q_PRACTICA_PROHIBIDA.legalRef],
+      summary: `Uso prohibido: "${prohibido.question.text}" — no puede clasificarse como sistema de alto riesgo, no puede comercializarse ni ponerse en servicio, salvo excepción expresa del propio Reglamento.`,
+      legalRefs: [prohibido.question.legalRef],
     };
   }
 

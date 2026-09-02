@@ -33,13 +33,12 @@ Válidos para las tres fases, no negociables sin discutirlo explícitamente:
 - ✅ Plan de acción (`src/rules/actionPlan.ts`): obligaciones por rol, guía de AESIA a consultar por obligación, próxima acción concreta y nota de plazo (Anexo III vs Anexo I). Contenido tomado del post del blog y de `sources/aesia/notas/`, no generado.
 - ✅ UI del wizard desplegada en [ask-ai-act.pages.dev](https://ask-ai-act.pages.dev), probada de principio a fin en navegador (los 3 caminos: alto riesgo con rol y plan, uso prohibido sin pregunta de rol, y el árbol completo de las 9 prácticas prohibidas una a una).
 - ✅ Las 9 prácticas prohibidas del art. 5 son preguntas separadas, no una sola pregunta con las 9 seguidas — con ejemplo de caso "sí" y caso "no" en cada una, para reducir el riesgo de que alguien conteste mal por no leer con atención un bloque largo.
-- ❌ Resultado exportable o copiable: no implementado.
+- ✅ Resultado exportable: botón "Descargar CSV" (`src/rules/exportCsv.ts`) — mismas columnas que el checklist manual que ya se usaba antes (Tipo/Descripción/Guía/Estado/Responsable/Evidencia), ya filtrado por rol y con Estado="Pendiente" listo para importar a Google Sheets/Excel. No sustituye el seguimiento (eso sigue siendo Fase 2, si llega) — solo evita rellenarlo a mano desde cero. Probado en navegador interceptando el blob real, no solo con el test unitario.
 
 **Próximos pasos concretos de esta fase, en orden:**
 
-1. Botón de copiar/exportar el resultado.
-2. Estilo real del wizard (hoy es CSS mínimo inline).
-3. Compartir el enlace fuera del propio autor y recibir el primer feedback real (criterio de éxito de esta fase).
+1. Estilo real del wizard (hoy es CSS mínimo inline).
+2. Compartir el enlace fuera del propio autor y recibir el primer feedback real (criterio de éxito de esta fase).
 
 **Preguntas abiertas:**
 

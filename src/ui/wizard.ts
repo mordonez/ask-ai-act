@@ -1,5 +1,6 @@
 import { buildActionPlan } from "../rules/actionPlan";
 import { classify } from "../rules/classify";
+import { buildCsv } from "../rules/exportCsv";
 import {
   CORE_QUESTIONS,
   FILTER_6_3_QUESTIONS,
@@ -41,6 +42,19 @@ function resetAll() {
   roleAsked = false;
 }
 
+function downloadCsv(result: ClassificationResult, plan: ReturnType<typeof buildActionPlan>) {
+  const csv = buildCsv(result, plan);
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `ask-ai-act-${result.label}.csv`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
 function renderResult(result: ClassificationResult) {
   const app = document.getElementById("app");
   if (!app) return;
@@ -60,8 +74,12 @@ function renderResult(result: ClassificationResult) {
       ${plan.deadlineNote ? `<p class="legal-ref">${plan.deadlineNote}</p>` : ""}
       ${itemsHtml}
     </div>
+    <button id="download-csv">Descargar CSV (para tu Excel/Sheets de seguimiento)</button>
     <button id="restart">Empezar de nuevo</button>
   `;
+  document.getElementById("download-csv")?.addEventListener("click", () => {
+    downloadCsv(result, plan);
+  });
   document.getElementById("restart")?.addEventListener("click", () => {
     resetAll();
     render();

@@ -175,12 +175,29 @@ export const Q_TAREA_PREPARATORIA: Question = {
   legalRef: "art. 6.3.d",
 };
 
-export const Q_OBLIGACIONES_TRANSPARENCIA: Question = {
-  id: "obligaciones_transparencia",
-  text: "¿El sistema interactúa directamente con personas (p. ej. un chatbot) o genera/manipula contenido sintético (texto, imagen, audio, vídeo)?",
+/**
+ * El art. 50 tiene obligaciones distintas según el disparador: hablar
+ * con una persona (50.1) no es lo mismo que generar contenido que se
+ * publica (50.2/50.4). Antes era una sola pregunta con "o" en medio
+ * — un sistema que solo genera texto para publicar (sin conversar con
+ * nadie) contestaba "sí" y el plan de acción le exigía también avisar
+ * de la interacción con una IA, que no le aplica. Separadas, cada una
+ * activa solo su propia obligación.
+ */
+export const Q_INTERACTUA_CON_PERSONAS: Question = {
+  id: "interactua_con_personas",
+  text: "¿El sistema interactúa directamente con personas físicas — por ejemplo un chatbot, un asistente de voz o cualquier interfaz conversacional?",
   helpExample:
-    "Sí: un chatbot de atención al cliente, o una herramienta que genera imágenes realistas. No: un sistema interno que solo procesa datos sin generar contenido ni hablar con nadie.",
-  legalRef: "art. 50",
+    "Sí: un chatbot de atención al cliente que conversa con usuarios. No: una herramienta que redacta borradores de texto para que alguien los revise y publique por su cuenta, sin que nadie converse con ella.",
+  legalRef: "art. 50.1",
+};
+
+export const Q_GENERA_CONTENIDO_SINTETICO: Question = {
+  id: "genera_contenido_sintetico",
+  text: "¿El sistema genera o manipula contenido sintético (texto, imagen, audio o vídeo) que se publica o distribuye?",
+  helpExample:
+    "Sí: artículos, imágenes o vídeos generados por IA que terminan publicados. No: un sistema que solo clasifica o procesa datos internamente, sin producir contenido publicable.",
+  legalRef: "art. 50.2 / 50.4",
 };
 
 /** Preguntas del árbol principal, en orden de recorrido por defecto. */
@@ -200,8 +217,8 @@ export const FILTER_6_3_QUESTIONS: Question[] = [
   Q_TAREA_PREPARATORIA,
 ];
 
-/** Pregunta de transparencia, para sistemas que no son de alto riesgo. */
-export const TRANSPARENCY_QUESTIONS: Question[] = [Q_OBLIGACIONES_TRANSPARENCIA];
+/** Preguntas de transparencia (art. 50), para sistemas que no son de alto riesgo. */
+export const TRANSPARENCY_QUESTIONS: Question[] = [Q_INTERACTUA_CON_PERSONAS, Q_GENERA_CONTENIDO_SINTETICO];
 
 export const ROLE_QUESTION_ID = "rol_organizacion";
 export type Role =

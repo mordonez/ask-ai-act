@@ -57,19 +57,46 @@ describe("classify — casos límite del árbol", () => {
       es_sistema_ia: "si",
       ...NOT_PROHIBITED,
       anexo_i_o_iii: "no",
-      obligaciones_transparencia: "no",
+      interactua_con_personas: "no",
+      genera_contenido_sintetico: "no",
     });
     expect(result.label).toBe("sin_obligaciones_especificas");
   });
 
-  it("no está en Anexo I/III pero interactúa con personas -> obligaciones de transparencia", () => {
+  it("no está en Anexo I/III pero interactúa con personas -> obligaciones de transparencia, solo la de interacción", () => {
     const result = classify({
       es_sistema_ia: "si",
       ...NOT_PROHIBITED,
       anexo_i_o_iii: "no",
-      obligaciones_transparencia: "si",
+      interactua_con_personas: "si",
+      genera_contenido_sintetico: "no",
     });
     expect(result.label).toBe("obligaciones_transparencia");
+    expect(result.legalRefs).toEqual(["art. 50.1"]);
+  });
+
+  it("genera contenido sintético que se publica, pero no interactúa con nadie -> obligaciones de transparencia, solo la de marcado (caso de la universidad que redacta artículos con IA)", () => {
+    const result = classify({
+      es_sistema_ia: "si",
+      ...NOT_PROHIBITED,
+      anexo_i_o_iii: "no",
+      interactua_con_personas: "no",
+      genera_contenido_sintetico: "si",
+    });
+    expect(result.label).toBe("obligaciones_transparencia");
+    expect(result.legalRefs).toEqual(["art. 50.2 / 50.4"]);
+  });
+
+  it("interactúa Y genera contenido -> las dos obligaciones a la vez", () => {
+    const result = classify({
+      es_sistema_ia: "si",
+      ...NOT_PROHIBITED,
+      anexo_i_o_iii: "no",
+      interactua_con_personas: "si",
+      genera_contenido_sintetico: "si",
+    });
+    expect(result.label).toBe("obligaciones_transparencia");
+    expect(result.legalRefs).toEqual(["art. 50.1", "art. 50.2 / 50.4"]);
   });
 
   it("está en Anexo III, encaja en tarea limitada del art. 6.3 y no perfila ni influye -> excluido de alto riesgo", () => {
@@ -83,7 +110,8 @@ describe("classify — casos límite del árbol", () => {
       mejora_resultado_humano_terminado: "no",
       detecta_patrones_sin_sustituir: "no",
       tarea_preparatoria: "no",
-      obligaciones_transparencia: "no",
+      interactua_con_personas: "no",
+      genera_contenido_sintetico: "no",
     });
     expect(result.label).toBe("sin_obligaciones_especificas");
   });
@@ -176,8 +204,30 @@ describe("classify — 'no lo sé' nunca se trata como 'sí' (regresión)", () =
       influye_materialmente: "no",
       tarea_procedimental_limitada: "si",
       mejora_resultado_humano_terminado: "no_se",
-      obligaciones_transparencia: "no",
+      interactua_con_personas: "no",
+      genera_contenido_sintetico: "no",
     });
     expect(result.label).toBe("sin_obligaciones_especificas");
+  });
+
+  it("interactua_con_personas = no_se -> no_determinado, no concluye ni obligaciones_transparencia ni sin_obligaciones", () => {
+    const result = classify({
+      es_sistema_ia: "si",
+      ...NOT_PROHIBITED,
+      anexo_i_o_iii: "no",
+      interactua_con_personas: "no_se",
+    });
+    expect(result.label).toBe("no_determinado");
+  });
+
+  it("interactua_con_personas = no, genera_contenido_sintetico = no_se -> no_determinado (no basta con que la primera sea 'no')", () => {
+    const result = classify({
+      es_sistema_ia: "si",
+      ...NOT_PROHIBITED,
+      anexo_i_o_iii: "no",
+      interactua_con_personas: "no",
+      genera_contenido_sintetico: "no_se",
+    });
+    expect(result.label).toBe("no_determinado");
   });
 });

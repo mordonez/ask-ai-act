@@ -4,9 +4,10 @@ import {
   Q_ANEXO_I_O_III,
   Q_DETECTA_PATRONES,
   Q_ES_SISTEMA_IA,
+  Q_GENERA_CONTENIDO_SINTETICO,
   Q_INFLUYE_MATERIALMENTE,
+  Q_INTERACTUA_CON_PERSONAS,
   Q_MEJORA_TRABAJO_HUMANO,
-  Q_OBLIGACIONES_TRANSPARENCIA,
   Q_PERFILADO,
   Q_TAREA_LIMITADA,
   Q_TAREA_PREPARATORIA,
@@ -127,6 +128,38 @@ function evaluateFilter63(answers: Answers): Filter63Result {
   return { status: "includes" };
 }
 
+type TransparencyResult =
+  | { status: "applies"; questions: { id: string; text: string; legalRef: string }[] }
+  | { status: "none" }
+  | { status: "missing"; id: string }
+  | { status: "unclear"; question: { text: string; legalRef: string } };
+
+/**
+ * El art. 50 agrupa obligaciones distintas: interactuar con personas
+ * (50.1) y generar/manipular contenido sintético que se publica
+ * (50.2/50.4) son disparadores independientes, cada uno con su propia
+ * obligación. Se preguntan las dos (no hay atajo de "una sí basta")
+ * porque ambas pueden aplicar a la vez y el plan de acción necesita
+ * saber cuáles exactamente, no solo si "alguna" aplica.
+ */
+function evaluateTransparency(answers: Answers): TransparencyResult {
+  const interactua: Answer | undefined = answers[Q_INTERACTUA_CON_PERSONAS.id];
+  if (interactua === undefined) return { status: "missing", id: Q_INTERACTUA_CON_PERSONAS.id };
+  if (interactua === "no_se") return { status: "unclear", question: Q_INTERACTUA_CON_PERSONAS };
+
+  const genera: Answer | undefined = answers[Q_GENERA_CONTENIDO_SINTETICO.id];
+  if (genera === undefined) return { status: "missing", id: Q_GENERA_CONTENIDO_SINTETICO.id };
+  if (genera === "no_se") return { status: "unclear", question: Q_GENERA_CONTENIDO_SINTETICO };
+
+  const applicable = [
+    interactua === "si" ? Q_INTERACTUA_CON_PERSONAS : null,
+    genera === "si" ? Q_GENERA_CONTENIDO_SINTETICO : null,
+  ].filter((q): q is typeof Q_INTERACTUA_CON_PERSONAS => q !== null);
+
+  if (applicable.length === 0) return { status: "none" };
+  return { status: "applies", questions: applicable };
+}
+
 export function classify(answers: Answers): ClassificationResult {
   const esSistemaIA = answers[Q_ES_SISTEMA_IA.id];
   if (esSistemaIA === undefined) return notDetermined([Q_ES_SISTEMA_IA.id]);
@@ -168,15 +201,22 @@ export function classify(answers: Answers): ClassificationResult {
     // filtro.status === "excludes": comprobar transparencia igualmente
   }
 
-  const transparencia = answers[Q_OBLIGACIONES_TRANSPARENCIA.id];
-  if (transparencia === undefined) return notDetermined([Q_OBLIGACIONES_TRANSPARENCIA.id]);
-  if (transparencia === "no_se") return needsReview(Q_OBLIGACIONES_TRANSPARENCIA);
-  if (transparencia === "si") {
+  const transparencia = evaluateTransparency(answers);
+  if (transparencia.status === "missing") return notDetermined([transparencia.id]);
+  if (transparencia.status === "unclear") return needsReview(transparencia.question);
+  if (transparencia.status === "applies") {
+    const refs = transparencia.questions.map((q) => q.legalRef);
+    const obligations = transparencia.questions
+      .map((q) =>
+        q.id === Q_INTERACTUA_CON_PERSONAS.id
+          ? "informar de la interacción con una IA"
+          : "marcar y etiquetar el contenido generado o manipulado"
+      )
+      .join(" y ");
     return {
       label: "obligaciones_transparencia",
-      summary:
-        "No es de alto riesgo, pero tiene obligaciones de transparencia: informar de la interacción con una IA y/o marcar y etiquetar el contenido generado o manipulado.",
-      legalRefs: [Q_OBLIGACIONES_TRANSPARENCIA.legalRef],
+      summary: `No es de alto riesgo, pero tiene obligaciones de transparencia: ${obligations}.`,
+      legalRefs: refs,
     };
   }
 

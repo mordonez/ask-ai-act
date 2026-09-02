@@ -66,6 +66,34 @@ describe("buildActionPlan — otras clasificaciones", () => {
   });
 });
 
+describe("buildActionPlan — obligaciones_transparencia: solo la obligación cuyo disparador aplica", () => {
+  it("solo interacción (art. 50.1) -> solo la obligación de informar, no la de marcar contenido", () => {
+    const plan = buildActionPlan(
+      { label: "obligaciones_transparencia", summary: "...", legalRefs: ["art. 50.1"] },
+      undefined
+    );
+    expect(plan.items).toHaveLength(1);
+    expect(plan.items[0]?.obligation).toContain("Informar");
+  });
+
+  it("solo contenido generado (art. 50.2 / 50.4) -> solo la obligación de marcar, no la de informar (caso de la universidad)", () => {
+    const plan = buildActionPlan(
+      { label: "obligaciones_transparencia", summary: "...", legalRefs: ["art. 50.2 / 50.4"] },
+      undefined
+    );
+    expect(plan.items).toHaveLength(1);
+    expect(plan.items[0]?.obligation).toContain("Marcar");
+  });
+
+  it("ambos disparadores -> las dos obligaciones", () => {
+    const plan = buildActionPlan(
+      { label: "obligaciones_transparencia", summary: "...", legalRefs: ["art. 50.1", "art. 50.2 / 50.4"] },
+      undefined
+    );
+    expect(plan.items).toHaveLength(2);
+  });
+});
+
 describe("buildActionPlan — coherente con los 5 casos reales de AESIA", () => {
   for (const knownCase of KNOWN_CASES) {
     it(`"${knownCase.title}" con rol proveedor da un plan con obligaciones de alto riesgo`, () => {

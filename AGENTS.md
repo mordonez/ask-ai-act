@@ -8,7 +8,7 @@ Guía de referencia para agentes de IA que trabajen en este repositorio.
 
 ## Estado actual
 
-🚧 **Fase 1 en construcción.** El árbol de reglas del clasificador existe, está tipado y tiene tests que pasan contra los 5 casos reales de la guía 2 de AESIA. Falta: desplegarlo públicamente, y pulir el wizard (hoy es HTML mínimo sin estilo real).
+🚧 **Fase 1 desplegada, muy temprana.** El árbol de reglas, el rol y el plan de acción están hechos y testeados (31 tests). Vivo en [ask-ai-act.pages.dev](https://ask-ai-act.pages.dev). Falta: exportar el resultado, estilo real del wizard, volver atrás en las preguntas.
 
 ## Comandos
 
@@ -19,6 +19,7 @@ npm run test:watch
 npm run dev       # wizard en local, http://localhost:5173
 npm run build     # tsc -b && vite build -> dist/
 npm run preview   # sirve dist/ para comprobar el build de producción
+npm run deploy    # build + wrangler pages deploy dist (Cloudflare Pages, proyecto ask-ai-act)
 ```
 
 No hay lint configurado todavía (deliberado — proyecto pequeño, revisitar si crece).

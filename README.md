@@ -4,7 +4,7 @@
 
 ## Estado del proyecto
 
-🚧 **En fase de planificación.** Todavía no hay código. Este repo empieza como documento vivo para acordar el alcance antes de construir nada — ver [`docs/ROADMAP.md`](docs/ROADMAP.md).
+🚧 **Fase 1 desplegada, muy temprana.** Prueba el clasificador en **[ask-ai-act.pages.dev](https://ask-ai-act.pages.dev)**. Funciona (árbol de reglas testeado contra los 5 casos reales de las guías de AESIA, con rol y plan de acción), pero le falta pulido: sin estilo real, sin exportar el resultado, sin volver atrás en el wizard. Ver qué falta exactamente en [`docs/ROADMAP.md`](docs/ROADMAP.md).
 
 ## El problema
 

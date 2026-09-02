@@ -13,7 +13,9 @@ Nada de este documento está decidido todavía. Es el sitio donde recoger las op
 
 Descartado por ahora: Next.js/Vercel (introduce una plataforma nueva sin necesidad — no hay backend con estado en esta fase que lo justifique) y un Worker de Cloudflare sirviendo HTML a mano (Vite da recarga en caliente y build de producción gratis, sin coste real frente a "control total" que aquí no hace falta).
 
-**Pendiente, no bloqueante:** desplegar a Cloudflare Pages; dar estilo real al wizard (hoy es CSS mínimo inline); decidir si un único idioma (es) basta para el lanzamiento.
+**Desplegado:** [ask-ai-act.pages.dev](https://ask-ai-act.pages.dev) (Cloudflare Pages, proyecto `ask-ai-act`, deploy manual vía `wrangler pages deploy dist`). Nota: la CLI de `wrangler` ya recomienda Workers con static assets en vez de Pages para proyectos nuevos — se mantiene Pages por ser la decisión ya tomada, pero si Cloudflare deprecase Pages de verdad, migrar es solo cambiar el target de deploy, no el código (sigue siendo `dist/` estático).
+
+**Pendiente, no bloqueante:** conectar el deploy a CI (hoy es manual: `npm run build && wrangler pages deploy dist`); dar estilo real al wizard (hoy es CSS mínimo inline); decidir si un único idioma (es) basta para el lanzamiento.
 
 ## Fase 2 — Backend con estado
 

@@ -19,8 +19,10 @@ npm run test:watch
 npm run dev       # wizard en local, http://localhost:5173
 npm run build     # tsc -b && vite build -> dist/
 npm run preview   # sirve dist/ para comprobar el build de producción
-npm run deploy    # build + wrangler pages deploy dist (Cloudflare Pages, proyecto ask-ai-act)
+npm run deploy    # solo como vía de emergencia — el deploy normal es automático, ver abajo
 ```
+
+**Deploy:** automático desde el 3 de septiembre de 2026. El repo está conectado en el dashboard de Cloudflare Pages — cada `git push` a `main` construye y despliega solo, no hace falta ejecutar `npm run deploy` tras cada commit. Ese script queda solo por si el deploy automático fallara alguna vez.
 
 No hay lint configurado todavía (deliberado — proyecto pequeño, revisitar si crece).
 

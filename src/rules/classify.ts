@@ -3,8 +3,14 @@ import {
   PROHIBITED_PRACTICE_QUESTIONS,
   Q_ANEXO_I_O_III,
   Q_DETECTA_PATRONES,
+  Q_ES_CODIGO_ABIERTO,
+  Q_ES_GPAI,
   Q_ES_SISTEMA_IA,
+  Q_EXCLUSION_INVESTIGACION_DESARROLLO,
+  Q_EXCLUSION_MILITAR,
+  Q_EXCLUSION_USO_PERSONAL,
   Q_GENERA_CONTENIDO_SINTETICO,
+  Q_GPAI_RIESGO_SISTEMICO,
   Q_INFLUYE_MATERIALMENTE,
   Q_INTERACTUA_CON_PERSONAS,
   Q_MEJORA_TRABAJO_HUMANO,
@@ -21,14 +27,13 @@ import {
  *
  * Nota de procedencia sobre el filtro del art. 6.3 (Q_TAREA_LIMITADA,
  * Q_MEJORA_TRABAJO_HUMANO, Q_DETECTA_PATRONES, Q_TAREA_PREPARATORIA,
- * Q_PERFILADO): las guías de AESIA en sources/aesia/guias-txt/ no
- * desarrollan este filtro con detalle (solo se menciona de pasada en
- * la guía 15). Las cuatro letras a-d y el párrafo de perfilado están
- * verificados contra el texto del propio artículo 6(3) del
- * Reglamento (UE) 2024/1689 (confirmado vía espejo de
- * artificialintelligenceact.eu/article/6/, no vía guías AESIA — EUR-Lex
- * no es accesible por fetch directo). Si se consigue el texto
- * consolidado oficial en `sources/`, revisar esta nota contra él.
+ * Q_PERFILADO) y sobre las exclusiones de ámbito del art. 2
+ * (Q_EXCLUSION_*, Q_ES_CODIGO_ABIERTO): las guías de AESIA no las
+ * desarrollan con detalle. Están verificadas contra el texto del
+ * propio Reglamento (UE) 2024/1689 vía espejo de
+ * artificialintelligenceact.eu (EUR-Lex no es accesible por fetch
+ * directo). Si se consigue el texto consolidado oficial en
+ * `sources/`, revisar estas notas contra él.
  *
  * Principio de AGENTS.md: si falta una respuesta, o la respuesta es
  * "no lo sé" en un punto donde eso impide concluir, el resultado es
@@ -54,6 +59,36 @@ function needsReview(question: { text: string; legalRef: string }): Classificati
     legalRefs: [question.legalRef],
     missingQuestions: [],
   };
+}
+
+type AbsoluteExclusionResult =
+  | { status: "clear" } // ninguna de las 3 exclusiones absolutas aplica
+  | { status: "excluded"; question: { text: string; legalRef: string } }
+  | { status: "missing"; id: string }
+  | { status: "unclear"; question: { text: string; legalRef: string } };
+
+const ABSOLUTE_EXCLUSION_QUESTIONS = [
+  Q_EXCLUSION_MILITAR,
+  Q_EXCLUSION_INVESTIGACION_DESARROLLO,
+  Q_EXCLUSION_USO_PERSONAL,
+];
+
+/**
+ * Las 3 exclusiones absolutas del art. 2 (militar/defensa, I+D antes
+ * de mercado, uso personal): si alguna es "sí", el sistema queda
+ * fuera del Reglamento sin más preguntas — mismo patrón que las 9
+ * prácticas prohibidas del art. 5.
+ */
+function evaluateAbsoluteExclusions(answers: Answers): AbsoluteExclusionResult {
+  for (const question of ABSOLUTE_EXCLUSION_QUESTIONS) {
+    if (answers[question.id] === "si") return { status: "excluded", question };
+  }
+  for (const question of ABSOLUTE_EXCLUSION_QUESTIONS) {
+    const answer = answers[question.id];
+    if (answer === undefined) return { status: "missing", id: question.id };
+    if (answer === "no_se") return { status: "unclear", question };
+  }
+  return { status: "clear" };
 }
 
 type ProhibitedResult =
@@ -160,7 +195,39 @@ function evaluateTransparency(answers: Answers): TransparencyResult {
   return { status: "applies", questions: applicable };
 }
 
+/**
+ * El art. 2.12 excluye del Reglamento a los sistemas de código
+ * abierto SALVO que acaben siendo de alto riesgo — por eso esta nota
+ * solo se añade a resultados que no son alto riesgo ni uso prohibido
+ * (ahí la exclusión nunca aplica). No se resuelve del todo aquí: los
+ * matices exactos (sobre todo para modelos GPAI open-source, que
+ * tienen su propio carve-out parcial) necesitan revisión manual —
+ * ver la nota de procedencia al principio del fichero.
+ */
+function withOpenSourceNote(result: ClassificationResult, codigoAbierto: Answer): ClassificationResult {
+  if (codigoAbierto !== "si") return result;
+  return {
+    ...result,
+    summary: `${result.summary} (Es de código abierto: el art. 2.12 puede eximirte total o parcialmente de estas obligaciones — tiene matices distintos si es un modelo GPAI, este árbol no los resuelve del todo; confírmalo.)`,
+  };
+}
+
 export function classify(answers: Answers): ClassificationResult {
+  const exclusion = evaluateAbsoluteExclusions(answers);
+  if (exclusion.status === "missing") return notDetermined([exclusion.id]);
+  if (exclusion.status === "unclear") return needsReview(exclusion.question);
+  if (exclusion.status === "excluded") {
+    return {
+      label: "fuera_de_ambito",
+      summary: `Fuera del ámbito del Reglamento de IA: "${exclusion.question.text}"`,
+      legalRefs: [exclusion.question.legalRef],
+    };
+  }
+
+  const codigoAbierto: Answer | undefined = answers[Q_ES_CODIGO_ABIERTO.id];
+  if (codigoAbierto === undefined) return notDetermined([Q_ES_CODIGO_ABIERTO.id]);
+  if (codigoAbierto === "no_se") return needsReview(Q_ES_CODIGO_ABIERTO);
+
   const esSistemaIA = answers[Q_ES_SISTEMA_IA.id];
   if (esSistemaIA === undefined) return notDetermined([Q_ES_SISTEMA_IA.id]);
   if (esSistemaIA === "no_se") return needsReview(Q_ES_SISTEMA_IA);
@@ -181,6 +248,30 @@ export function classify(answers: Answers): ClassificationResult {
       summary: `Uso prohibido: "${prohibido.question.text}" — no puede clasificarse como sistema de alto riesgo, no puede comercializarse ni ponerse en servicio, salvo excepción expresa del propio Reglamento.`,
       legalRefs: [prohibido.question.legalRef],
     };
+  }
+
+  const esGPAI = answers[Q_ES_GPAI.id];
+  if (esGPAI === undefined) return notDetermined([Q_ES_GPAI.id]);
+  if (esGPAI === "no_se") return needsReview(Q_ES_GPAI);
+  if (esGPAI === "si") {
+    const riesgoSistemico = answers[Q_GPAI_RIESGO_SISTEMICO.id];
+    if (riesgoSistemico === undefined) return notDetermined([Q_GPAI_RIESGO_SISTEMICO.id]);
+    if (riesgoSistemico === "no_se") return needsReview(Q_GPAI_RIESGO_SISTEMICO);
+    const result: ClassificationResult =
+      riesgoSistemico === "si"
+        ? {
+            label: "modelo_uso_general",
+            summary:
+              "Modelo de IA de uso general con riesgo sistémico: obligaciones adicionales de evaluación y mitigación de riesgos, ciberseguridad y notificación de incidentes, además de las obligaciones base de todo proveedor de GPAI.",
+            legalRefs: ["art. 51", "art. 55"],
+          }
+        : {
+            label: "modelo_uso_general",
+            summary:
+              "Modelo de IA de uso general (GPAI): documentación técnica del modelo, información para quienes lo integren, política de derechos de autor y resumen del contenido de entrenamiento.",
+            legalRefs: ["art. 53"],
+          };
+    return withOpenSourceNote(result, codigoAbierto);
   }
 
   const anexoIoIII = answers[Q_ANEXO_I_O_III.id];
@@ -213,17 +304,23 @@ export function classify(answers: Answers): ClassificationResult {
           : "marcar y etiquetar el contenido generado o manipulado"
       )
       .join(" y ");
-    return {
-      label: "obligaciones_transparencia",
-      summary: `No es de alto riesgo, pero tiene obligaciones de transparencia: ${obligations}.`,
-      legalRefs: refs,
-    };
+    return withOpenSourceNote(
+      {
+        label: "obligaciones_transparencia",
+        summary: `No es de alto riesgo, pero tiene obligaciones de transparencia: ${obligations}.`,
+        legalRefs: refs,
+      },
+      codigoAbierto
+    );
   }
 
-  return {
-    label: "sin_obligaciones_especificas",
-    summary:
-      "No es de alto riesgo ni tiene obligaciones específicas de transparencia identificadas en este árbol. Comprueba igualmente las obligaciones generales (alfabetización en IA, GPAI si aplica).",
-    legalRefs: ["art. 4"],
-  };
+  return withOpenSourceNote(
+    {
+      label: "sin_obligaciones_especificas",
+      summary:
+        "No es de alto riesgo ni tiene obligaciones específicas de transparencia identificadas en este árbol. Comprueba igualmente las obligaciones generales de alfabetización en IA (art. 4).",
+      legalRefs: ["art. 4"],
+    },
+    codigoAbierto
+  );
 }

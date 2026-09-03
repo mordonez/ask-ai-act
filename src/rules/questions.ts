@@ -12,6 +12,61 @@ import type { Question } from "./types";
  * y conteste mal sin darse cuenta.
  */
 
+/**
+ * Puerta de entrada del artículo 2 (ámbito de aplicación) — verificado
+ * apartado por apartado contra artificialintelligenceact.eu/article/2/
+ * el 3 de septiembre de 2026 (EUR-Lex no es accesible por fetch
+ * directo). Antes de este árbol, un sistema militar o un modelo
+ * open-source podía entrar igual por toda la clasificación y salir
+ * "alto riesgo" cuando el Reglamento ni le aplica.
+ *
+ * Las tres primeras son exclusiones absolutas: si alguna es "sí", el
+ * sistema queda fuera del Reglamento sin más preguntas. La de código
+ * abierto es distinta — NO excluye por sí sola (el art. 2.12 dice
+ * "salvo que se introduzca como sistema de alto riesgo"), así que se
+ * pregunta pero no corta el árbol: se aplica al final, solo si el
+ * resultado no acaba siendo alto riesgo o uso prohibido.
+ */
+export const Q_EXCLUSION_MILITAR: Question = {
+  id: "exclusion_militar",
+  text: "¿El sistema se introduce en el mercado, se pone en servicio o se usa exclusivamente con fines militares, de defensa o de seguridad nacional, sin ningún fin adicional no excluido (como uso civil o de garantía del cumplimiento del Derecho)?",
+  helpExample:
+    "Sí: un sistema de puntería usado solo por las fuerzas armadas. No: el mismo sistema si además tiene un uso civil — ahí sí entra en el ámbito del Reglamento.",
+  legalRef: "art. 2.3",
+};
+
+export const Q_EXCLUSION_INVESTIGACION_DESARROLLO: Question = {
+  id: "exclusion_investigacion_desarrollo",
+  text: "¿El sistema se desarrolla y pone en servicio únicamente con fines de investigación científica y desarrollo, y todavía no se ha introducido en el mercado ni puesto en servicio para su finalidad prevista (las pruebas en condiciones reales YA NO entran en esta exclusión)?",
+  helpExample:
+    "Sí: un prototipo de laboratorio que aún no ha salido del entorno de investigación. No: el mismo sistema en cuanto empieza a probarse en condiciones reales fuera del laboratorio, o se pone en servicio para su uso previsto.",
+  legalRef: "art. 2.6 / 2.8",
+};
+
+export const Q_EXCLUSION_USO_PERSONAL: Question = {
+  id: "exclusion_uso_personal",
+  text: "¿Lo usa una persona física, en su vida privada, por motivos puramente personales y no profesionales?",
+  helpExample:
+    "Sí: alguien usa un asistente de IA para gestionar su propio correo personal. No: una organización lo usa para su actividad, aunque sea solo a nivel interno.",
+  legalRef: "art. 2.10",
+};
+
+export const Q_ES_CODIGO_ABIERTO: Question = {
+  id: "es_codigo_abierto",
+  text: "¿El sistema (o el modelo en el que se basa) se publica bajo una licencia libre y de código abierto?",
+  helpExample:
+    "Sí: un modelo publicado con pesos, código y documentación accesibles bajo una licencia abierta. No: un sistema propietario o de acceso restringido, aunque sea gratuito.",
+  legalRef: "art. 2.12",
+};
+
+/** Las 4 preguntas del art. 2, en el orden en que se recorren — primero las 3 exclusiones absolutas, luego código abierto. */
+export const SCOPE_EXCLUSION_QUESTIONS: Question[] = [
+  Q_EXCLUSION_MILITAR,
+  Q_EXCLUSION_INVESTIGACION_DESARROLLO,
+  Q_EXCLUSION_USO_PERSONAL,
+  Q_ES_CODIGO_ABIERTO,
+];
+
 export const Q_ES_SISTEMA_IA: Question = {
   id: "es_sistema_ia",
   text: "¿El sistema aprende, infiere o razona a partir de datos para generar predicciones, contenido, recomendaciones o decisiones que influyen en entornos físicos o virtuales?",
@@ -119,6 +174,30 @@ export const PROHIBITED_PRACTICE_QUESTIONS: Question[] = [
   Q_PROHIBIDO_CONTENIDO_INTIMO,
 ];
 
+/**
+ * Modelos de IA de uso general (GPAI, Capítulo V, arts. 51-56): un
+ * proveedor de este tipo de modelo tiene sus propias obligaciones,
+ * completamente al margen de la clasificación por Anexo I/III — no
+ * es "un tipo más de alto riesgo", es una vía distinta. Antes no se
+ * preguntaba nada de esto; solo aparecía como una frase de refilón
+ * en el resultado "sin obligaciones específicas".
+ */
+export const Q_ES_GPAI: Question = {
+  id: "es_modelo_uso_general",
+  text: "¿Tu organización desarrolla y publica (comercializa o pone en servicio) este modelo, y es un modelo de IA de uso general — capaz de realizar con competencia una amplia variedad de tareas distintas, no diseñado para una única finalidad?",
+  helpExample:
+    "Sí: una empresa que entrena y publica un modelo fundacional de texto o imagen para que terceros construyan aplicaciones encima. No: una organización que solo usa la API de un modelo de terceros (como GPT o Claude) dentro de su propia aplicación — ahí no es proveedora del modelo, es usuaria.",
+  legalRef: "art. 3.63",
+};
+
+export const Q_GPAI_RIESGO_SISTEMICO: Question = {
+  id: "gpai_riesgo_sistemico",
+  text: "¿El modelo tiene capacidades de alto impacto — por ejemplo, se ha entrenado con más de 10^25 FLOP de cómputo, o la Comisión Europea lo ha designado como de riesgo sistémico?",
+  helpExample:
+    "Sí: modelos frontera de gran escala de los grandes laboratorios de IA. No: modelos de tamaño medio o pequeño, sin ese nivel de cómputo ni designación de la Comisión.",
+  legalRef: "art. 51",
+};
+
 export const Q_ANEXO_I_O_III: Question = {
   id: "anexo_i_o_iii",
   text: "¿El sistema es (o es componente de seguridad de) un producto ya regulado por legislación europea de seguridad (Anexo I), o su finalidad encaja en uno de los ámbitos del Anexo III (biometría, infraestructuras críticas, educación, empleo, servicios esenciales, actuación policial, migración/fronteras, justicia/procesos democráticos)?",
@@ -202,8 +281,11 @@ export const Q_GENERA_CONTENIDO_SINTETICO: Question = {
 
 /** Preguntas del árbol principal, en orden de recorrido por defecto. */
 export const CORE_QUESTIONS: Question[] = [
+  ...SCOPE_EXCLUSION_QUESTIONS,
   Q_ES_SISTEMA_IA,
   ...PROHIBITED_PRACTICE_QUESTIONS,
+  Q_ES_GPAI,
+  Q_GPAI_RIESGO_SISTEMICO,
   Q_ANEXO_I_O_III,
 ];
 

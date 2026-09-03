@@ -69,6 +69,20 @@ function transparenciaItems(legalRefs: string[]): ActionItem[] {
   return items;
 }
 
+const GPAI_BASE: ActionItem[] = [
+  { obligation: "Documentación técnica del modelo, mantenida y actualizada", guide: "Reglamento, Capítulo V (art. 53)" },
+  { obligation: "Información y documentación suficiente para quienes integren el modelo en su propia aplicación", guide: "Reglamento, Capítulo V (art. 53)" },
+  { obligation: "Política de cumplimiento de la normativa de derechos de autor de la UE", guide: "Reglamento, Capítulo V (art. 53)" },
+  { obligation: "Resumen suficientemente detallado del contenido usado para entrenar el modelo", guide: "Reglamento, Capítulo V (art. 53)" },
+];
+
+const GPAI_RIESGO_SISTEMICO_EXTRA: ActionItem[] = [
+  { obligation: "Evaluación del modelo con protocolos estandarizados, incluidas pruebas adversariales", guide: "Reglamento, Capítulo V (art. 55)" },
+  { obligation: "Evaluación y mitigación de los riesgos sistémicos a nivel de la Unión", guide: "Reglamento, Capítulo V (art. 55)" },
+  { obligation: "Seguimiento, documentación y notificación de incidentes graves", guide: "Reglamento, Capítulo V (art. 55)" },
+  { obligation: "Garantizar un nivel adecuado de ciberseguridad del modelo y su infraestructura", guide: "Reglamento, Capítulo V (art. 55)" },
+];
+
 function altoRiesgoItems(role: Role | undefined): ActionItem[] {
   switch (role) {
     case "proveedor":
@@ -124,10 +138,20 @@ export function buildActionPlan(result: ClassificationResult, role: Role | undef
         items: transparenciaItems(result.legalRefs),
       };
 
+    case "modelo_uso_general": {
+      const esRiesgoSistemico = result.legalRefs.includes("art. 51");
+      return {
+        nextAction: "Reúne primero la documentación técnica del modelo y la política de derechos de autor — son la base del resto de obligaciones de proveedor de GPAI.",
+        deadlineNote:
+          "Fecha límite: 2 de agosto de 2025 para modelos nuevos; hasta el 2 de agosto de 2027 si el modelo ya estaba comercializado antes de esa fecha.",
+        items: esRiesgoSistemico ? [...GPAI_BASE, ...GPAI_RIESGO_SISTEMICO_EXTRA] : GPAI_BASE,
+      };
+    }
+
     case "sin_obligaciones_especificas":
       return {
         nextAction:
-          "Aunque este árbol no detecta obligaciones específicas, comprueba igualmente las obligaciones generales: alfabetización en IA de quienes lo operan (art. 4), y si el sistema es o incorpora un modelo de IA de uso general (GPAI).",
+          "Aunque este árbol no detecta obligaciones específicas, comprueba igualmente la obligación general de alfabetización en IA de quienes lo operan (art. 4).",
         items: [],
       };
 

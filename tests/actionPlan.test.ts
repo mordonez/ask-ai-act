@@ -103,3 +103,32 @@ describe("buildActionPlan — coherente con los 5 casos reales de AESIA", () => 
     });
   }
 });
+
+describe("buildActionPlan — modelo_uso_general (GPAI)", () => {
+  it("sin riesgo sistémico: solo las 4 obligaciones base del art. 53", () => {
+    const plan = buildActionPlan(
+      { label: "modelo_uso_general", summary: "...", legalRefs: ["art. 53"] },
+      undefined
+    );
+    expect(plan.items).toHaveLength(4);
+    expect(plan.items.map((i) => i.obligation).join(" | ")).toContain("derechos de autor");
+  });
+
+  it("con riesgo sistémico: las 4 base más las 4 adicionales del art. 55", () => {
+    const plan = buildActionPlan(
+      { label: "modelo_uso_general", summary: "...", legalRefs: ["art. 51", "art. 55"] },
+      undefined
+    );
+    expect(plan.items).toHaveLength(8);
+    expect(plan.items.map((i) => i.obligation).join(" | ")).toContain("riesgos sistémicos");
+  });
+
+  it("incluye la fecha límite de GPAI (2025 / 2027 transitorio)", () => {
+    const plan = buildActionPlan(
+      { label: "modelo_uso_general", summary: "...", legalRefs: ["art. 53"] },
+      undefined
+    );
+    expect(plan.deadlineNote).toContain("2025");
+    expect(plan.deadlineNote).toContain("2027");
+  });
+});

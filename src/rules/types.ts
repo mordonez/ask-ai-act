@@ -26,6 +26,7 @@ export type ClassificationLabel =
   | "fuera_de_ambito"
   | "uso_prohibido"
   | "alto_riesgo"
+  | "modelo_uso_general"
   | "obligaciones_transparencia"
   | "sin_obligaciones_especificas"
   | "no_determinado";

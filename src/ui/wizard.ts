@@ -24,6 +24,7 @@ const LABEL_TEXT: Record<ClassificationLabel, string> = {
   fuera_de_ambito: "Fuera del ámbito del Reglamento",
   uso_prohibido: "Uso prohibido",
   alto_riesgo: "Sistema de alto riesgo",
+  modelo_uso_general: "Modelo de IA de uso general (GPAI)",
   obligaciones_transparencia: "Obligaciones de transparencia",
   sin_obligaciones_especificas: "Sin obligaciones específicas identificadas",
   no_determinado: "No determinado",

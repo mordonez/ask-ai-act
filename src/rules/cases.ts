@@ -7,6 +7,21 @@ export const NOT_PROHIBITED: Answers = Object.fromEntries(
 );
 
 /**
+ * Respuestas de entrada comunes a los 5 casos: ninguno es una
+ * exclusión del art. 2 (no son militares, ni I+D pre-mercado, ni uso
+ * personal), ninguno es código abierto, y ninguno es un proveedor de
+ * modelo de uso general (son sistemas de aplicación concreta, no
+ * modelos GPAI).
+ */
+export const IN_SCOPE_NOT_GPAI: Answers = {
+  exclusion_militar: "no",
+  exclusion_investigacion_desarrollo: "no",
+  exclusion_uso_personal: "no",
+  es_codigo_abierto: "no",
+  es_modelo_uso_general: "no",
+};
+
+/**
  * Los 5 casos de ejemplo de la guía 2 de AESIA ("Guía práctica y
  * ejemplos para entender el Reglamento de IA", sección 2). La propia
  * guía dice explícitamente: "Todos los casos de uso presentados en
@@ -38,6 +53,7 @@ export const KNOWN_CASES: KnownCase[] = [
     source:
       "Guía 2, sección 2.1 — Anexo III, apartado 1 (Biometría), subapartado a (identificación biométrica remota)",
     answers: {
+      ...IN_SCOPE_NOT_GPAI,
       es_sistema_ia: "si",
       ...NOT_PROHIBITED,
       anexo_i_o_iii: "si",
@@ -52,6 +68,7 @@ export const KNOWN_CASES: KnownCase[] = [
     title: "Gestión de personal — Promoción",
     source: "Guía 2, sección 2.2 — Anexo III, apartado 4 (Empleo, gestión de trabajadores y autoempleo)",
     answers: {
+      ...IN_SCOPE_NOT_GPAI,
       es_sistema_ia: "si",
       ...NOT_PROHIBITED,
       anexo_i_o_iii: "si",
@@ -65,6 +82,7 @@ export const KNOWN_CASES: KnownCase[] = [
     title: "Predicción de riesgo de exclusión social y acceso a ayudas",
     source: "Guía 2, sección 2.3 — Anexo III, apartado 5 (Acceso a servicios públicos y privados esenciales)",
     answers: {
+      ...IN_SCOPE_NOT_GPAI,
       es_sistema_ia: "si",
       ...NOT_PROHIBITED,
       anexo_i_o_iii: "si",
@@ -78,6 +96,7 @@ export const KNOWN_CASES: KnownCase[] = [
     title: "Bomba de insulina inteligente",
     source: "Guía 2, sección 2.4 — Anexo I, apartado A, subapartado 11 (Productos sanitarios)",
     answers: {
+      ...IN_SCOPE_NOT_GPAI,
       es_sistema_ia: "si",
       ...NOT_PROHIBITED,
       anexo_i_o_iii: "si",
@@ -93,6 +112,7 @@ export const KNOWN_CASES: KnownCase[] = [
     source:
       "Guía 2, sección 2.5 — Anexo III, apartado 6.c (Garantía del cumplimiento del Derecho — evaluar la fiabilidad de pruebas)",
     answers: {
+      ...IN_SCOPE_NOT_GPAI,
       es_sistema_ia: "si",
       ...NOT_PROHIBITED,
       anexo_i_o_iii: "si",

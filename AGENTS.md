@@ -8,7 +8,7 @@ Guía de referencia para agentes de IA que trabajen en este repositorio.
 
 ## Estado actual
 
-🚧 **Fase 1 desplegada, muy temprana.** El árbol de reglas cubre la puerta de entrada del art. 2, art. 5, GPAI, Anexo I/III + filtro 6.3, y art. 50, con rol, plan de acción y exportación a CSV — 61 tests. Vivo en [ask-ai-act.pages.dev](https://ask-ai-act.pages.dev). Falta: estilo real del wizard, volver atrás en las preguntas, y granularizar Anexo III (8 categorías en una sola pregunta) e identificación biométrica remota (excepciones tasadas metidas en el ejemplo en vez de preguntadas).
+🚧 **Fase 1 desplegada, muy temprana.** El árbol de reglas cubre la puerta de entrada del art. 2, art. 5, GPAI, Anexo I/III + filtro 6.3, y art. 50, con rol, plan de acción, exportación a CSV, persistencia local, y enlaces por pregunta al artículo/anexo exacto — 73 tests. Vivo en [ask-ai-act.pages.dev](https://ask-ai-act.pages.dev). Falta: volver atrás en las preguntas, y granularizar Anexo III (8 categorías en una sola pregunta) e identificación biométrica remota (excepciones tasadas metidas en el ejemplo en vez de preguntadas).
 
 ## Comandos
 

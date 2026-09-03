@@ -8,7 +8,15 @@ import {
   TRANSPARENCY_QUESTIONS,
 } from "../rules/questions";
 import type { Role } from "../rules/questions";
-import type { Answer, Answers, ClassificationLabel, ClassificationResult } from "../rules/types";
+import { GENERAL_RESOURCES } from "../rules/resources";
+import type {
+  Answer,
+  Answers,
+  ClassificationLabel,
+  ClassificationResult,
+  QuestionExamples,
+  QuestionLink,
+} from "../rules/types";
 import { addToHistory, clearProgress, loadHistory, loadProgress, saveProgress } from "./storage";
 import type { HistoryEntry } from "./storage";
 
@@ -65,6 +73,34 @@ function downloadCsv(result: ClassificationResult, plan: ReturnType<typeof build
   a.click();
   a.remove();
   URL.revokeObjectURL(url);
+}
+
+function examplesHtml(examples: QuestionExamples | undefined): string {
+  if (!examples || (examples.si.length === 0 && examples.no.length === 0)) return "";
+  const list = (items: string[]) => `<ul>${items.map((e) => `<li>${e}</li>`).join("")}</ul>`;
+  return `
+    <div class="examples">
+      ${examples.si.length ? `<div class="examples-col examples-si"><span class="examples-label">Sí</span>${list(examples.si)}</div>` : ""}
+      ${examples.no.length ? `<div class="examples-col examples-no"><span class="examples-label">No</span>${list(examples.no)}</div>` : ""}
+    </div>
+  `;
+}
+
+function linksHtml(links: QuestionLink[] | undefined): string {
+  if (!links || links.length === 0) return "";
+  const items = links
+    .map((l) => `<li><a href="${l.url}" target="_blank" rel="noopener noreferrer">${l.label} ↗</a></li>`)
+    .join("");
+  return `<ul class="links">${items}</ul>`;
+}
+
+function renderResources() {
+  const container = document.getElementById("resources");
+  if (!container) return;
+  container.innerHTML = `
+    <h2>Para profundizar</h2>
+    ${linksHtml(GENERAL_RESOURCES)}
+  `;
 }
 
 function renderHistory() {
@@ -210,8 +246,9 @@ function render() {
   app.innerHTML = `
     <div class="question">
       <p>${question.text}</p>
-      ${question.helpExample ? `<p class="help">${question.helpExample}</p>` : ""}
+      ${examplesHtml(question.examples)}
       <p class="legal-ref">${question.legalRef}</p>
+      ${linksHtml(question.links)}
       <div class="actions">
         <button data-answer="si">Sí</button>
         <button data-answer="no">No</button>
@@ -232,3 +269,4 @@ function render() {
 
 render();
 renderHistory();
+renderResources();

@@ -21,6 +21,8 @@ const MAX_HISTORY_ENTRIES = 20;
 export interface Progress {
   answers: Answers;
   role: Role | undefined;
+  /** Nombre de empresa/sistema, opcional — solo para identificar la evaluación en el histórico local. No entra en `classify()`. */
+  companyName?: string;
 }
 
 export interface HistoryEntry {
@@ -28,6 +30,7 @@ export interface HistoryEntry {
   date: string; // ISO
   result: ClassificationResult;
   role: Role | undefined;
+  companyName?: string;
 }
 
 export function saveProgress(progress: Progress): void {

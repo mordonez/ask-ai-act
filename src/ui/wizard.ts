@@ -49,17 +49,27 @@ let answers: Answers = restored?.answers ?? {};
 let role: Role | undefined = restored?.role;
 let roleAsked = role !== undefined;
 let resultSaved = false;
+/** undefined = todavía no se ha preguntado; "" = se preguntó y se saltó. */
+let companyName: string | undefined = restored?.companyName;
 
 function resetAll() {
   answers = {};
   role = undefined;
   roleAsked = false;
   resultSaved = false;
+  companyName = undefined;
   clearProgress();
 }
 
 function persist() {
-  saveProgress({ answers, role });
+  saveProgress({ answers, role, companyName });
+}
+
+/** Escapa texto libre antes de insertarlo en innerHTML — companyName lo escribe quien usa el wizard. */
+function escapeHtml(value: string): string {
+  const div = document.createElement("div");
+  div.textContent = value;
+  return div.innerHTML;
 }
 
 function downloadCsv(result: ClassificationResult, plan: ReturnType<typeof buildActionPlan>) {
@@ -125,10 +135,11 @@ function renderHistory() {
     <h2>Evaluaciones anteriores en este navegador</h2>
     <ul>
       ${history
-        .map(
-          (entry) =>
-            `<li><span>${LABEL_TEXT[entry.result.label]}</span><span class="h-date">${formatDate(entry.date)}</span></li>`
-        )
+        .map((entry) => {
+          const label = LABEL_TEXT[entry.result.label];
+          const title = entry.companyName ? `${escapeHtml(entry.companyName)} — ${label}` : label;
+          return `<li><span>${title}</span><span class="h-date">${formatDate(entry.date)}</span></li>`;
+        })
         .join("")}
     </ul>
   `;
@@ -144,6 +155,7 @@ function renderResult(result: ClassificationResult) {
       date: new Date().toISOString(),
       result,
       role,
+      companyName: companyName || undefined,
     };
     addToHistory(entry);
     resultSaved = true;
@@ -158,6 +170,7 @@ function renderResult(result: ClassificationResult) {
 
   app.innerHTML = `
     <div id="result" class="${result.label}">
+      ${companyName ? `<p class="eval-subject">${escapeHtml(companyName)}</p>` : ""}
       <strong>${LABEL_TEXT[result.label]}</strong>
       <p>${result.summary}</p>
       ${result.legalRefs.length ? `<p class="legal-ref">Base: ${result.legalRefs.join(", ")}</p>` : ""}
@@ -206,9 +219,46 @@ function renderRoleQuestion() {
   });
 }
 
+function renderCompanyStep() {
+  const app = document.getElementById("app");
+  if (!app) return;
+
+  app.innerHTML = `
+    <div class="question">
+      <p>¿Cómo se llama la empresa o el sistema que vas a evaluar?</p>
+      <p class="help">Opcional — solo sirve para identificar esta evaluación en tu lista de "evaluaciones anteriores". Se guarda únicamente en tu navegador, no se envía a ningún servidor.</p>
+      <input type="text" id="company-name" placeholder="Ej. Mi Empresa S.L. — sistema de selección de personal" maxlength="120" />
+      <div class="actions">
+        <button id="company-continue" data-answer="si">Continuar</button>
+        <button id="company-skip">Prefiero no decirlo</button>
+      </div>
+    </div>
+  `;
+
+  const input = document.getElementById("company-name") as HTMLInputElement | null;
+  input?.focus();
+
+  const submit = (value: string) => {
+    companyName = value.trim();
+    persist();
+    render();
+  };
+
+  document.getElementById("company-continue")?.addEventListener("click", () => submit(input?.value ?? ""));
+  document.getElementById("company-skip")?.addEventListener("click", () => submit(""));
+  input?.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") submit(input.value);
+  });
+}
+
 function render() {
   const app = document.getElementById("app");
   if (!app) return;
+
+  if (companyName === undefined && Object.keys(answers).length === 0) {
+    renderCompanyStep();
+    return;
+  }
 
   const result = classify(answers);
 

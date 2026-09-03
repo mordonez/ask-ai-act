@@ -40,6 +40,16 @@
       }
 
       .question p:first-child { font-size: 1.05rem; margin-top: 0; }
+      input[type="text"] {
+        font: inherit;
+        width: 100%;
+        padding: 0.55rem 0.7rem;
+        border-radius: 6px;
+        border: 1px solid var(--border);
+        margin-top: 0.4rem;
+      }
+      input[type="text"]:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+      .eval-subject { color: var(--ink-muted); font-size: 0.85rem; margin: 0 0 0.2rem; }
       .examples { display: flex; gap: 0.75rem; flex-wrap: wrap; margin: 0.7rem 0; }
       .examples-col {
         flex: 1 1 220px;

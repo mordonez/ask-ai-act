@@ -15,6 +15,8 @@ Descartado por ahora: Next.js/Vercel (introduce una plataforma nueva sin necesid
 
 **Desplegado:** [ask-ai-act.pages.dev](https://ask-ai-act.pages.dev) (Cloudflare Pages, proyecto `ask-ai-act`, deploy manual vía `wrangler pages deploy dist`). Nota: la CLI de `wrangler` ya recomienda Workers con static assets en vez de Pages para proyectos nuevos — se mantiene Pages por ser la decisión ya tomada, pero si Cloudflare deprecase Pages de verdad, migrar es solo cambiar el target de deploy, no el código (sigue siendo `dist/` estático).
 
+**Persistencia local (pendiente de construir, decisión de herramienta ya tomada):** `localStorage`, no IndexedDB — los datos son pequeños (respuestas de sí/no por evaluación) y sin consultas complejas, así que la API síncrona y sin dependencias de `localStorage` basta. Guarda el progreso en curso y el histórico de evaluaciones completadas, solo en el navegador de quien lo usa — no es la Fase 2 (esa es un backend compartido entre varias personas de una organización). Ver el detalle en `ROADMAP.md`.
+
 **Pendiente, no bloqueante:** conectar el deploy a CI (hoy es manual: `npm run build && wrangler pages deploy dist`); dar estilo real al wizard (hoy es CSS mínimo inline); decidir si un único idioma (es) basta para el lanzamiento.
 
 ## Fase 2 — Backend con estado
@@ -40,6 +42,12 @@ Preguntas específicas de esta fase que hay que resolver antes de construir:
 - Cómo trocear (*chunk*) el texto del Reglamento sin romper la referencia al artículo/apartado exacto.
 - Cómo forzar que cada respuesta cite la fuente exacta y no una aproximada.
 - Cómo medir alucinaciones antes de confiar en el asistente para nada relacionado con clasificación.
+
+**Opción evaluada, no decidida — dónde corre el modelo:** [WebLLM](https://github.com/mlc-ai/web-llm) (inferencia en el propio navegador vía WebGPU) frente a un LLM en servidor (Workers AI, como el worker `ask-ai`).
+
+- **A favor de WebLLM:** quien usa este wizard puede estar describiendo un sistema interno de su organización — con WebLLM esa descripción no sale nunca del navegador, no hay servidor de por medio ni coste de inferencia. Encaja con el principio de diseño de que el modelo nunca decide la clasificación, solo ayuda a la parte conversacional: un modelo más pequeño corriendo en local es más tolerable aquí que en un chatbot donde el modelo decide por sí solo, porque el árbol de reglas sigue siendo la única fuente de verdad y los errores del asistente son recuperables.
+- **En contra:** necesita WebGPU (bien soportado en Chrome/Edge, irregular en Safari/Firefox — hace falta un plan B para quien no lo tenga, probablemente un LLM en servidor como fallback, lo que duplica la superficie a mantener); la primera visita descarga el modelo (cientos de MB a varios GB); el rendimiento depende del hardware de quien lo usa.
+- No se construye nada de esto todavía — la Fase 3 sigue sin empezar. Queda anotado para cuando llegue ese momento.
 
 **Decisión pendiente:** todo, y probablemente lo último en decidirse — depende de cómo queden las fases 1 y 2.
 

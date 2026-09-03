@@ -39,12 +39,13 @@ Válidos para las tres fases, no negociables sin discutirlo explícitamente:
 
 **Próximos pasos concretos de esta fase, en orden:**
 
-1. Estilo real del wizard (hoy es CSS mínimo inline).
-2. Compartir el enlace fuera del propio autor y recibir el primer feedback real (criterio de éxito de esta fase).
+1. Persistencia local en `localStorage` (no confundir con la Fase 2): guardar el progreso en curso para que un refresco no borre las respuestas, y guardar cada evaluación completada con un id para poder consultar "tus evaluaciones anteriores" sin repetir el wizard. Solo en el navegador de quien lo usa — sin servidor, sin cuentas, coherente con "Fase 1 sin estado". `localStorage` basta (datos pequeños, sin consultas complejas) — no hace falta IndexedDB para esto.
+2. Estilo real del wizard (hoy es CSS mínimo inline).
+3. Compartir el enlace fuera del propio autor y recibir el primer feedback real (criterio de éxito de esta fase).
 
 **Preguntas abiertas:**
 
-- ¿El wizard permite volver atrás y cambiar respuestas sin perder el progreso? (hoy no: cada respuesta es definitiva dentro de la sesión)
+- ¿El wizard permite volver atrás y cambiar respuestas sin perder el progreso? (hoy no: cada respuesta es definitiva dentro de la sesión — la persistencia en `localStorage` del punto 1 no resuelve esto por sí sola, son cosas distintas)
 - ¿Un único idioma (es) o también inglés desde el principio?
 - ¿Cómo se comunica que esto no es asesoramiento legal, sin que el disclaimer arruine la confianza en la herramienta?
 - ~~Stack y hosting~~ → decidido, ver `ARCHITECTURE.md` (Vite + TS + Vitest, Cloudflare Pages).

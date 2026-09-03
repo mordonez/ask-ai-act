@@ -279,6 +279,26 @@ export const Q_GENERA_CONTENIDO_SINTETICO: Question = {
   legalRef: "art. 50.2 / 50.4",
 };
 
+/**
+ * Excepción del art. 50.4: si el contenido pasa por revisión humana
+ * sustantiva y hay una persona (física o jurídica) que asume la
+ * responsabilidad editorial, no hace falta marcarlo como generado
+ * por IA. Verificado el 3 de septiembre de 2026 contra fuentes que
+ * citan el texto del Reglamento — con un matiz importante: una
+ * revisión meramente ortográfica o formal NO cuenta como revisión
+ * editorial a estos efectos. Encontrada por un agente en una prueba
+ * ciega de clasificación (caso de una universidad redactando
+ * artículos institucionales con IA) — el árbol no la tenía hasta
+ * ahora y le exigía marcar el contenido aunque hubiera revisión real.
+ */
+export const Q_REVISION_EDITORIAL: Question = {
+  id: "revision_editorial_sustantiva",
+  text: "Antes de publicarse, ¿el contenido generado pasa por una revisión humana sustantiva (no solo ortográfica o de formato) y hay una persona física o jurídica que asume la responsabilidad editorial de lo que se publica?",
+  helpExample:
+    "Sí: alguien del equipo revisa el fondo del contenido, decide si se publica y asume esa responsabilidad. No: se publica automáticamente, o la única revisión es corregir ortografía/gramática — eso NO cuenta como revisión editorial a estos efectos.",
+  legalRef: "art. 50.4",
+};
+
 /** Preguntas del árbol principal, en orden de recorrido por defecto. */
 export const CORE_QUESTIONS: Question[] = [
   ...SCOPE_EXCLUSION_QUESTIONS,
@@ -300,7 +320,11 @@ export const FILTER_6_3_QUESTIONS: Question[] = [
 ];
 
 /** Preguntas de transparencia (art. 50), para sistemas que no son de alto riesgo. */
-export const TRANSPARENCY_QUESTIONS: Question[] = [Q_INTERACTUA_CON_PERSONAS, Q_GENERA_CONTENIDO_SINTETICO];
+export const TRANSPARENCY_QUESTIONS: Question[] = [
+  Q_INTERACTUA_CON_PERSONAS,
+  Q_GENERA_CONTENIDO_SINTETICO,
+  Q_REVISION_EDITORIAL,
+];
 
 export const ROLE_QUESTION_ID = "rol_organizacion";
 export type Role =

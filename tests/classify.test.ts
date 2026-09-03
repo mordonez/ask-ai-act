@@ -205,7 +205,7 @@ describe("classify — casos límite del árbol (tras la puerta del art. 2)", ()
     expect(result.legalRefs).toEqual(["art. 50.1"]);
   });
 
-  it("genera contenido sintético que se publica, pero no interactúa con nadie -> obligaciones de transparencia, solo la de marcado (caso de la universidad que redacta artículos con IA)", () => {
+  it("genera contenido sintético sin revisión editorial real -> obligaciones de transparencia, la de marcado", () => {
     const result = classify({
       ...IN_SCOPE_NOT_GPAI,
       es_sistema_ia: "si",
@@ -213,12 +213,38 @@ describe("classify — casos límite del árbol (tras la puerta del art. 2)", ()
       anexo_i_o_iii: "no",
       interactua_con_personas: "no",
       genera_contenido_sintetico: "si",
+      revision_editorial_sustantiva: "no",
     });
     expect(result.label).toBe("obligaciones_transparencia");
     expect(result.legalRefs).toEqual(["art. 50.2 / 50.4"]);
   });
 
-  it("interactúa Y genera contenido -> las dos obligaciones a la vez", () => {
+  it("genera contenido sintético CON revisión editorial sustantiva -> excepción del art. 50.4, sin obligaciones (caso real de la universidad que redacta artículos con IA, encontrado en una prueba ciega)", () => {
+    const result = classify({
+      ...IN_SCOPE_NOT_GPAI,
+      es_sistema_ia: "si",
+      ...NOT_PROHIBITED,
+      anexo_i_o_iii: "no",
+      interactua_con_personas: "no",
+      genera_contenido_sintetico: "si",
+      revision_editorial_sustantiva: "si",
+    });
+    expect(result.label).toBe("sin_obligaciones_especificas");
+  });
+
+  it("no se pregunta la revisión editorial si no genera contenido -> no bloquea el árbol", () => {
+    const result = classify({
+      ...IN_SCOPE_NOT_GPAI,
+      es_sistema_ia: "si",
+      ...NOT_PROHIBITED,
+      anexo_i_o_iii: "no",
+      interactua_con_personas: "no",
+      genera_contenido_sintetico: "no",
+    });
+    expect(result.label).toBe("sin_obligaciones_especificas");
+  });
+
+  it("interactúa Y genera contenido sin revisión editorial -> las dos obligaciones a la vez", () => {
     const result = classify({
       ...IN_SCOPE_NOT_GPAI,
       es_sistema_ia: "si",
@@ -226,9 +252,24 @@ describe("classify — casos límite del árbol (tras la puerta del art. 2)", ()
       anexo_i_o_iii: "no",
       interactua_con_personas: "si",
       genera_contenido_sintetico: "si",
+      revision_editorial_sustantiva: "no",
     });
     expect(result.label).toBe("obligaciones_transparencia");
     expect(result.legalRefs).toEqual(["art. 50.1", "art. 50.2 / 50.4"]);
+  });
+
+  it("interactúa Y genera contenido, pero con revisión editorial -> solo la obligación de interacción sobrevive", () => {
+    const result = classify({
+      ...IN_SCOPE_NOT_GPAI,
+      es_sistema_ia: "si",
+      ...NOT_PROHIBITED,
+      anexo_i_o_iii: "no",
+      interactua_con_personas: "si",
+      genera_contenido_sintetico: "si",
+      revision_editorial_sustantiva: "si",
+    });
+    expect(result.label).toBe("obligaciones_transparencia");
+    expect(result.legalRefs).toEqual(["art. 50.1"]);
   });
 
   it("está en Anexo III, encaja en tarea limitada del art. 6.3 y no perfila ni influye -> excluido de alto riesgo", () => {
@@ -396,6 +437,32 @@ describe("classify — 'no lo sé' nunca se trata como 'sí' (regresión)", () =
       anexo_i_o_iii: "no",
       interactua_con_personas: "no",
       genera_contenido_sintetico: "no_se",
+    });
+    expect(result.label).toBe("no_determinado");
+  });
+
+  it("genera contenido sintético = sí, pero falta responder la revisión editorial -> no_determinado, no asume que no hay revisión", () => {
+    const result = classify({
+      ...IN_SCOPE_NOT_GPAI,
+      es_sistema_ia: "si",
+      ...NOT_PROHIBITED,
+      anexo_i_o_iii: "no",
+      interactua_con_personas: "no",
+      genera_contenido_sintetico: "si",
+    });
+    expect(result.label).toBe("no_determinado");
+    expect(result.missingQuestions).toEqual(["revision_editorial_sustantiva"]);
+  });
+
+  it("revision_editorial_sustantiva = no_se -> no_determinado, no asume ni que hay revisión ni que no la hay", () => {
+    const result = classify({
+      ...IN_SCOPE_NOT_GPAI,
+      es_sistema_ia: "si",
+      ...NOT_PROHIBITED,
+      anexo_i_o_iii: "no",
+      interactua_con_personas: "no",
+      genera_contenido_sintetico: "si",
+      revision_editorial_sustantiva: "no_se",
     });
     expect(result.label).toBe("no_determinado");
   });

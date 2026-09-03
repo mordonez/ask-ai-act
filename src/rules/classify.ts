@@ -15,6 +15,7 @@ import {
   Q_INTERACTUA_CON_PERSONAS,
   Q_MEJORA_TRABAJO_HUMANO,
   Q_PERFILADO,
+  Q_REVISION_EDITORIAL,
   Q_TAREA_LIMITADA,
   Q_TAREA_PREPARATORIA,
 } from "./questions";
@@ -34,6 +35,17 @@ import {
  * artificialintelligenceact.eu (EUR-Lex no es accesible por fetch
  * directo). Si se consigue el texto consolidado oficial en
  * `sources/`, revisar estas notas contra él.
+ *
+ * Nota de procedencia sobre Q_REVISION_EDITORIAL (excepción del
+ * art. 50.4): verificada el 3 de septiembre de 2026 contra fuentes
+ * que citan el texto del Reglamento. Matiz importante confirmado:
+ * una revisión meramente ortográfica o de formato NO cuenta como
+ * revisión editorial a estos efectos, tiene que ser sustantiva y con
+ * responsabilidad editorial real. Esta pregunta se añadió tras
+ * encontrarse el hueco en una prueba ciega de clasificación (un
+ * agente sin contexto del árbol, evaluando el caso de una universidad
+ * que redacta artículos institucionales con IA, señaló la excepción
+ * que el árbol no tenía).
  *
  * Principio de AGENTS.md: si falta una respuesta, o la respuesta es
  * "no lo sé" en un punto donde eso impide concluir, el resultado es
@@ -186,9 +198,20 @@ function evaluateTransparency(answers: Answers): TransparencyResult {
   if (genera === undefined) return { status: "missing", id: Q_GENERA_CONTENIDO_SINTETICO.id };
   if (genera === "no_se") return { status: "unclear", question: Q_GENERA_CONTENIDO_SINTETICO };
 
+  // Excepción del art. 50.4: si genera contenido pero hay revisión
+  // editorial sustantiva, esa obligación concreta no se activa. Solo
+  // tiene sentido preguntarlo cuando genera === "si".
+  let generaAplica = genera === "si";
+  if (genera === "si") {
+    const revision: Answer | undefined = answers[Q_REVISION_EDITORIAL.id];
+    if (revision === undefined) return { status: "missing", id: Q_REVISION_EDITORIAL.id };
+    if (revision === "no_se") return { status: "unclear", question: Q_REVISION_EDITORIAL };
+    if (revision === "si") generaAplica = false; // excepción del 50.4: no hace falta marcarlo
+  }
+
   const applicable = [
     interactua === "si" ? Q_INTERACTUA_CON_PERSONAS : null,
-    genera === "si" ? Q_GENERA_CONTENIDO_SINTETICO : null,
+    generaAplica ? Q_GENERA_CONTENIDO_SINTETICO : null,
   ].filter((q): q is typeof Q_INTERACTUA_CON_PERSONAS => q !== null);
 
   if (applicable.length === 0) return { status: "none" };

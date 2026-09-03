@@ -47,9 +47,10 @@ Válidos para las tres fases, no negociables sin discutirlo explícitamente:
 
 **Próximos pasos concretos de esta fase, en orden:**
 
-1. Persistencia local en `localStorage` (no confundir con la Fase 2): guardar el progreso en curso para que un refresco no borre las respuestas, y guardar cada evaluación completada con un id para poder consultar "tus evaluaciones anteriores" sin repetir el wizard. Solo en el navegador de quien lo usa — sin servidor, sin cuentas, coherente con "Fase 1 sin estado". `localStorage` basta (datos pequeños, sin consultas complejas) — no hace falta IndexedDB para esto.
-2. Estilo real del wizard (hoy es CSS mínimo inline).
-3. Compartir el enlace fuera del propio autor y recibir el primer feedback real (criterio de éxito de esta fase).
+- ✅ Persistencia local en `localStorage` (`src/ui/storage.ts`): el progreso se guarda en cada respuesta y sobrevive a un refresco; cada evaluación completada se guarda en un histórico local (máx. 20) visible como "Evaluaciones anteriores en este navegador". Solo en el navegador de quien lo usa — no es la Fase 2. Probado en navegador real: refresco a mitad de wizard retoma en la misma pregunta; al completar, el progreso se limpia y aparece en el histórico; "Empezar de nuevo" reinicia sin borrar el histórico acumulado.
+- ✅ Estilo real del wizard: tarjeta, tipografía y color por resultado (rojo alto riesgo/prohibido, verde fuera de ámbito/sin obligaciones, ámbar transparencia, morado GPAI) en vez del CSS mínimo inline de antes.
+
+1. **Compartir el enlace fuera del propio autor y recibir el primer feedback real** — sigue siendo el criterio de éxito pendiente de esta fase, y ahora que hay estilo y persistencia no hay más excusa de "está a medio hacer" para no hacerlo.
 
 **Preguntas abiertas:**
 

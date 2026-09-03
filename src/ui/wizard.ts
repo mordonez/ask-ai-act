@@ -9,12 +9,15 @@ import {
 } from "../rules/questions";
 import type { Role } from "../rules/questions";
 import type { Answer, Answers, ClassificationLabel, ClassificationResult } from "../rules/types";
+import { addToHistory, clearProgress, loadHistory, loadProgress, saveProgress } from "./storage";
+import type { HistoryEntry } from "./storage";
 
 /**
  * Wizard mínimo: pinta la siguiente pregunta que `classify()` diga
  * que falta, hasta llegar a un resultado; luego pregunta el rol y
- * muestra el plan de acción. No guarda estado entre sesiones (Fase 1:
- * sin cuentas, sin base de datos).
+ * muestra el plan de acción. El progreso y el histórico de
+ * evaluaciones se guardan en `localStorage` (ver `storage.ts`) — solo
+ * en el navegador de quien lo usa, sin cuentas ni backend.
  */
 
 const ALL_QUESTIONS = [...CORE_QUESTIONS, ...FILTER_6_3_QUESTIONS, ...TRANSPARENCY_QUESTIONS];
@@ -33,14 +36,22 @@ const LABEL_TEXT: Record<ClassificationLabel, string> = {
 /** Etiquetas que tienen algo que ganar preguntando el rol antes del plan de acción. */
 const LABELS_THAT_NEED_ROLE: ClassificationLabel[] = ["alto_riesgo"];
 
-let answers: Answers = {};
-let role: Role | undefined;
-let roleAsked = false;
+const restored = loadProgress();
+let answers: Answers = restored?.answers ?? {};
+let role: Role | undefined = restored?.role;
+let roleAsked = role !== undefined;
+let resultSaved = false;
 
 function resetAll() {
   answers = {};
   role = undefined;
   roleAsked = false;
+  resultSaved = false;
+  clearProgress();
+}
+
+function persist() {
+  saveProgress({ answers, role });
 }
 
 function downloadCsv(result: ClassificationResult, plan: ReturnType<typeof buildActionPlan>) {
@@ -56,9 +67,53 @@ function downloadCsv(result: ClassificationResult, plan: ReturnType<typeof build
   URL.revokeObjectURL(url);
 }
 
+function renderHistory() {
+  const container = document.getElementById("history");
+  if (!container) return;
+
+  const history = loadHistory();
+  if (history.length === 0) {
+    container.innerHTML = "";
+    return;
+  }
+
+  const formatDate = (iso: string) => {
+    try {
+      return new Date(iso).toLocaleDateString("es-ES", { day: "2-digit", month: "short", year: "numeric" });
+    } catch {
+      return iso;
+    }
+  };
+
+  container.innerHTML = `
+    <h2>Evaluaciones anteriores en este navegador</h2>
+    <ul>
+      ${history
+        .map(
+          (entry) =>
+            `<li><span>${LABEL_TEXT[entry.result.label]}</span><span class="h-date">${formatDate(entry.date)}</span></li>`
+        )
+        .join("")}
+    </ul>
+  `;
+}
+
 function renderResult(result: ClassificationResult) {
   const app = document.getElementById("app");
   if (!app) return;
+
+  if (!resultSaved) {
+    const entry: HistoryEntry = {
+      id: crypto.randomUUID ? crypto.randomUUID() : String(Date.now()),
+      date: new Date().toISOString(),
+      result,
+      role,
+    };
+    addToHistory(entry);
+    resultSaved = true;
+    clearProgress();
+    renderHistory();
+  }
 
   const plan = buildActionPlan(result, role);
   const itemsHtml = plan.items.length
@@ -75,8 +130,10 @@ function renderResult(result: ClassificationResult) {
       ${plan.deadlineNote ? `<p class="legal-ref">${plan.deadlineNote}</p>` : ""}
       ${itemsHtml}
     </div>
-    <button id="download-csv">Descargar CSV (para tu Excel/Sheets de seguimiento)</button>
-    <button id="restart">Empezar de nuevo</button>
+    <div class="actions">
+      <button id="download-csv">Descargar CSV (para tu Excel/Sheets de seguimiento)</button>
+      <button id="restart">Empezar de nuevo</button>
+    </div>
   `;
   document.getElementById("download-csv")?.addEventListener("click", () => {
     downloadCsv(result, plan);
@@ -95,10 +152,10 @@ function renderRoleQuestion() {
   app.innerHTML = `
     <div class="question">
       <p>¿Qué papel tiene tu organización en este sistema? El plan de acción cambia según el rol.</p>
-      ${options
-        .map(([value, label]) => `<button data-role="${value}" style="display:block;margin:0.4rem 0;">${label}</button>`)
-        .join("")}
-      <button data-role="__skip__" style="margin-top:0.8rem;">No lo sé todavía</button>
+      <div class="actions" style="flex-direction:column;align-items:flex-start;">
+        ${options.map(([value, label]) => `<button data-role="${value}">${label}</button>`).join("")}
+        <button data-role="__skip__">No lo sé todavía</button>
+      </div>
     </div>
   `;
 
@@ -107,6 +164,7 @@ function renderRoleQuestion() {
       const value = btn.dataset.role;
       role = value === "__skip__" ? undefined : (value as Role);
       roleAsked = true;
+      persist();
       render();
     });
   });
@@ -154,9 +212,11 @@ function render() {
       <p>${question.text}</p>
       ${question.helpExample ? `<p class="help">${question.helpExample}</p>` : ""}
       <p class="legal-ref">${question.legalRef}</p>
-      <button data-answer="si">Sí</button>
-      <button data-answer="no">No</button>
-      <button data-answer="no_se">No lo sé</button>
+      <div class="actions">
+        <button data-answer="si">Sí</button>
+        <button data-answer="no">No</button>
+        <button data-answer="no_se">No lo sé</button>
+      </div>
     </div>
   `;
 
@@ -164,9 +224,11 @@ function render() {
     btn.addEventListener("click", () => {
       const answer = btn.dataset.answer as Answer;
       answers = { ...answers, [question.id]: answer };
+      persist();
       render();
     });
   });
 }
 
 render();
+renderHistory();

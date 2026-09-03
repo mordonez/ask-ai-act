@@ -2,7 +2,7 @@
 
 Clasificador abierto y en español para convertir el Reglamento europeo de Inteligencia Artificial en una evaluación trazable y un plan de acción.
 
-**[Probar la demo](https://ask-ai-act.pages.dev)**
+**[Probar la demo](https://aiact.miguelordonez.com)**
 
 ## Qué hace
 

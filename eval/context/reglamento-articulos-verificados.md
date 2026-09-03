@@ -1,6 +1,6 @@
 # Reglamento (UE) 2024/1689 — artículos verificados
 
-Extractos verificados contra fuente durante la investigación de este proyecto (no el texto consolidado oficial completo — EUR-Lex no es accesible por fetch directo desde este entorno). Cada sección indica cómo se verificó y con qué confianza. Si en algún momento se consigue el texto oficial completo, este fichero debe revisarse contra él.
+Extractos verificados contra fuente durante la investigación de este proyecto. La mayoría se verificaron antes del 3 de septiembre de 2026 vía espejos como artificialintelligenceact.eu, porque un fetch/curl automatizado a EUR-Lex recibe un challenge de AWS WAF y no carga sin un navegador real ejecutando JavaScript. Desde esa fecha existe el texto oficial completo (texto original de 2024/1689, sin la consolidación de modificaciones posteriores) en `sources/reglamento_ue_2024_1689_es.txt`, obtenido cargando EUR-Lex en un navegador real y descargando el PDF auténtico del Diario Oficial. Cada sección de este fichero indica cómo se verificó y con qué confianza — las marcadas con confianza media/no verificadas palabra por palabra deben revisarse contra ese texto oficial cuando se toquen.
 
 ## Artículo 2 — Ámbito de aplicación (exclusiones)
 

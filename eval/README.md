@@ -13,10 +13,17 @@ Para cada caso, dos cosas distintas:
 
 ## Estructura
 
-- `context/reglamento-articulos-verificados.md` — el "buen contexto": extractos de los artículos del Reglamento que se han verificado contra fuente en esta investigación (no el texto consolidado oficial completo — eso no está disponible por fetch directo, ver la nota de procedencia en `src/rules/classify.ts`). Cada sección dice de dónde sale y con qué confianza.
+- `context/reglamento-articulos-verificados.md` — el "buen contexto": extractos del Reglamento verificados contra fuente en esta investigación, con nota de confianza por sección. Desde el 3 de septiembre de 2026 existe también el texto oficial completo en `sources/reglamento_ue_2024_1689_es.txt` (ver su nota de procedencia) — este fichero sigue siendo útil como resumen ya verificado, pero cualquier duda se resuelve contra el texto oficial.
 - `cases/` — un fichero por caso: descripción libre (como la escribiría alguien de la organización, no como una ficha técnica) + la respuesta conocida correcta, sacada de `src/rules/cases.ts` o verificada aparte.
 - `prompt-template.md` — cómo se combina el contexto + el caso + las instrucciones de formato de salida (clasificación, cita exacta, nivel de confianza, "no lo sé" explícito) para un modelo.
 - `results/` — resultados de cada ejecución, con fecha, para no perder el histórico si se repite el experimento más adelante (p. ej. al cambiar de modelo o de contexto).
+- `context/arbol-preguntas.md` — **generado**, no editar a mano (`npm run manifest`, ver `scripts/generate-questions-manifest.mjs`). Volcado de las 26 preguntas actuales del árbol (`src/rules/questions.ts`), con su cita legal, ejemplos y enlaces. Es el material de entrada de la auditoría de cobertura de abajo, no de la evaluación de acierto/consistencia de arriba.
+
+## Auditoría de cobertura (distinto del experimento de arriba)
+
+Pregunta distinta a "¿un modelo con contexto clasifica bien sin el wizard?": **¿el propio árbol de preguntas cubre toda la especificación, o hay obligaciones del Reglamento para las que no hay pregunta?**
+
+Cómo hacerla: regenerar el manifiesto (`npm run manifest`) y pasarle a un agente con contexto limpio `eval/context/arbol-preguntas.md` junto con `sources/reglamento_ue_2024_1689_es.txt`, pidiéndole que señale artículos o anexos con obligaciones sustantivas que ninguna pregunta del árbol cubre. No es un proceso automatizado ni tiene arnés propio todavía (a diferencia del experimento de acierto/consistencia) — es una auditoría puntual para iterar el árbol, cuyo resultado (si aparecen huecos) se corrige en `src/rules/questions.ts` y `classify.ts`, con su test correspondiente en `tests/classify.test.ts`.
 
 ## Qué NO es esto
 

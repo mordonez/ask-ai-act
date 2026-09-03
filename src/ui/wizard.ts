@@ -219,11 +219,60 @@ function renderRoleQuestion() {
   });
 }
 
+/**
+ * Bloque de contexto plegable, antes de la primera pregunta. Los 6
+ * resultados listados son literalmente `ClassificationLabel` de
+ * `../rules/types` — no se inventan categorías nuevas aquí. La única
+ * fecha (art. 113) está verificada contra
+ * `sources/reglamento_ue_2024_1689_es.txt`.
+ */
+function introHtml(): string {
+  return `
+    <details class="intro">
+      <summary>¿Qué es el Reglamento de IA en 2 minutos?</summary>
+      <div class="intro-body">
+        <p>
+          El Reglamento (UE) 2024/1689 clasifica cada sistema de IA según el
+          <strong>riesgo</strong> que supone para la salud, la seguridad o los
+          derechos de las personas, y asigna obligaciones distintas a cada
+          nivel. Este wizard recorre esa clasificación por ti, pregunta a
+          pregunta, y te dice exactamente qué artículo o anexo sustenta cada
+          respuesta.
+        </p>
+        <p>Puedes acabar en uno de estos resultados:</p>
+        <ul>
+          <li><strong>Fuera de ámbito.</strong> El Reglamento no te aplica (uso militar, investigación antes de salir al mercado, uso personal no profesional, o similar).</li>
+          <li><strong>Uso prohibido (art. 5).</strong> El sistema hace algo que la UE prohíbe sin excepción — por ejemplo, puntuación social o manipulación subliminal que cause perjuicio.</li>
+          <li><strong>Alto riesgo (Anexo I o Anexo III).</strong> El grueso del Reglamento: obligaciones de gestión de riesgos, documentación técnica, supervisión humana y registro antes de salir al mercado. Aplica a ámbitos como empleo, crédito, educación, sanidad, biometría o justicia.</li>
+          <li><strong>Obligaciones de transparencia (art. 50).</strong> El sistema no es de alto riesgo, pero interactúa con personas o genera contenido — y hay que decírselo a quien lo usa.</li>
+          <li><strong>Modelo de uso general (GPAI, capítulo V).</strong> Vía aparte para quien desarrolla modelos de propósito general (no quien simplemente los usa), con obligaciones propias si además tiene riesgo sistémico.</li>
+          <li><strong>Sin obligaciones específicas.</strong> La mayoría de la IA en uso hoy cae aquí.</li>
+        </ul>
+        <p>
+          <strong>Lo que esta herramienta no hace:</strong> no sustituye
+          asesoría legal, y si a una pregunta le falta información para
+          responder con seguridad, el resultado es "no se puede determinar
+          todavía" — nunca una clasificación inventada.
+        </p>
+        <p class="intro-note">
+          La mayor parte del Reglamento ya es de aplicación obligatoria desde
+          el 2 de agosto de 2026 (art. 113); solo quedan pendientes hasta el 2
+          de agosto de 2027 las obligaciones de alto riesgo para sistemas que
+          son componentes de seguridad de productos ya regulados (máquinas,
+          dispositivos médicos, aviación...).
+          <a href="https://eur-lex.europa.eu/legal-content/ES/TXT/HTML/?uri=OJ:L_202401689" target="_blank" rel="noopener noreferrer">Texto oficial del Reglamento en EUR-Lex ↗</a>
+        </p>
+      </div>
+    </details>
+  `;
+}
+
 function renderCompanyStep() {
   const app = document.getElementById("app");
   if (!app) return;
 
   app.innerHTML = `
+    ${introHtml()}
     <div class="question">
       <p>¿Cómo se llama la empresa o el sistema que vas a evaluar?</p>
       <p class="help">Opcional — solo sirve para identificar esta evaluación en tu lista de "evaluaciones anteriores". Se guarda únicamente en tu navegador, no se envía a ningún servidor.</p>

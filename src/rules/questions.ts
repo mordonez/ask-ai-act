@@ -16,8 +16,12 @@ import type { Question } from "./types";
 /**
  * Puerta de entrada del artículo 2 (ámbito de aplicación) — verificado
  * apartado por apartado contra artificialintelligenceact.eu/article/2/
- * el 3 de septiembre de 2026 (EUR-Lex no es accesible por fetch
- * directo). Antes de este árbol, un sistema militar o un modelo
+ * el 3 de septiembre de 2026 (EUR-Lex no era accesible por fetch
+ * directo en ese momento — un curl/WebFetch automatizado recibe un
+ * challenge de AWS WAF; solo carga con un navegador real. Desde
+ * entonces el texto oficial completo vive en
+ * `sources/reglamento_ue_2024_1689_es.txt`, la fuente a usar para
+ * revisar esta nota). Antes de este árbol, un sistema militar o un modelo
  * open-source podía entrar igual por toda la clasificación y salir
  * "alto riesgo" cuando el Reglamento ni le aplica.
  *

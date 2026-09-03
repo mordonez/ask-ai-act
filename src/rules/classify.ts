@@ -29,12 +29,15 @@ import {
  * Nota de procedencia sobre el filtro del art. 6.3 (Q_TAREA_LIMITADA,
  * Q_MEJORA_TRABAJO_HUMANO, Q_DETECTA_PATRONES, Q_TAREA_PREPARATORIA,
  * Q_PERFILADO) y sobre las exclusiones de ámbito del art. 2
- * (Q_EXCLUSION_*, Q_ES_CODIGO_ABIERTO): las guías de AESIA no las
- * desarrollan con detalle. Están verificadas contra el texto del
- * propio Reglamento (UE) 2024/1689 vía espejo de
- * artificialintelligenceact.eu (EUR-Lex no es accesible por fetch
- * directo). Si se consigue el texto consolidado oficial en
- * `sources/`, revisar estas notas contra él.
+ * (Q_EXCLUSION_*, Q_ES_CODIGO_ABIERTO): verificadas originalmente
+ * contra el texto del Reglamento vía espejo de
+ * artificialintelligenceact.eu, ya que EUR-Lex no es accesible por
+ * fetch directo (un curl/WebFetch automatizado recibe un challenge de
+ * AWS WAF; solo carga con un navegador real ejecutando JavaScript).
+ * Desde el 3 de septiembre de 2026 el texto oficial completo (texto
+ * original de 2024/1689, sin la consolidación de modificaciones
+ * posteriores) vive en `sources/reglamento_ue_2024_1689_es.txt` —
+ * verificar contra ese fichero al tocar estas reglas.
  *
  * Nota de procedencia sobre Q_REVISION_EDITORIAL (excepción del
  * art. 50.4): verificada el 3 de septiembre de 2026 contra fuentes

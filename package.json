@@ -10,6 +10,7 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
+    "manifest": "node scripts/generate-questions-manifest.mjs",
     "deploy": "vite build && wrangler pages deploy dist --project-name=ask-ai-act"
   },
   "devDependencies": {

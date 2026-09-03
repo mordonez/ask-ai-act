@@ -2,6 +2,8 @@ import type { Answer, Answers, ClassificationResult } from "./types";
 import {
   PROHIBITED_PRACTICE_QUESTIONS,
   Q_ANEXO_I_O_III,
+  Q_CONTENIDO_ES_TEXTO,
+  Q_CONTENIDO_PUBLICADO,
   Q_DETECTA_PATRONES,
   Q_ES_CODIGO_ABIERTO,
   Q_ES_GPAI,
@@ -18,6 +20,7 @@ import {
   Q_REVISION_EDITORIAL,
   Q_TAREA_LIMITADA,
   Q_TAREA_PREPARATORIA,
+  Q_TRANSPARENCIA_BIOMETRICA_EMOCIONES,
 } from "./questions";
 
 /**
@@ -184,13 +187,23 @@ type TransparencyResult =
   | { status: "missing"; id: string }
   | { status: "unclear"; question: { text: string; legalRef: string } };
 
+/** Marcador de la obligación de divulgación al publicar (art. 50.4) — no es una `Question` real, es una obligación derivada de varias respuestas (`Q_CONTENIDO_PUBLICADO`, `Q_CONTENIDO_ES_TEXTO`, `Q_REVISION_EDITORIAL`). */
+const DIVULGACION_PUBLICACION = { id: "divulgacion_publicacion", text: "art. 50.4 (divulgación al publicar)", legalRef: "art. 50.4" };
+
 /**
- * El art. 50 agrupa obligaciones distintas: interactuar con personas
- * (50.1) y generar/manipular contenido sintético que se publica
- * (50.2/50.4) son disparadores independientes, cada uno con su propia
- * obligación. Se preguntan las dos (no hay atajo de "una sí basta")
- * porque ambas pueden aplicar a la vez y el plan de acción necesita
- * saber cuáles exactamente, no solo si "alguna" aplica.
+ * El art. 50 agrupa cuatro obligaciones independientes, cada una con
+ * su propio disparador: interactuar con personas (50.1), marcar
+ * técnicamente el contenido generado, se publique o no (50.2), y —
+ * solo si además se publica — divulgar que es generado por IA (50.4),
+ * con dos regímenes de excepción distintos según el tipo de contenido
+ * (revisión editorial solo para texto; el Reglamento no ofrece esa
+ * excepción para imagen/audio/vídeo, así que ahí el 50.4 se asume
+ * aplicable si se publica, sin ofrecer una exención que el texto legal
+ * no prevé para ese caso). Y la categorización biométrica o el
+ * reconocimiento de emociones expuestos a personas físicas (50.3),
+ * independiente de todo lo anterior. Se preguntan por separado porque
+ * pueden aplicar varias a la vez y el plan de acción necesita saber
+ * cuáles exactamente, no solo si "alguna" aplica.
  */
 function evaluateTransparency(answers: Answers): TransparencyResult {
   const interactua: Answer | undefined = answers[Q_INTERACTUA_CON_PERSONAS.id];
@@ -201,20 +214,41 @@ function evaluateTransparency(answers: Answers): TransparencyResult {
   if (genera === undefined) return { status: "missing", id: Q_GENERA_CONTENIDO_SINTETICO.id };
   if (genera === "no_se") return { status: "unclear", question: Q_GENERA_CONTENIDO_SINTETICO };
 
-  // Excepción del art. 50.4: si genera contenido pero hay revisión
-  // editorial sustantiva, esa obligación concreta no se activa. Solo
-  // tiene sentido preguntarlo cuando genera === "si".
-  let generaAplica = genera === "si";
+  // El 50.4 (divulgación) solo se evalúa si además se publica —
+  // gate independiente del marcado técnico del 50.2.
+  let divulgacionAplica = false;
   if (genera === "si") {
-    const revision: Answer | undefined = answers[Q_REVISION_EDITORIAL.id];
-    if (revision === undefined) return { status: "missing", id: Q_REVISION_EDITORIAL.id };
-    if (revision === "no_se") return { status: "unclear", question: Q_REVISION_EDITORIAL };
-    if (revision === "si") generaAplica = false; // excepción del 50.4: no hace falta marcarlo
+    const publicado: Answer | undefined = answers[Q_CONTENIDO_PUBLICADO.id];
+    if (publicado === undefined) return { status: "missing", id: Q_CONTENIDO_PUBLICADO.id };
+    if (publicado === "no_se") return { status: "unclear", question: Q_CONTENIDO_PUBLICADO };
+
+    if (publicado === "si") {
+      divulgacionAplica = true; // por defecto aplica; solo el texto tiene excepción posible
+      const esTexto: Answer | undefined = answers[Q_CONTENIDO_ES_TEXTO.id];
+      if (esTexto === undefined) return { status: "missing", id: Q_CONTENIDO_ES_TEXTO.id };
+      if (esTexto === "no_se") return { status: "unclear", question: Q_CONTENIDO_ES_TEXTO };
+
+      if (esTexto === "si") {
+        // Excepción de revisión editorial: solo existe para texto.
+        const revision: Answer | undefined = answers[Q_REVISION_EDITORIAL.id];
+        if (revision === undefined) return { status: "missing", id: Q_REVISION_EDITORIAL.id };
+        if (revision === "no_se") return { status: "unclear", question: Q_REVISION_EDITORIAL };
+        if (revision === "si") divulgacionAplica = false; // excepción del 50.4: no hace falta divulgarlo
+      }
+      // esTexto === "no" (imagen/audio/vídeo): no se ofrece excepción de revisión
+      // editorial — no existe para este tipo de contenido en el texto legal.
+    }
   }
+
+  const biometriaEmociones: Answer | undefined = answers[Q_TRANSPARENCIA_BIOMETRICA_EMOCIONES.id];
+  if (biometriaEmociones === undefined) return { status: "missing", id: Q_TRANSPARENCIA_BIOMETRICA_EMOCIONES.id };
+  if (biometriaEmociones === "no_se") return { status: "unclear", question: Q_TRANSPARENCIA_BIOMETRICA_EMOCIONES };
 
   const applicable = [
     interactua === "si" ? Q_INTERACTUA_CON_PERSONAS : null,
-    generaAplica ? Q_GENERA_CONTENIDO_SINTETICO : null,
+    genera === "si" ? Q_GENERA_CONTENIDO_SINTETICO : null,
+    divulgacionAplica ? DIVULGACION_PUBLICACION : null,
+    biometriaEmociones === "si" ? Q_TRANSPARENCIA_BIOMETRICA_EMOCIONES : null,
   ].filter((q): q is typeof Q_INTERACTUA_CON_PERSONAS => q !== null);
 
   if (applicable.length === 0) return { status: "none" };
@@ -323,13 +357,13 @@ export function classify(answers: Answers): ClassificationResult {
   if (transparencia.status === "unclear") return needsReview(transparencia.question);
   if (transparencia.status === "applies") {
     const refs = transparencia.questions.map((q) => q.legalRef);
-    const obligations = transparencia.questions
-      .map((q) =>
-        q.id === Q_INTERACTUA_CON_PERSONAS.id
-          ? "informar de la interacción con una IA"
-          : "marcar y etiquetar el contenido generado o manipulado"
-      )
-      .join(" y ");
+    const OBLIGATION_TEXT: Record<string, string> = {
+      [Q_INTERACTUA_CON_PERSONAS.id]: "informar de la interacción con una IA",
+      [Q_GENERA_CONTENIDO_SINTETICO.id]: "marcar técnicamente el contenido generado o manipulado",
+      [DIVULGACION_PUBLICACION.id]: "divulgar al público que el contenido es generado por IA",
+      [Q_TRANSPARENCIA_BIOMETRICA_EMOCIONES.id]: "informar del funcionamiento a las personas expuestas a la categorización biométrica o el reconocimiento de emociones",
+    };
+    const obligations = transparencia.questions.map((q) => OBLIGATION_TEXT[q.id] ?? q.text).join(" y ");
     return withOpenSourceNote(
       {
         label: "obligaciones_transparencia",

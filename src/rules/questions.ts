@@ -268,7 +268,7 @@ export const Q_PROHIBIDO_BIOMETRIA_REMOTA_TIEMPO_REAL: Question = {
     ],
     no: [
       "Control de acceso biométrico en la entrada de una oficina privada.",
-      "Identificación biométrica diferida, usada horas después para investigar un delito grave con autorización judicial (posible excepción tasada).",
+      "Identificación biométrica diferida (horas o días después, no en directo) para investigar un delito grave: no la cubre este artículo por no ser \"en tiempo real\" — cae, en su caso, bajo el Anexo III como sistema de alto riesgo, no bajo una excepción del art. 5.",
     ],
   },
   legalRef: "art. 5.1.h",
@@ -494,38 +494,105 @@ export const Q_INTERACTUA_CON_PERSONAS: Question = {
   links: [{ label: "Texto del artículo 50 — transparencia", url: "https://artificialintelligenceact.eu/article/50/" }],
 };
 
+/**
+ * Corregido tras auditoría de cobertura (ver eval/README.md): antes
+ * exigía "que se publica o distribuye" como condición para la
+ * pregunta entera, pero esa condición es del art. 50.4 (divulgación
+ * al publicarse), no del 50.2 (marcado técnico), que se aplica al
+ * generar el contenido, se publique o no. Alguien con contenido
+ * generado pero sin publicar podía concluir que no tenía ninguna
+ * obligación del art. 50, cuando el marcado técnico seguía aplicando.
+ * Ahora esta pregunta solo cubre el 50.2; `Q_CONTENIDO_PUBLICADO`
+ * decide aparte si además se activa el 50.4.
+ */
 export const Q_GENERA_CONTENIDO_SINTETICO: Question = {
   id: "genera_contenido_sintetico",
-  text: "¿El sistema genera o manipula contenido sintético (texto, imagen, audio o vídeo) que se publica o distribuye?",
+  text: "¿El sistema genera o manipula contenido sintético (texto, imagen, audio o vídeo), se publique o no?",
   examples: {
     si: [
-      "Artículos, imágenes o vídeos generados por IA que terminan publicados.",
-      "Un locutor virtual que narra un vídeo publicado en redes sociales.",
+      "Un asistente que redacta borradores de texto, aunque solo se usen internamente.",
+      "Un sistema que genera imágenes o narra vídeos con voz sintética.",
     ],
     no: [
-      "Un sistema que solo clasifica o procesa datos internamente, sin producir contenido publicable.",
-      "Un sistema que solo etiqueta imágenes internamente para entrenar otro modelo, sin publicarlas.",
+      "Un sistema que solo clasifica o procesa datos existentes, sin producir contenido nuevo.",
+      "Un sistema que solo hace ediciones estándar (recorte, corrección de color) sin alterar sustancialmente el contenido original.",
     ],
   },
-  legalRef: "art. 50.2 / 50.4",
+  legalRef: "art. 50.2",
   links: [{ label: "Texto del artículo 50 — transparencia", url: "https://artificialintelligenceact.eu/article/50/" }],
 };
 
 /**
- * Excepción del art. 50.4: si el contenido pasa por revisión humana
- * sustantiva y hay una persona (física o jurídica) que asume la
- * responsabilidad editorial, no hace falta marcarlo como generado
- * por IA. Verificado el 3 de septiembre de 2026 contra fuentes que
- * citan el texto del Reglamento — con un matiz importante: una
- * revisión meramente ortográfica o formal NO cuenta como revisión
- * editorial a estos efectos. Encontrada por un agente en una prueba
- * ciega de clasificación (caso de una universidad redactando
- * artículos institucionales con IA) — el árbol no la tenía hasta
- * ahora y le exigía marcar el contenido aunque hubiera revisión real.
+ * Gate del art. 50.4 (obligación del responsable del despliegue de
+ * divulgar al público), separado del 50.2 (marcado técnico del
+ * proveedor, ya cubierto por `Q_GENERA_CONTENIDO_SINTETICO` sin
+ * condición de publicación). Solo tiene sentido preguntarlo si la
+ * respuesta anterior fue "sí".
+ */
+export const Q_CONTENIDO_PUBLICADO: Question = {
+  id: "contenido_publicado",
+  text: "¿Ese contenido generado o manipulado se hace público o se distribuye fuera del entorno interno de quien lo genera?",
+  examples: {
+    si: [
+      "Se publica en la web, en redes sociales o se envía a personas fuera de la organización.",
+      "Un vídeo generado que se sube a una plataforma pública.",
+    ],
+    no: [
+      "Se usa solo internamente (borradores, pruebas, entrenamiento de otro modelo) y nunca sale de la organización.",
+      "Un informe generado por IA que solo circula dentro del equipo, sin publicarse.",
+    ],
+  },
+  legalRef: "art. 50.4",
+  links: [{ label: "Texto del artículo 50 — transparencia", url: "https://artificialintelligenceact.eu/article/50/" }],
+};
+
+/**
+ * El art. 50.4 tiene dos párrafos con excepciones distintas según el
+ * tipo de contenido: para imagen/audio/vídeo (posibles
+ * ultrasuplantaciones), la excepción es que la obra sea manifiestamente
+ * creativa/satírica/artística/de ficción (y aun así solo reduce la
+ * obligación, no la elimina). Para TEXTO sobre un asunto de interés
+ * público, la excepción es la revisión editorial sustantiva (ver
+ * `Q_REVISION_EDITORIAL`), y esa sí elimina la obligación por completo.
+ * Aplicar la excepción de revisión editorial a un vídeo/imagen sería
+ * incorrecto — de ahí esta pregunta, que decide qué rama aplica.
+ * Corregido tras auditoría de cobertura (ver eval/README.md).
+ */
+export const Q_CONTENIDO_ES_TEXTO: Question = {
+  id: "contenido_es_texto",
+  text: "¿Ese contenido publicado es texto (no imagen, audio ni vídeo)?",
+  examples: {
+    si: [
+      "Un artículo, una noticia o un resumen generado por IA que se publica como texto.",
+      "Una publicación de blog institucional redactada por IA.",
+    ],
+    no: [
+      "Una imagen o un vídeo generado o manipulado (posible ultrasuplantación / deepfake) — la excepción aplicable es distinta, ver el artículo.",
+      "Un audio con voz sintética publicado como pieza sonora.",
+    ],
+  },
+  legalRef: "art. 50.4",
+  links: [{ label: "Texto del artículo 50 — transparencia", url: "https://artificialintelligenceact.eu/article/50/" }],
+};
+
+/**
+ * Excepción del art. 50.4 (párrafo del texto): si el contenido pasa
+ * por revisión humana sustantiva y hay una persona (física o
+ * jurídica) que asume la responsabilidad editorial, no hace falta
+ * divulgar que es generado por IA. Verificado contra el texto oficial
+ * (`sources/reglamento_ue_2024_1689_es.txt`) — un matiz importante:
+ * una revisión meramente ortográfica o formal NO cuenta como revisión
+ * editorial a estos efectos. Solo se pregunta cuando el contenido
+ * publicado es texto (`Q_CONTENIDO_ES_TEXTO` = "sí") — para
+ * imagen/audio/vídeo esta excepción no existe en el texto legal (la
+ * suya es la de obra creativa/satírica, no modelada aquí: por
+ * seguridad, si se publica imagen/audio/vídeo generado se asume que
+ * el 50.4 aplica, sin ofrecer una exención que el Reglamento no prevé
+ * para ese caso).
  */
 export const Q_REVISION_EDITORIAL: Question = {
   id: "revision_editorial_sustantiva",
-  text: "Antes de publicarse, ¿el contenido generado pasa por una revisión humana sustantiva (no solo ortográfica o de formato) y hay una persona física o jurídica que asume la responsabilidad editorial de lo que se publica?",
+  text: "Antes de publicarse, ¿ese texto pasa por una revisión humana sustantiva (no solo ortográfica o de formato) y hay una persona física o jurídica que asume la responsabilidad editorial de lo que se publica?",
   examples: {
     si: [
       "Alguien del equipo revisa el fondo del contenido, decide si se publica y asume esa responsabilidad.",
@@ -537,6 +604,32 @@ export const Q_REVISION_EDITORIAL: Question = {
     ],
   },
   legalRef: "art. 50.4",
+  links: [{ label: "Texto del artículo 50 — transparencia", url: "https://artificialintelligenceact.eu/article/50/" }],
+};
+
+/**
+ * Art. 50.3: obligación independiente de las anteriores — no depende
+ * de si el sistema conversa con nadie (50.1) ni de si genera
+ * contenido (50.2/50.4). Hueco real encontrado en la auditoría de
+ * cobertura del 3 de septiembre de 2026 (ver eval/README.md): un
+ * sistema de categorización biométrica de clientes en una tienda, o
+ * de reconocimiento de emociones en un contact center, no disparaba
+ * ninguna pregunta de transparencia antes de esta.
+ */
+export const Q_TRANSPARENCIA_BIOMETRICA_EMOCIONES: Question = {
+  id: "transparencia_biometria_emociones",
+  text: "¿El sistema es de categorización biométrica o de reconocimiento de emociones, y hay personas físicas expuestas a su funcionamiento (fuera de los usos ya prohibidos por el art. 5 y sin ser un uso policial autorizado por ley)?",
+  examples: {
+    si: [
+      "Cámaras en una tienda que categorizan a los clientes por edad o género para estadísticas, sin inferir categorías protegidas.",
+      "Un sistema de reconocimiento de emociones en un contact center para priorizar llamadas, fuera del contexto laboral/educativo prohibido.",
+    ],
+    no: [
+      "Verificación biométrica 1:1 (¿eres quien dices ser?) para desbloquear un dispositivo o acceder a un servicio.",
+      "Uso policial de categorización biométrica autorizado por ley para detectar o investigar delitos, con las garantías correspondientes.",
+    ],
+  },
+  legalRef: "art. 50.3",
   links: [{ label: "Texto del artículo 50 — transparencia", url: "https://artificialintelligenceact.eu/article/50/" }],
 };
 
@@ -560,11 +653,20 @@ export const FILTER_6_3_QUESTIONS: Question[] = [
   Q_TAREA_PREPARATORIA,
 ];
 
-/** Preguntas de transparencia (art. 50), para sistemas que no son de alto riesgo. */
+/**
+ * Preguntas de transparencia (art. 50), para sistemas que no son de
+ * alto riesgo. `Q_CONTENIDO_PUBLICADO`, `Q_CONTENIDO_ES_TEXTO` y
+ * `Q_REVISION_EDITORIAL` solo se preguntan condicionalmente (ver
+ * `evaluateTransparency` en classify.ts) — su presencia aquí es para
+ * que `QUESTIONS_BY_ID` en el wizard las encuentre por id.
+ */
 export const TRANSPARENCY_QUESTIONS: Question[] = [
   Q_INTERACTUA_CON_PERSONAS,
   Q_GENERA_CONTENIDO_SINTETICO,
+  Q_CONTENIDO_PUBLICADO,
+  Q_CONTENIDO_ES_TEXTO,
   Q_REVISION_EDITORIAL,
+  Q_TRANSPARENCIA_BIOMETRICA_EMOCIONES,
 ];
 
 export const ROLE_QUESTION_ID = "rol_organizacion";

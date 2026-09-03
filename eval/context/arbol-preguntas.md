@@ -9,7 +9,7 @@ contexto de un modelo al que se le pida auditar cobertura: "¿hay alguna
 obligación del Reglamento para la que este árbol no tiene pregunta?". Ver
 `eval/README.md`, sección "Auditoría de cobertura".
 
-Total de preguntas: 26.
+Total de preguntas: 29.
 
 ## Núcleo (ámbito, art. 5, GPAI, Anexo I/III) (17)
 
@@ -203,7 +203,7 @@ Ejemplos que responden **sí**:
 
 Ejemplos que responden **no**:
 - Control de acceso biométrico en la entrada de una oficina privada.
-- Identificación biométrica diferida, usada horas después para investigar un delito grave con autorización judicial (posible excepción tasada).
+- Identificación biométrica diferida (horas o días después, no en directo) para investigar un delito grave: no la cubre este artículo por no ser "en tiempo real" — cae, en su caso, bajo el Anexo III como sistema de alto riesgo, no bajo una excepción del art. 5.
 
 Enlaces:
 - Texto del artículo 5 — prácticas prohibidas: https://artificialintelligenceact.eu/article/5/
@@ -360,7 +360,7 @@ Enlaces:
 - Texto del artículo 6 — reglas de clasificación: https://artificialintelligenceact.eu/article/6/
 
 
-## Transparencia (art. 50, sistemas que no son de alto riesgo) (3)
+## Transparencia (art. 50, sistemas que no son de alto riesgo) (6)
 
 ### `interactua_con_personas` — art. 50.1
 
@@ -377,24 +377,54 @@ Ejemplos que responden **no**:
 Enlaces:
 - Texto del artículo 50 — transparencia: https://artificialintelligenceact.eu/article/50/
 
-### `genera_contenido_sintetico` — art. 50.2 / 50.4
+### `genera_contenido_sintetico` — art. 50.2
 
-¿El sistema genera o manipula contenido sintético (texto, imagen, audio o vídeo) que se publica o distribuye?
+¿El sistema genera o manipula contenido sintético (texto, imagen, audio o vídeo), se publique o no?
 
 Ejemplos que responden **sí**:
-- Artículos, imágenes o vídeos generados por IA que terminan publicados.
-- Un locutor virtual que narra un vídeo publicado en redes sociales.
+- Un asistente que redacta borradores de texto, aunque solo se usen internamente.
+- Un sistema que genera imágenes o narra vídeos con voz sintética.
 
 Ejemplos que responden **no**:
-- Un sistema que solo clasifica o procesa datos internamente, sin producir contenido publicable.
-- Un sistema que solo etiqueta imágenes internamente para entrenar otro modelo, sin publicarlas.
+- Un sistema que solo clasifica o procesa datos existentes, sin producir contenido nuevo.
+- Un sistema que solo hace ediciones estándar (recorte, corrección de color) sin alterar sustancialmente el contenido original.
+
+Enlaces:
+- Texto del artículo 50 — transparencia: https://artificialintelligenceact.eu/article/50/
+
+### `contenido_publicado` — art. 50.4
+
+¿Ese contenido generado o manipulado se hace público o se distribuye fuera del entorno interno de quien lo genera?
+
+Ejemplos que responden **sí**:
+- Se publica en la web, en redes sociales o se envía a personas fuera de la organización.
+- Un vídeo generado que se sube a una plataforma pública.
+
+Ejemplos que responden **no**:
+- Se usa solo internamente (borradores, pruebas, entrenamiento de otro modelo) y nunca sale de la organización.
+- Un informe generado por IA que solo circula dentro del equipo, sin publicarse.
+
+Enlaces:
+- Texto del artículo 50 — transparencia: https://artificialintelligenceact.eu/article/50/
+
+### `contenido_es_texto` — art. 50.4
+
+¿Ese contenido publicado es texto (no imagen, audio ni vídeo)?
+
+Ejemplos que responden **sí**:
+- Un artículo, una noticia o un resumen generado por IA que se publica como texto.
+- Una publicación de blog institucional redactada por IA.
+
+Ejemplos que responden **no**:
+- Una imagen o un vídeo generado o manipulado (posible ultrasuplantación / deepfake) — la excepción aplicable es distinta, ver el artículo.
+- Un audio con voz sintética publicado como pieza sonora.
 
 Enlaces:
 - Texto del artículo 50 — transparencia: https://artificialintelligenceact.eu/article/50/
 
 ### `revision_editorial_sustantiva` — art. 50.4
 
-Antes de publicarse, ¿el contenido generado pasa por una revisión humana sustantiva (no solo ortográfica o de formato) y hay una persona física o jurídica que asume la responsabilidad editorial de lo que se publica?
+Antes de publicarse, ¿ese texto pasa por una revisión humana sustantiva (no solo ortográfica o de formato) y hay una persona física o jurídica que asume la responsabilidad editorial de lo que se publica?
 
 Ejemplos que responden **sí**:
 - Alguien del equipo revisa el fondo del contenido, decide si se publica y asume esa responsabilidad.
@@ -403,6 +433,21 @@ Ejemplos que responden **sí**:
 Ejemplos que responden **no**:
 - Se publica automáticamente, o la única revisión es corregir ortografía/gramática — eso NO cuenta como revisión editorial a estos efectos.
 - "Revisar" significa solo pasar el corrector ortográfico antes de publicar automáticamente.
+
+Enlaces:
+- Texto del artículo 50 — transparencia: https://artificialintelligenceact.eu/article/50/
+
+### `transparencia_biometria_emociones` — art. 50.3
+
+¿El sistema es de categorización biométrica o de reconocimiento de emociones, y hay personas físicas expuestas a su funcionamiento (fuera de los usos ya prohibidos por el art. 5 y sin ser un uso policial autorizado por ley)?
+
+Ejemplos que responden **sí**:
+- Cámaras en una tienda que categorizan a los clientes por edad o género para estadísticas, sin inferir categorías protegidas.
+- Un sistema de reconocimiento de emociones en un contact center para priorizar llamadas, fuera del contexto laboral/educativo prohibido.
+
+Ejemplos que responden **no**:
+- Verificación biométrica 1:1 (¿eres quien dices ser?) para desbloquear un dispositivo o acceder a un servicio.
+- Uso policial de categorización biométrica autorizado por ley para detectar o investigar delitos, con las garantías correspondientes.
 
 Enlaces:
 - Texto del artículo 50 — transparencia: https://artificialintelligenceact.eu/article/50/

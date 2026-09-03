@@ -76,21 +76,40 @@ describe("buildActionPlan — obligaciones_transparencia: solo la obligación cu
     expect(plan.items[0]?.obligation).toContain("Informar");
   });
 
-  it("solo contenido generado (art. 50.2 / 50.4) -> solo la obligación de marcar, no la de informar (caso de la universidad)", () => {
+  it("solo marcado técnico (art. 50.2, sin publicar) -> solo la obligación de marcar, no la de divulgar ni la de informar (caso de la universidad, tras la corrección de la auditoría de cobertura)", () => {
     const plan = buildActionPlan(
-      { label: "obligaciones_transparencia", summary: "...", legalRefs: ["art. 50.2 / 50.4"] },
+      { label: "obligaciones_transparencia", summary: "...", legalRefs: ["art. 50.2"] },
       undefined
     );
     expect(plan.items).toHaveLength(1);
     expect(plan.items[0]?.obligation).toContain("Marcar");
   });
 
-  it("ambos disparadores -> las dos obligaciones", () => {
+  it("marcado y divulgación (art. 50.2 + 50.4, contenido publicado) -> las dos obligaciones", () => {
     const plan = buildActionPlan(
-      { label: "obligaciones_transparencia", summary: "...", legalRefs: ["art. 50.1", "art. 50.2 / 50.4"] },
+      { label: "obligaciones_transparencia", summary: "...", legalRefs: ["art. 50.2", "art. 50.4"] },
       undefined
     );
     expect(plan.items).toHaveLength(2);
+    expect(plan.items.some((i) => i.obligation.includes("Marcar"))).toBe(true);
+    expect(plan.items.some((i) => i.obligation.includes("Divulgar"))).toBe(true);
+  });
+
+  it("interacción, marcado y divulgación a la vez -> las tres obligaciones", () => {
+    const plan = buildActionPlan(
+      { label: "obligaciones_transparencia", summary: "...", legalRefs: ["art. 50.1", "art. 50.2", "art. 50.4"] },
+      undefined
+    );
+    expect(plan.items).toHaveLength(3);
+  });
+
+  it("categorización biométrica o reconocimiento de emociones (art. 50.3) -> su propia obligación", () => {
+    const plan = buildActionPlan(
+      { label: "obligaciones_transparencia", summary: "...", legalRefs: ["art. 50.3"] },
+      undefined
+    );
+    expect(plan.items).toHaveLength(1);
+    expect(plan.items[0]?.obligation).toContain("categorización biométrica");
   });
 });
 

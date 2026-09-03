@@ -75,6 +75,7 @@ describe("classify — código abierto (art. 2.12): nota añadida, nunca sustitu
       anexo_i_o_iii: "no",
       interactua_con_personas: "no",
       genera_contenido_sintetico: "no",
+      transparencia_biometria_emociones: "no",
     });
     expect(result.label).toBe("sin_obligaciones_especificas");
     expect(result.summary).toContain("código abierto");
@@ -188,6 +189,7 @@ describe("classify — casos límite del árbol (tras la puerta del art. 2)", ()
       anexo_i_o_iii: "no",
       interactua_con_personas: "no",
       genera_contenido_sintetico: "no",
+      transparencia_biometria_emociones: "no",
     });
     expect(result.label).toBe("sin_obligaciones_especificas");
   });
@@ -200,12 +202,13 @@ describe("classify — casos límite del árbol (tras la puerta del art. 2)", ()
       anexo_i_o_iii: "no",
       interactua_con_personas: "si",
       genera_contenido_sintetico: "no",
+      transparencia_biometria_emociones: "no",
     });
     expect(result.label).toBe("obligaciones_transparencia");
     expect(result.legalRefs).toEqual(["art. 50.1"]);
   });
 
-  it("genera contenido sintético sin revisión editorial real -> obligaciones de transparencia, la de marcado", () => {
+  it("genera contenido sintético sin publicarlo -> igualmente obligado a marcarlo técnicamente (art. 50.2 no depende de publicación, corregido tras auditoría de cobertura)", () => {
     const result = classify({
       ...IN_SCOPE_NOT_GPAI,
       es_sistema_ia: "si",
@@ -213,13 +216,14 @@ describe("classify — casos límite del árbol (tras la puerta del art. 2)", ()
       anexo_i_o_iii: "no",
       interactua_con_personas: "no",
       genera_contenido_sintetico: "si",
-      revision_editorial_sustantiva: "no",
+      contenido_publicado: "no",
+      transparencia_biometria_emociones: "no",
     });
     expect(result.label).toBe("obligaciones_transparencia");
-    expect(result.legalRefs).toEqual(["art. 50.2 / 50.4"]);
+    expect(result.legalRefs).toEqual(["art. 50.2"]);
   });
 
-  it("genera contenido sintético CON revisión editorial sustantiva -> excepción del art. 50.4, sin obligaciones (caso real de la universidad que redacta artículos con IA, encontrado en una prueba ciega)", () => {
+  it("genera contenido sintético y lo publica, sin revisión editorial -> marcado (50.2) Y divulgación (50.4) a la vez", () => {
     const result = classify({
       ...IN_SCOPE_NOT_GPAI,
       es_sistema_ia: "si",
@@ -227,12 +231,51 @@ describe("classify — casos límite del árbol (tras la puerta del art. 2)", ()
       anexo_i_o_iii: "no",
       interactua_con_personas: "no",
       genera_contenido_sintetico: "si",
-      revision_editorial_sustantiva: "si",
+      contenido_publicado: "si",
+      contenido_es_texto: "si",
+      revision_editorial_sustantiva: "no",
+      transparencia_biometria_emociones: "no",
     });
-    expect(result.label).toBe("sin_obligaciones_especificas");
+    expect(result.label).toBe("obligaciones_transparencia");
+    expect(result.legalRefs).toEqual(["art. 50.2", "art. 50.4"]);
   });
 
-  it("no se pregunta la revisión editorial si no genera contenido -> no bloquea el árbol", () => {
+  it("genera texto publicado CON revisión editorial sustantiva -> excepción del art. 50.4 (divulgación), pero el marcado técnico del 50.2 sigue aplicando (caso real de la universidad que redacta artículos con IA, encontrado en una prueba ciega — la excepción de revisión editorial es del 50.4, no del 50.2)", () => {
+    const result = classify({
+      ...IN_SCOPE_NOT_GPAI,
+      es_sistema_ia: "si",
+      ...NOT_PROHIBITED,
+      anexo_i_o_iii: "no",
+      interactua_con_personas: "no",
+      genera_contenido_sintetico: "si",
+      contenido_publicado: "si",
+      contenido_es_texto: "si",
+      revision_editorial_sustantiva: "si",
+      transparencia_biometria_emociones: "no",
+    });
+    expect(result.label).toBe("obligaciones_transparencia");
+    expect(result.legalRefs).toEqual(["art. 50.2"]);
+  });
+
+  it("publica imagen/vídeo generado (no texto) -> divulgación del 50.4 aplica siempre, sin ofrecer la excepción de revisión editorial (esa excepción no existe para este tipo de contenido)", () => {
+    const result = classify({
+      ...IN_SCOPE_NOT_GPAI,
+      es_sistema_ia: "si",
+      ...NOT_PROHIBITED,
+      anexo_i_o_iii: "no",
+      interactua_con_personas: "no",
+      genera_contenido_sintetico: "si",
+      contenido_publicado: "si",
+      contenido_es_texto: "no",
+      transparencia_biometria_emociones: "no",
+    });
+    expect(result.label).toBe("obligaciones_transparencia");
+    expect(result.legalRefs).toEqual(["art. 50.2", "art. 50.4"]);
+    // No debería pedir revision_editorial_sustantiva: esa excepción no aplica a imagen/audio/vídeo.
+    expect(result.missingQuestions ?? []).not.toContain("revision_editorial_sustantiva");
+  });
+
+  it("no se pregunta si se publica ni el resto de la cadena del 50.4 si no genera contenido -> no bloquea el árbol", () => {
     const result = classify({
       ...IN_SCOPE_NOT_GPAI,
       es_sistema_ia: "si",
@@ -240,11 +283,12 @@ describe("classify — casos límite del árbol (tras la puerta del art. 2)", ()
       anexo_i_o_iii: "no",
       interactua_con_personas: "no",
       genera_contenido_sintetico: "no",
+      transparencia_biometria_emociones: "no",
     });
     expect(result.label).toBe("sin_obligaciones_especificas");
   });
 
-  it("interactúa Y genera contenido sin revisión editorial -> las dos obligaciones a la vez", () => {
+  it("interactúa Y genera contenido publicado sin revisión editorial -> las tres obligaciones a la vez (50.1, 50.2 y 50.4)", () => {
     const result = classify({
       ...IN_SCOPE_NOT_GPAI,
       es_sistema_ia: "si",
@@ -252,13 +296,16 @@ describe("classify — casos límite del árbol (tras la puerta del art. 2)", ()
       anexo_i_o_iii: "no",
       interactua_con_personas: "si",
       genera_contenido_sintetico: "si",
+      contenido_publicado: "si",
+      contenido_es_texto: "si",
       revision_editorial_sustantiva: "no",
+      transparencia_biometria_emociones: "no",
     });
     expect(result.label).toBe("obligaciones_transparencia");
-    expect(result.legalRefs).toEqual(["art. 50.1", "art. 50.2 / 50.4"]);
+    expect(result.legalRefs).toEqual(["art. 50.1", "art. 50.2", "art. 50.4"]);
   });
 
-  it("interactúa Y genera contenido, pero con revisión editorial -> solo la obligación de interacción sobrevive", () => {
+  it("interactúa Y genera contenido, pero con revisión editorial -> sobreviven la interacción (50.1) y el marcado (50.2), no la divulgación (50.4)", () => {
     const result = classify({
       ...IN_SCOPE_NOT_GPAI,
       es_sistema_ia: "si",
@@ -266,10 +313,27 @@ describe("classify — casos límite del árbol (tras la puerta del art. 2)", ()
       anexo_i_o_iii: "no",
       interactua_con_personas: "si",
       genera_contenido_sintetico: "si",
+      contenido_publicado: "si",
+      contenido_es_texto: "si",
       revision_editorial_sustantiva: "si",
+      transparencia_biometria_emociones: "no",
     });
     expect(result.label).toBe("obligaciones_transparencia");
-    expect(result.legalRefs).toEqual(["art. 50.1"]);
+    expect(result.legalRefs).toEqual(["art. 50.1", "art. 50.2"]);
+  });
+
+  it("categorización biométrica o reconocimiento de emociones expuestos a personas -> obligación de transparencia del art. 50.3, independiente de que interactúe o genere contenido (hueco encontrado en la auditoría de cobertura)", () => {
+    const result = classify({
+      ...IN_SCOPE_NOT_GPAI,
+      es_sistema_ia: "si",
+      ...NOT_PROHIBITED,
+      anexo_i_o_iii: "no",
+      interactua_con_personas: "no",
+      genera_contenido_sintetico: "no",
+      transparencia_biometria_emociones: "si",
+    });
+    expect(result.label).toBe("obligaciones_transparencia");
+    expect(result.legalRefs).toEqual(["art. 50.3"]);
   });
 
   it("está en Anexo III, encaja en tarea limitada del art. 6.3 y no perfila ni influye -> excluido de alto riesgo", () => {
@@ -286,6 +350,7 @@ describe("classify — casos límite del árbol (tras la puerta del art. 2)", ()
       tarea_preparatoria: "no",
       interactua_con_personas: "no",
       genera_contenido_sintetico: "no",
+      transparencia_biometria_emociones: "no",
     });
     expect(result.label).toBe("sin_obligaciones_especificas");
   });
@@ -414,6 +479,7 @@ describe("classify — 'no lo sé' nunca se trata como 'sí' (regresión)", () =
       mejora_resultado_humano_terminado: "no_se",
       interactua_con_personas: "no",
       genera_contenido_sintetico: "no",
+      transparencia_biometria_emociones: "no",
     });
     expect(result.label).toBe("sin_obligaciones_especificas");
   });
@@ -441,7 +507,7 @@ describe("classify — 'no lo sé' nunca se trata como 'sí' (regresión)", () =
     expect(result.label).toBe("no_determinado");
   });
 
-  it("genera contenido sintético = sí, pero falta responder la revisión editorial -> no_determinado, no asume que no hay revisión", () => {
+  it("genera contenido sintético = sí, pero falta responder si se publica -> no_determinado, no asume que no se publica", () => {
     const result = classify({
       ...IN_SCOPE_NOT_GPAI,
       es_sistema_ia: "si",
@@ -449,6 +515,62 @@ describe("classify — 'no lo sé' nunca se trata como 'sí' (regresión)", () =
       anexo_i_o_iii: "no",
       interactua_con_personas: "no",
       genera_contenido_sintetico: "si",
+    });
+    expect(result.label).toBe("no_determinado");
+    expect(result.missingQuestions).toEqual(["contenido_publicado"]);
+  });
+
+  it("contenido_publicado = no_se -> no_determinado, no asume ni que se publica ni que no", () => {
+    const result = classify({
+      ...IN_SCOPE_NOT_GPAI,
+      es_sistema_ia: "si",
+      ...NOT_PROHIBITED,
+      anexo_i_o_iii: "no",
+      interactua_con_personas: "no",
+      genera_contenido_sintetico: "si",
+      contenido_publicado: "no_se",
+    });
+    expect(result.label).toBe("no_determinado");
+  });
+
+  it("se publica, pero falta responder si es texto -> no_determinado, no asume el tipo de contenido", () => {
+    const result = classify({
+      ...IN_SCOPE_NOT_GPAI,
+      es_sistema_ia: "si",
+      ...NOT_PROHIBITED,
+      anexo_i_o_iii: "no",
+      interactua_con_personas: "no",
+      genera_contenido_sintetico: "si",
+      contenido_publicado: "si",
+    });
+    expect(result.label).toBe("no_determinado");
+    expect(result.missingQuestions).toEqual(["contenido_es_texto"]);
+  });
+
+  it("contenido_es_texto = no_se -> no_determinado", () => {
+    const result = classify({
+      ...IN_SCOPE_NOT_GPAI,
+      es_sistema_ia: "si",
+      ...NOT_PROHIBITED,
+      anexo_i_o_iii: "no",
+      interactua_con_personas: "no",
+      genera_contenido_sintetico: "si",
+      contenido_publicado: "si",
+      contenido_es_texto: "no_se",
+    });
+    expect(result.label).toBe("no_determinado");
+  });
+
+  it("es texto publicado, pero falta responder la revisión editorial -> no_determinado, no asume que no hay revisión", () => {
+    const result = classify({
+      ...IN_SCOPE_NOT_GPAI,
+      es_sistema_ia: "si",
+      ...NOT_PROHIBITED,
+      anexo_i_o_iii: "no",
+      interactua_con_personas: "no",
+      genera_contenido_sintetico: "si",
+      contenido_publicado: "si",
+      contenido_es_texto: "si",
     });
     expect(result.label).toBe("no_determinado");
     expect(result.missingQuestions).toEqual(["revision_editorial_sustantiva"]);
@@ -462,7 +584,37 @@ describe("classify — 'no lo sé' nunca se trata como 'sí' (regresión)", () =
       anexo_i_o_iii: "no",
       interactua_con_personas: "no",
       genera_contenido_sintetico: "si",
+      contenido_publicado: "si",
+      contenido_es_texto: "si",
       revision_editorial_sustantiva: "no_se",
+    });
+    expect(result.label).toBe("no_determinado");
+  });
+
+  it("no es texto (imagen/audio/vídeo) publicado -> no pide revisión editorial, esa excepción no existe para este tipo de contenido; falta transparencia_biometria_emociones para concluir", () => {
+    const result = classify({
+      ...IN_SCOPE_NOT_GPAI,
+      es_sistema_ia: "si",
+      ...NOT_PROHIBITED,
+      anexo_i_o_iii: "no",
+      interactua_con_personas: "no",
+      genera_contenido_sintetico: "si",
+      contenido_publicado: "si",
+      contenido_es_texto: "no",
+    });
+    expect(result.label).toBe("no_determinado");
+    expect(result.missingQuestions).toEqual(["transparencia_biometria_emociones"]);
+  });
+
+  it("transparencia_biometria_emociones = no_se -> no_determinado", () => {
+    const result = classify({
+      ...IN_SCOPE_NOT_GPAI,
+      es_sistema_ia: "si",
+      ...NOT_PROHIBITED,
+      anexo_i_o_iii: "no",
+      interactua_con_personas: "no",
+      genera_contenido_sintetico: "no",
+      transparencia_biometria_emociones: "no_se",
     });
     expect(result.label).toBe("no_determinado");
   });

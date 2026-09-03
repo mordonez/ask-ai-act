@@ -54,17 +54,32 @@ const IMPORTADOR_DISTRIBUIDOR_ALTO_RIESGO: ActionItem[] = [
 
 /**
  * Cada obligación de transparencia solo aparece si su disparador
- * específico (art. 50.1 interacción, o 50.2/50.4 contenido generado)
- * está entre los `legalRefs` del resultado — no las dos siempre
- * juntas. Ver la nota de questions.ts sobre por qué se separaron.
+ * específico está entre los `legalRefs` del resultado — no aparecen
+ * todas siempre juntas. art. 50.2 (marcado técnico) y art. 50.4
+ * (divulgación al publicar) son obligaciones distintas con
+ * disparadores distintos desde la corrección de la auditoría de
+ * cobertura (ver eval/README.md) — antes se activaban o exoneraban
+ * juntas bajo un único legalRef "art. 50.2 / 50.4", lo cual exoneraba
+ * incorrectamente el marcado técnico cuando solo aplicaba la excepción
+ * de revisión editorial del 50.4. Ver la nota de questions.ts sobre
+ * por qué se separaron.
  */
 function transparenciaItems(legalRefs: string[]): ActionItem[] {
   const items: ActionItem[] = [];
   if (legalRefs.includes("art. 50.1")) {
     items.push({ obligation: "Informar de que se interactúa con un sistema de IA (p. ej. chatbot)", guide: "Guía 8" });
   }
-  if (legalRefs.includes("art. 50.2 / 50.4")) {
-    items.push({ obligation: "Marcar y etiquetar el contenido sintético generado o manipulado", guide: "Guía 8" });
+  if (legalRefs.includes("art. 50.2")) {
+    items.push({ obligation: "Marcar técnicamente (formato legible por máquina) el contenido sintético generado o manipulado", guide: "Guía 8" });
+  }
+  if (legalRefs.includes("art. 50.4")) {
+    items.push({ obligation: "Divulgar al público que el contenido publicado ha sido generado o manipulado por IA", guide: "Guía 8" });
+  }
+  if (legalRefs.includes("art. 50.3")) {
+    items.push({
+      obligation: "Informar del funcionamiento a las personas expuestas a la categorización biométrica o el reconocimiento de emociones",
+      guide: "Guía 8",
+    });
   }
   return items;
 }

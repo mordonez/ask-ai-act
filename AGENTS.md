@@ -8,7 +8,7 @@ Guía de referencia para agentes de IA que trabajen en este repositorio.
 
 ## Estado actual
 
-🚧 **Fase 1 desplegada, muy temprana.** El árbol de reglas cubre la puerta de entrada del art. 2, art. 5, GPAI, Anexo I/III + filtro 6.3, y art. 50, con rol, plan de acción, exportación a CSV, persistencia local, y enlaces por pregunta al artículo/anexo exacto — 73 tests. Vivo en [aiact.miguelordonez.com](https://aiact.miguelordonez.com). Falta: volver atrás en las preguntas, y granularizar Anexo III (8 categorías en una sola pregunta) e identificación biométrica remota (excepciones tasadas metidas en el ejemplo en vez de preguntadas).
+🚧 **Fase 1 desplegada, muy temprana.** El árbol de reglas cubre la puerta de entrada del art. 2, art. 5, GPAI, Anexo I/III + filtro 6.3, y las cuatro obligaciones de transparencia del art. 50 (50.1, 50.2, 50.3 y 50.4, separadas tras una auditoría de cobertura contra el texto oficial), con rol, plan de acción, exportación a CSV, persistencia local, y enlaces por pregunta al artículo/anexo exacto — 84 tests. Vivo en [aiact.miguelordonez.com](https://aiact.miguelordonez.com). Falta: volver atrás en las preguntas, y granularizar Anexo III (8 categorías en una sola pregunta) e identificación biométrica remota (excepciones tasadas metidas en el ejemplo en vez de preguntadas).
 
 ## Comandos
 
